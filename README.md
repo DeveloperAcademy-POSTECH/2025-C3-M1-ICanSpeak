@@ -78,5 +78,5 @@ Stella가 대화를 끊기지 않고 문장을 이어서 말할 수 있도록 �
   GitHub: 
 
 - 🎨 **Viera** (김채원)  
-  GitHub: 
+  GitHub: [@photokcw]
 
