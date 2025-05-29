@@ -343,6 +343,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 허용해주세미";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = umm.umm;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -372,6 +373,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 허용해주세미";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = umm.umm;
 				LD_RUNPATH_SEARCH_PATHS = (
