@@ -14,22 +14,24 @@ struct FirstDetectView: View {
     var body: some View {
         ZStack{
             Circle()
-                  .foregroundColor(.gray1)
-                  .frame(width: 223, height: 223)
+                .foregroundColor(.circlegray).opacity(0.44)
+                
+                  .frame(width: 133, height: 133)
             Circle()
-                .foregroundColor(.gray2)
-                  .frame(width: 161, height: 161)
+                .foregroundColor(.circlegray).opacity(0.73)
+
+                  .frame(width: 112, height: 112)
             Circle()
-                  .foregroundColor(.gray3)
-                  .frame(width: 97, height: 97)
+                  .foregroundColor(.circlegray)
+                  .frame(width: 84, height: 84)
             
             VStack {
                 Spacer()
-                HStack(spacing: 8) {
+                HStack(spacing: 5) {
                     ForEach(0..<3) { index in
                         Circle()
-                            .fill(currentDot == index ? Color.white : Color.gray4)
-                            .frame(width: 12, height: 12)
+                            .fill(currentDot == index ? Color.white : Color.black)
+                            .frame(width: 5, height: 5)
                             .animation(.easeInOut(duration: 0.3), value: currentDot)
                     }
                 }
