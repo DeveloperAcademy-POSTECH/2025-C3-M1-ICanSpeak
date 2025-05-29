@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct SoundDetectMainView: View {
+    @StateObject private var soundManager = SoundDetectionManager()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            if soundManager.detectedSound.contains("감지됨") || soundManager.detectedSound.contains("3초 이상") {
+                UmmDetectView()
+            } else {
+                FirstDetectView()
+            }
+        }
     }
 }
 
