@@ -23,3 +23,7 @@ umm/umm.xcodeproj/**/xcscmblueprint
 # Xcode 빌드/파생 폴더
 umm/build/
 umm/DerivedData/
+
+# 민감한 설정
+umm/Config.xcconfig
+Config.xcconfig
