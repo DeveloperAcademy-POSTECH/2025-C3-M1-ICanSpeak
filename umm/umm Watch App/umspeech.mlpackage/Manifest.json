@@ -1,24 +1,24 @@
 {
     "fileFormatVersion": "1.0.0",
     "itemInfoEntries": {
-        "2D9C80B0-6CFD-40E1-8BBD-811C5222D32E": {
-            "author": "com.apple.CoreML",
-            "description": "CoreML Model Specification",
-            "name": "ummsound.mlmodel",
-            "path": "com.apple.CoreML/ummsound.mlmodel"
-        },
-        "60CDE07E-115A-4391-8240-D6D5BB90B05D": {
+        "1900CD18-DA73-403D-8D26-560C553646E5": {
             "author": "com.apple.CoreML",
             "description": "External FeatureDescription Overlay",
             "name": "FeatureDescriptions.json",
             "path": "com.apple.CoreML/FeatureDescriptions.json"
         },
-        "DCD92391-8F4B-48A3-B5BD-FD8A7D57BE0B": {
+        "37BFE0E8-4B20-4370-9931-8AAEB2C52A32": {
+            "author": "com.apple.CoreML",
+            "description": "CoreML Model Specification",
+            "name": "umspeech.mlmodel",
+            "path": "com.apple.CoreML/umspeech.mlmodel"
+        },
+        "D80D7B43-0764-4EFA-BA9E-DF001F7B3270": {
             "author": "com.apple.CoreML",
             "description": "External Metadata Overlay",
             "name": "Metadata.json",
             "path": "com.apple.CoreML/Metadata.json"
         }
     },
-    "rootModelIdentifier": "2D9C80B0-6CFD-40E1-8BBD-811C5222D32E"
+    "rootModelIdentifier": "37BFE0E8-4B20-4370-9931-8AAEB2C52A32"
 }
