@@ -1,0 +1,5 @@
+umm/Config.xcconfig
+.DS_Store
+*.xcuserdatad
+*.xcuserdata
+*.xcdebugger
