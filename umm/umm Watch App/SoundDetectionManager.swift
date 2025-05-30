@@ -42,7 +42,7 @@ class SoundDetectionManager: NSObject, ObservableObject, SNResultsObserving {
     
     // MARK: - Setup
     private func setup() {
-        guard let model = try? ummsound(configuration: MLModelConfiguration()) else {
+        guard let model = try? umspeech(configuration: MLModelConfiguration()) else {
             print("❌ 모델 로딩 실패")
             return
         }
