@@ -42,7 +42,7 @@ class SoundDetectionManager: NSObject, ObservableObject, SNResultsObserving {
     
     // MARK: - Setup
     private func setup() {
-        guard let model = try? ummsound(configuration: MLModelConfiguration()) else {
+        guard let model = try? Umetcsound(configuration: MLModelConfiguration()) else {
             print("❌ 모델 로딩 실패")
             return
         }
@@ -96,7 +96,7 @@ class SoundDetectionManager: NSObject, ObservableObject, SNResultsObserving {
                 let label = classification.identifier
                 print("🔊 감지된 소리: \(label)")
 
-                if ["Um", "Ah", "Uh"].contains(label) {
+                if ["Um"].contains(label) {
                     print("🔥 햅틱 실행됨 - 감지된 소리: \(label)")
                     self.detectedSound = "감지됨: \(label)"
                     WKInterfaceDevice.current().play(.success)
