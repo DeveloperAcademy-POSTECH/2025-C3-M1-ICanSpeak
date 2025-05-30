@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SoundDetectMainView: View {
     @StateObject private var soundManager = SoundDetectionManager()
-        
+    
     var body: some View {
         
         ZStack {

@@ -11,7 +11,7 @@ import AVFoundation
 
 class MotionManager: ObservableObject {
     var recordedFileURL: URL?
-//    @Published var isHandRaised = false
+    @Published var isHandRaised = false
     let motionManager = CMMotionManager()
     var audioRecorder: AVAudioRecorder?
     var isRecording = false
@@ -29,16 +29,21 @@ class MotionManager: ObservableObject {
             print("pitch: \(pitch)")
             
             if pitch > 50 {
-                print("손 들었음")
+                if !self.isHandRaised {
+                    self.isHandRaised = true
+                    print("손 들었음")
+                }
                 if !self.isRecording {
-                        self.startRecording()
-                    }
-                
+                    self.startRecording()
+                }
             } else {
-                print("손 내림")
+                if self.isHandRaised {
+                    self.isHandRaised = false
+                    print("손 내림")
+                }
                 if self.isRecording {
-                       self.stopRecording()
-                   }
+                    self.stopRecording()
+                }
             }
         }
     }
