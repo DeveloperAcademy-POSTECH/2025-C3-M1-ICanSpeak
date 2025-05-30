@@ -1,0 +1,12 @@
+//
+//  Config.shared.xcconfig
+//  umm
+//
+//  Created by Youbin on 5/30/25.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// ⚠️ 절대 이 파일에 진짜 키를 넣지 마세요
+OPENAI_API_KEY = YOUR_API_KEY_HERE
