@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60C3C4192DE97A200063B8F4 /* .gitignore in Sources */ = {isa = PBXBuildFile; fileRef = 60C3C4182DE97A1B0063B8F4 /* .gitignore */; };
 		936C5C412DE54A4E0000DFDF /* umm Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 936C5C402DE54A4E0000DFDF /* umm Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		60C3C4182DE97A1B0063B8F4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		936C5C302DE54A4D0000DFDF /* umm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = umm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		936C5C402DE54A4E0000DFDF /* umm Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "umm Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -86,6 +88,7 @@
 		936C5C272DE54A4D0000DFDF = {
 			isa = PBXGroup;
 			children = (
+				60C3C4182DE97A1B0063B8F4 /* .gitignore */,
 				936C5C322DE54A4D0000DFDF /* umm */,
 				936C5C442DE54A4E0000DFDF /* umm Watch App */,
 				936C5C312DE54A4D0000DFDF /* Products */,
@@ -210,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60C3C4192DE97A200063B8F4 /* .gitignore in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
