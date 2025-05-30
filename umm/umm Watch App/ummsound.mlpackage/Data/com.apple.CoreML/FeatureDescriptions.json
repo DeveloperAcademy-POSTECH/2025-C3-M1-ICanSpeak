@@ -1,0 +1,21 @@
+{
+  "Inputs" : {
+    "audioSamples" : {
+      "MLFeatureShortDescription" : ""
+    }
+  },
+  "Outputs" : {
+    "target" : {
+      "MLFeatureShortDescription" : ""
+    },
+    "targetProbability" : {
+      "MLFeatureShortDescription" : ""
+    }
+  },
+  "TrainingInputs" : {
+
+  },
+  "States" : {
+
+  }
+}
