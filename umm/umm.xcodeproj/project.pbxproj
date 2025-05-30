@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92ABA7B02DE97ED000D85C74 /* WordSuggestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABA7AE2DE97ED000D85C74 /* WordSuggestionModel.swift */; };
+		92ABA7B12DE97ED000D85C74 /* WordSuggestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABA7AE2DE97ED000D85C74 /* WordSuggestionModel.swift */; };
+		92ABA7B52DE97F0E00D85C74 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 92ABA7B42DE97F0E00D85C74 /* Config.xcconfig */; };
 		936C5C412DE54A4E0000DFDF /* umm Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 936C5C402DE54A4E0000DFDF /* umm Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		93D8C9962DE960A800DFCD00 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 93D8C9952DE960A800DFCD00 /* Config.xcconfig */; };
-		93D8C9972DE960A800DFCD00 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 93D8C9952DE960A800DFCD00 /* Config.xcconfig */; };
-		93D8C9992DE9611700DFCD00 /* Config.shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */; };
-		93D8C99A2DE9611700DFCD00 /* Config.shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,22 +38,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		92ABA7AE2DE97ED000D85C74 /* WordSuggestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSuggestionModel.swift; sourceTree = "<group>"; };
+		92ABA7B42DE97F0E00D85C74 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		936C5C302DE54A4D0000DFDF /* umm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = umm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		936C5C402DE54A4E0000DFDF /* umm Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "umm Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		93D8C9952DE960A800DFCD00 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.shared.xcconfig; sourceTree = "<group>"; };
-		93D8C99B2DE961EB00DFCD00 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		93D8C98B2DE9601900DFCD00 /* Exceptions for "Shared" folder in "umm Watch App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				WordSuggestionModel.swift,
-			);
-			target = 936C5C3F2DE54A4E0000DFDF /* umm Watch App */;
-		};
-		93D8C99F2DE9627A00DFCD00 /* Exceptions for "umm" folder in "umm" target */ = {
+		92ABA7B62DE9830D00D85C74 /* Exceptions for "umm" folder in "umm" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -67,7 +58,7 @@
 		936C5C322DE54A4D0000DFDF /* umm */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				93D8C99F2DE9627A00DFCD00 /* Exceptions for "umm" folder in "umm" target */,
+				92ABA7B62DE9830D00D85C74 /* Exceptions for "umm" folder in "umm" target */,
 			);
 			path = umm;
 			sourceTree = "<group>";
@@ -75,14 +66,6 @@
 		936C5C442DE54A4E0000DFDF /* umm Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "umm Watch App";
-			sourceTree = "<group>";
-		};
-		93D8C9832DE95FD500DFCD00 /* Shared */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				93D8C98B2DE9601900DFCD00 /* Exceptions for "Shared" folder in "umm Watch App" target */,
-			);
-			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -105,16 +88,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		92ABA7AF2DE97ED000D85C74 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				92ABA7AE2DE97ED000D85C74 /* WordSuggestionModel.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		936C5C272DE54A4D0000DFDF = {
 			isa = PBXGroup;
 			children = (
-				93D8C99B2DE961EB00DFCD00 /* .gitignore */,
-				93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */,
-				93D8C9952DE960A800DFCD00 /* Config.xcconfig */,
-				93D8C9832DE95FD500DFCD00 /* Shared */,
+				92ABA7B42DE97F0E00D85C74 /* Config.xcconfig */,
 				936C5C322DE54A4D0000DFDF /* umm */,
 				936C5C442DE54A4E0000DFDF /* umm Watch App */,
 				936C5C312DE54A4D0000DFDF /* Products */,
+				92ABA7AF2DE97ED000D85C74 /* Shared */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,7 +135,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				936C5C322DE54A4D0000DFDF /* umm */,
-				93D8C9832DE95FD500DFCD00 /* Shared */,
 			);
 			name = umm;
 			packageProductDependencies = (
@@ -220,8 +208,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93D8C9992DE9611700DFCD00 /* Config.shared.xcconfig in Resources */,
-				93D8C9962DE960A800DFCD00 /* Config.xcconfig in Resources */,
+				92ABA7B52DE97F0E00D85C74 /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,8 +216,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93D8C99A2DE9611700DFCD00 /* Config.shared.xcconfig in Resources */,
-				93D8C9972DE960A800DFCD00 /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92ABA7B02DE97ED000D85C74 /* WordSuggestionModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92ABA7B12DE97ED000D85C74 /* WordSuggestionModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +251,7 @@
 /* Begin XCBuildConfiguration section */
 		936C5C4E2DE54A4F0000DFDF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D8C9952DE960A800DFCD00 /* Config.xcconfig */;
+			baseConfigurationReference = 92ABA7B42DE97F0E00D85C74 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -326,7 +313,7 @@
 		};
 		936C5C4F2DE54A4F0000DFDF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D8C9952DE960A800DFCD00 /* Config.xcconfig */;
+			baseConfigurationReference = 92ABA7B42DE97F0E00D85C74 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -380,19 +367,17 @@
 		};
 		936C5C512DE54A4F0000DFDF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D8C9952DE960A800DFCD00 /* Config.xcconfig */;
+			baseConfigurationReference = 92ABA7B42DE97F0E00D85C74 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"umm Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = Y485RHY5J6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "umm-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 녹음을 위해 마이크 사용이 필요합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 허용해주세미";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = umm.umm;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -413,19 +398,17 @@
 		};
 		936C5C522DE54A4F0000DFDF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D8C9952DE960A800DFCD00 /* Config.xcconfig */;
+			baseConfigurationReference = 92ABA7B42DE97F0E00D85C74 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"umm Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = Y485RHY5J6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "umm-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 녹음을 위해 마이크 사용이 필요합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 허용해주세미";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = umm.umm;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -447,21 +430,16 @@
 		};
 		936C5C552DE54A4F0000DFDF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D8C9952DE960A800DFCD00 /* Config.xcconfig */;
+			baseConfigurationReference = 92ABA7B42DE97F0E00D85C74 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"umm/Preview Content\"";
-				DEVELOPMENT_TEAM = Y485RHY5J6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = umm/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 녹음을 위해 마이크 사용이 필요합니다.";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 인식을 사용하여 텍스트로 변환합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -484,21 +462,16 @@
 		};
 		936C5C562DE54A4F0000DFDF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D8C9952DE960A800DFCD00 /* Config.xcconfig */;
+			baseConfigurationReference = 92ABA7B42DE97F0E00D85C74 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"umm/Preview Content\"";
-				DEVELOPMENT_TEAM = Y485RHY5J6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = umm/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 녹음을 위해 마이크 사용이 필요합니다.";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 인식을 사용하여 텍스트로 변환합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
