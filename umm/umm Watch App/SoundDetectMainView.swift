@@ -11,11 +11,13 @@ struct SoundDetectMainView: View {
     @StateObject private var soundManager = SoundDetectionManager()
     
     var body: some View {
+        
         ZStack {
             if soundManager.detectedSound.contains("감지됨") || soundManager.detectedSound.contains("3초 이상") {
                 UmmDetectView()
             } else {
                 FirstDetectView()
+                
             }
         }
     }
