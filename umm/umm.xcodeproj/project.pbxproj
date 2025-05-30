@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		936C5C412DE54A4E0000DFDF /* umm Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 936C5C402DE54A4E0000DFDF /* umm Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		93D8C8A92DE9484700DFCD00 /* .gitignore in Sources */ = {isa = PBXBuildFile; fileRef = 93D8C8A82DE9484300DFCD00 /* .gitignore */; };
+		93D8C8AB2DE9486100DFCD00 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8C8AA2DE9485E00DFCD00 /* Secrets.swift */; };
+		93D8C8AC2DE9487200DFCD00 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D8C8AA2DE9485E00DFCD00 /* Secrets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +40,19 @@
 /* Begin PBXFileReference section */
 		936C5C302DE54A4D0000DFDF /* umm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = umm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		936C5C402DE54A4E0000DFDF /* umm Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "umm Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93D8C8A82DE9484300DFCD00 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		93D8C8AA2DE9485E00DFCD00 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		93D8C8B22DE9489300DFCD00 /* Exceptions for "Shared" folder in "umm Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				WordSuggestionModel.swift,
+			);
+			target = 936C5C3F2DE54A4E0000DFDF /* umm Watch App */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		936C5C322DE54A4D0000DFDF /* umm */ = {
@@ -48,6 +63,14 @@
 		936C5C442DE54A4E0000DFDF /* umm Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "umm Watch App";
+			sourceTree = "<group>";
+		};
+		93D8C8AD2DE9487B00DFCD00 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				93D8C8B22DE9489300DFCD00 /* Exceptions for "Shared" folder in "umm Watch App" target */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -73,6 +96,9 @@
 		936C5C272DE54A4D0000DFDF = {
 			isa = PBXGroup;
 			children = (
+				93D8C8AD2DE9487B00DFCD00 /* Shared */,
+				93D8C8AA2DE9485E00DFCD00 /* Secrets.swift */,
+				93D8C8A82DE9484300DFCD00 /* .gitignore */,
 				936C5C322DE54A4D0000DFDF /* umm */,
 				936C5C442DE54A4E0000DFDF /* umm Watch App */,
 				936C5C312DE54A4D0000DFDF /* Products */,
@@ -107,6 +133,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				936C5C322DE54A4D0000DFDF /* umm */,
+				93D8C8AD2DE9487B00DFCD00 /* Shared */,
 			);
 			name = umm;
 			packageProductDependencies = (
@@ -197,6 +224,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93D8C8AB2DE9486100DFCD00 /* Secrets.swift in Sources */,
+				93D8C8A92DE9484700DFCD00 /* .gitignore in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93D8C8AC2DE9487200DFCD00 /* Secrets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
