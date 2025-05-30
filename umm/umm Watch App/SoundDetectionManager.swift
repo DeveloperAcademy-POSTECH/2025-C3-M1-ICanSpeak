@@ -42,7 +42,7 @@ class SoundDetectionManager: NSObject, ObservableObject, SNResultsObserving {
     
     // MARK: - Setup
     private func setup() {
-        guard let model = try? Umetcsound(configuration: MLModelConfiguration()) else {
+        guard let model = try? ummsound(configuration: MLModelConfiguration()) else {
             print("❌ 모델 로딩 실패")
             return
         }
@@ -96,22 +96,22 @@ class SoundDetectionManager: NSObject, ObservableObject, SNResultsObserving {
                 let label = classification.identifier
                 print("🔊 감지된 소리: \(label)")
 
-                if ["Um"].contains(label) {
+                // "Um"일 때만 즉시 햅틱 울림
+                if label == "Um" {
                     print("🔥 햅틱 실행됨 - 감지된 소리: \(label)")
                     self.detectedSound = "감지됨: \(label)"
                     WKInterfaceDevice.current().play(.success)
-                } else if label == "etc" {
-                    //etc소리 3초 이상 감지
+                }
+                // "etc" 처리
+                else if label == "etc" {
                     if self.lastLabel == "etc" {
                         if let start = self.etcStartTime {
                             let timePassed = Date().timeIntervalSince(start)
-                            //print("⏱️ 연속 감지 시간: \(timePassed)")
                             if timePassed >= 3 {
                                 print("🔥 햅틱 실행됨 - 3초 이상 기타 소리 감지")
                                 self.detectedSound = "3초 이상 기타 소리 감지됨"
                                 WKInterfaceDevice.current().play(.success)
-                                
-                               //etc소리가 3초 이상 연속으로 감지된 후 etc누적시간 초기화
+                                //etc소리 3초 이상 연속 감지 후 초기화
                                 self.etcStartTime = nil
                             } else {
                                 self.detectedSound = "기타 소리 감지 중..."
@@ -121,7 +121,9 @@ class SoundDetectionManager: NSObject, ObservableObject, SNResultsObserving {
                         self.etcStartTime = Date()
                         self.detectedSound = "기타 소리 감지 중..."
                     }
-                } else {
+                }
+                // 나머지 소리는 햅틱 없이 표시만
+                else {
                     self.etcStartTime = nil
                     self.detectedSound = "다른 소리: \(label)"
                 }

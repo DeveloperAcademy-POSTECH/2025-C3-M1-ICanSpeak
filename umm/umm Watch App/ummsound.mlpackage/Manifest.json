@@ -1,0 +1,24 @@
+{
+    "fileFormatVersion": "1.0.0",
+    "itemInfoEntries": {
+        "2D9C80B0-6CFD-40E1-8BBD-811C5222D32E": {
+            "author": "com.apple.CoreML",
+            "description": "CoreML Model Specification",
+            "name": "ummsound.mlmodel",
+            "path": "com.apple.CoreML/ummsound.mlmodel"
+        },
+        "60CDE07E-115A-4391-8240-D6D5BB90B05D": {
+            "author": "com.apple.CoreML",
+            "description": "External FeatureDescription Overlay",
+            "name": "FeatureDescriptions.json",
+            "path": "com.apple.CoreML/FeatureDescriptions.json"
+        },
+        "DCD92391-8F4B-48A3-B5BD-FD8A7D57BE0B": {
+            "author": "com.apple.CoreML",
+            "description": "External Metadata Overlay",
+            "name": "Metadata.json",
+            "path": "com.apple.CoreML/Metadata.json"
+        }
+    },
+    "rootModelIdentifier": "2D9C80B0-6CFD-40E1-8BBD-811C5222D32E"
+}
