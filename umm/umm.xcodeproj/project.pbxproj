@@ -39,14 +39,37 @@
 		936C5C402DE54A4E0000DFDF /* umm Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "umm Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		603A79482DE9416300CD283C /* Exceptions for "umm" folder in "umm" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 936C5C2F2DE54A4D0000DFDF /* umm */;
+		};
+		603A794A2DE941D800CD283C /* Exceptions for "umm Watch App" folder in "umm Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"umm-Watch-App-Info.plist",
+			);
+			target = 936C5C3F2DE54A4E0000DFDF /* umm Watch App */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		936C5C322DE54A4D0000DFDF /* umm */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				603A79482DE9416300CD283C /* Exceptions for "umm" folder in "umm" target */,
+			);
 			path = umm;
 			sourceTree = "<group>";
 		};
 		936C5C442DE54A4E0000DFDF /* umm Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				603A794A2DE941D800CD283C /* Exceptions for "umm Watch App" folder in "umm Watch App" target */,
+			);
 			path = "umm Watch App";
 			sourceTree = "<group>";
 		};
@@ -342,8 +365,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"umm Watch App/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "umm-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 허용해주세미";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 녹음을 위해 마이크 사용이 필요합니다.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = umm.umm;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -372,8 +396,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"umm Watch App/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "umm-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 허용해주세미";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 녹음을 위해 마이크 사용이 필요합니다.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = umm.umm;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -403,7 +428,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"umm/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = umm/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 녹음을 위해 마이크 사용이 필요합니다.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 인식을 사용하여 텍스트로 변환합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -434,7 +463,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"umm/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = umm/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 녹음을 위해 마이크 사용이 필요합니다.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 인식을 사용하여 텍스트로 변환합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
