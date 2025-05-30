@@ -43,7 +43,6 @@
 		936C5C402DE54A4E0000DFDF /* umm Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "umm Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D8C9952DE960A800DFCD00 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.shared.xcconfig; sourceTree = "<group>"; };
-		93D8C99B2DE961EB00DFCD00 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -108,7 +107,6 @@
 		936C5C272DE54A4D0000DFDF = {
 			isa = PBXGroup;
 			children = (
-				93D8C99B2DE961EB00DFCD00 /* .gitignore */,
 				93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */,
 				93D8C9952DE960A800DFCD00 /* Config.xcconfig */,
 				93D8C9832DE95FD500DFCD00 /* Shared */,
