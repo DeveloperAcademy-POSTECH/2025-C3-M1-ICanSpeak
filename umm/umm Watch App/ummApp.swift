@@ -11,7 +11,7 @@ import SwiftUI
 struct umm_Watch_AppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WordSuggestionView(koreanWord: "초대하다")
         }
     }
 }
