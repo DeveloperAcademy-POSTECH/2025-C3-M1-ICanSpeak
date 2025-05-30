@@ -52,6 +52,13 @@
 			);
 			target = 936C5C2F2DE54A4D0000DFDF /* umm */;
 		};
+		92ABA7B82DE9881200D85C74 /* Exceptions for "umm Watch App" folder in "umm Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"umm-Watch-App-Info.plist",
+			);
+			target = 936C5C3F2DE54A4E0000DFDF /* umm Watch App */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -65,6 +72,9 @@
 		};
 		936C5C442DE54A4E0000DFDF /* umm Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				92ABA7B82DE9881200D85C74 /* Exceptions for "umm Watch App" folder in "umm Watch App" target */,
+			);
 			path = "umm Watch App";
 			sourceTree = "<group>";
 		};
@@ -376,6 +386,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"umm Watch App/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "umm-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 허용해주세미";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -407,6 +418,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"umm Watch App/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "umm-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 허용해주세미";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -439,6 +451,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"umm/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = umm/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -471,6 +484,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"umm/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = umm/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = umm;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

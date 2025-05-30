@@ -23,12 +23,3 @@ umm/DerivedData/
 
 # 민감한 설정
 umm/Config.xcconfig
-
-# Ignore all
-*
-
-# Unignore all with extensions
-!*.*
-
-# Unignore all dirs
-!*/
