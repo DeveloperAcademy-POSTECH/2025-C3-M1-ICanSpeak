@@ -16,7 +16,7 @@ struct umm_Watch_AppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            WordSuggestionView(koreanWord: "초대하다")
         }
     }
 }
