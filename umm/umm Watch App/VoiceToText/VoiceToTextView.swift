@@ -19,6 +19,7 @@ struct VoiceToTextView: View {
         VStack(spacing: 10) {
             Text(sessionManager.receivedText)
                 .multilineTextAlignment(.center)
+                .font(.sdregular16)
             Image(systemName: "waveform")
                 .font(.system(size: 30))
                 .symbolEffect(.bounce.up.byLayer, value: showBounce)
