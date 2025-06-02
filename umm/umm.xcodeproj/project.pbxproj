@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		936C5C412DE54A4E0000DFDF /* umm Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 936C5C402DE54A4E0000DFDF /* umm Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		93D8C9992DE9611700DFCD00 /* Config.shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */; };
-		93D8C99A2DE9611700DFCD00 /* Config.shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */; };
-		FE1816BA2DED2AC5006672B2 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FE1816B92DED2AC5006672B2 /* Config.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +39,7 @@
 		936C5C402DE54A4E0000DFDF /* umm Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "umm Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.shared.xcconfig; sourceTree = "<group>"; };
 		FE1816B92DED2AC5006672B2 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		FE6F73042DED592F00C3CD22 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -131,13 +129,14 @@
 		936C5C272DE54A4D0000DFDF = {
 			isa = PBXGroup;
 			children = (
+				FE6F73042DED592F00C3CD22 /* Config.xcconfig */,
 				93AC21062DED27CA00FBB517 /* Resources */,
-				93D8CACC2DE98E4F00DFCD00 /* Config.xcconfig */,
 				93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */,
 				93D8C9832DE95FD500DFCD00 /* Shared */,
 				936C5C322DE54A4D0000DFDF /* umm */,
 				936C5C442DE54A4E0000DFDF /* umm Watch App */,
 				936C5C312DE54A4D0000DFDF /* Products */,
+				FE6F729F2DED57C000C3CD22 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,6 +147,14 @@
 				936C5C402DE54A4E0000DFDF /* umm Watch App.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FE6F729F2DED57C000C3CD22 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				FE1816B92DED2AC5006672B2 /* Config.xcconfig */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,7 +216,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1620;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					936C5C2F2DE54A4D0000DFDF = {
 						CreatedOnToolsVersion = 16.2;
@@ -247,8 +254,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE1816BA2DED2AC5006672B2 /* Config.xcconfig in Resources */,
-				93D8C9992DE9611700DFCD00 /* Config.shared.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +261,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93D8C99A2DE9611700DFCD00 /* Config.shared.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +294,7 @@
 /* Begin XCBuildConfiguration section */
 		936C5C4E2DE54A4F0000DFDF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE6F73042DED592F00C3CD22 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -322,7 +327,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Y485RHY5J6;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -351,6 +358,7 @@
 		};
 		936C5C4F2DE54A4F0000DFDF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE6F73042DED592F00C3CD22 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -383,7 +391,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Y485RHY5J6;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -404,13 +414,13 @@
 		};
 		936C5C512DE54A4F0000DFDF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE6F73042DED592F00C3CD22 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"umm Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = Y485RHY5J6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "umm-Watch-App-Info.plist";
@@ -436,13 +446,13 @@
 		};
 		936C5C522DE54A4F0000DFDF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE1816B92DED2AC5006672B2 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"umm Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = Y485RHY5J6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "umm-Watch-App-Info.plist";
@@ -469,13 +479,13 @@
 		};
 		936C5C552DE54A4F0000DFDF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE1816B92DED2AC5006672B2 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"umm/Preview Content\"";
-				DEVELOPMENT_TEAM = Y485RHY5J6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = umm/Info.plist;
@@ -505,13 +515,13 @@
 		};
 		936C5C562DE54A4F0000DFDF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE6F73042DED592F00C3CD22 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"umm/Preview Content\"";
-				DEVELOPMENT_TEAM = Y485RHY5J6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = umm/Info.plist;
