@@ -1,34 +1,42 @@
 import SwiftUI
+import WatchConnectivity
 
 struct StartView: View {
-    @State private var isStarted = false
-    @StateObject private var soundDetector = SoundDetector()
-    @StateObject private var gestureDetector = GestureDetector()
-
-    var body: some View {
-            VStack {
-              if isStarted {
-                FirstDetectView()
-              } else {
-                Button(action: {
-                  isStarted = true
-                    soundDetector.startListening()
-                    gestureDetector.startDetecting()
-                }) {
-                    ZStack {
-                        Circle()
-                            .fill(Color("Main Orange"))
-                            .frame(width: 134, height: 134)
-                        Text("Start")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.white)
-                    }
-                }
-                .buttonStyle(PlainButtonStyle())
-            }
-            }
+  @State private var isStarted = false
+  @State private var tabSelection = 1
+  
+  
+  var body: some View {
+    if isStarted {
+      TabView(selection: $tabSelection) {
+        PauseView(soundDetector: SoundDetector(), gestureDetector: GestureDetector())
+          .tag(0)
+        MainView()
+          .tag(1)
+      }
+      .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+      .onAppear {
+        tabSelection = 1
+      }
+    } else {
+      Button(action: {
+        let startTime = Date()
+        WatchSessionManager.shared.sendStartTimeToApp(date: startTime)
+        isStarted = true
+      }) {
+        ZStack {
+          Circle()
+            .fill(Color.ummPrimary)
+            .frame(width: 134, height: 134)
+          Text("Start")
+            .font(.sfbold20)
+            .foregroundColor(.white)
         }
+      }
+      .buttonStyle(PlainButtonStyle())
     }
+  }
+}
 
 #Preview {
     StartView()
