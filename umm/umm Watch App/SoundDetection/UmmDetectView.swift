@@ -12,23 +12,23 @@ struct UmmDetectView: View {
     var body: some View {
         ZStack{
             Circle()
-                .foregroundColor(.orange).opacity(0.4)
+                .foregroundColor(.ummPrimary).opacity(0.4)
             
                 .frame(width: 133, height: 133)
             Circle()
-                .foregroundColor(.orange).opacity(0.7)
+                .foregroundColor(.ummPrimary).opacity(0.7)
             
                 .frame(width: 112, height: 112)
             Circle()
-                .foregroundColor(.orange)
+                .foregroundColor(.ummPrimary)
                 .frame(width: 84, height: 84)
             
             VStack {
                 Spacer()
                 HStack(spacing: 5) {
                     Text("Umm")
-                        .font(.system(size: 20))
-                        .bold()
+                        .font(.sfbold20)
+                        
                 }
                 Spacer()
             }
