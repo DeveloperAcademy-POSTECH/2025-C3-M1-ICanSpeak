@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PauseView: View {
+    @ObservedObject var soundDetector: SoundDetector
+    @ObservedObject var gestureDetector: GestureDetector
     @State private var isPaused: Bool = false
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.dismiss) var dismiss
@@ -49,6 +51,13 @@ struct PauseView: View {
                 VStack(spacing: 5) {
                     Button(action: {
                         isPaused.toggle()
+                        if isPaused {
+                            soundDetector.stopListening()
+                            gestureDetector.stopDetecting()
+                        } else {
+                            soundDetector.startListening()
+                            gestureDetector.startDetecting()
+                        }
                     }) {
                         Image(systemName: isPaused ? "arrow.clockwise" : "pause")
                             .font(.system(size: 24, weight: .semibold))
@@ -73,5 +82,5 @@ struct PauseView: View {
 }
 
 #Preview {
-    PauseView()
+    PauseView(soundDetector: SoundDetector(), gestureDetector: GestureDetector())
 }
