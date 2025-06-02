@@ -6,15 +6,20 @@
 //
 
 import SwiftUI
+import WatchConnectivity
 
 struct PauseView: View {
     @ObservedObject var soundDetector: SoundDetector
     @ObservedObject var gestureDetector: GestureDetector
     @State private var isPaused: Bool = false
-    @Environment(\.scenePhase) var scenePhase
-    @Environment(\.dismiss) var dismiss
+    @State private var isExited = false
 
     var body: some View {
+      
+      if isExited {
+        StartView()
+      }
+      else{
       VStack(spacing: 0) {
                   // 상단 우측 "Umm.." 파란 텍스트
                   HStack {
@@ -31,20 +36,21 @@ struct PauseView: View {
                 // 종료 버튼
                 VStack(spacing: 5) {
                     Button(action: {
-                        // 앱 종료
-                        exit(0)
+                        let exitTime = Date()
+                        WatchSessionManager.shared.sendExitTimeToApp(date: exitTime)
+                        isExited = true
                     }) {
                         Image(systemName: "xmark")
-                            .font(.system(size: 24, weight: .semibold))
-                            .foregroundColor(.red)
-                            .frame(width: 80, height: 60)
+                        .font(.system(size: 23))
+                        .fontWeight(.semibold)
+                          .foregroundColor(.red)
                     }
                     .foregroundColor(.red)
                     .frame(width: 73, height: 50)
                     .cornerRadius(43)
                     Text("종료")
                         .foregroundColor(.white)
-                        .font(Font.custom("Apple SD 산돌고딕 Neo", size: 11))
+                        .font(.sdregular12)
                 }
 
                 // 일시정지 / 재개 버튼
@@ -60,16 +66,16 @@ struct PauseView: View {
                         }
                     }) {
                         Image(systemName: isPaused ? "arrow.clockwise" : "pause")
-                            .font(.system(size: 24, weight: .semibold))
+                            .font(.system(size: 23))
+                            .fontWeight(.semibold)
                             .foregroundColor(.yellow)
-                            .frame(width: 80, height: 60)
                     }
                     .foregroundColor(.yellow)
                     .frame(width: 73, height: 50)
                     .cornerRadius(43)
                     Text(isPaused ? "재개" : "일시 정지")
                         .foregroundColor(.white)
-                        .font(Font.custom("Apple SD 산돌고딕 Neo", size: 11))
+                        .font(.sdregular12)
                 }
             }
 
@@ -77,8 +83,9 @@ struct PauseView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black)
-      
+        }
     }
+  
 }
 
 #Preview {

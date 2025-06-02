@@ -11,6 +11,10 @@ import Speech
 
 class PhoneSessionManager: NSObject, WCSessionDelegate, ObservableObject {
     static let shared = PhoneSessionManager()
+  
+  @Published var startTime: String = ""
+  @Published var exitTime: String = ""
+  
     
     private override init() {
         super.init()
@@ -70,6 +74,19 @@ class PhoneSessionManager: NSObject, WCSessionDelegate, ObservableObject {
             print("⚠️ Watch에 연결되지 않았습니다.")
         }
     }
+    
+  // 메시지 수신 처리
+  func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+      DispatchQueue.main.async {
+          if let startTime = message["startTime"] as? String {
+              self.startTime = startTime
+              print("✅ 받은 startTime: \(startTime)")
+          } else if let exitTime = message["exitTime"] as? String {
+              self.exitTime = exitTime
+              print("✅ 받은 exitTime: \(exitTime)")
+          }
+      }
+  }
     
 //    func sendTextToWatch(_ text: String) {
 //        if WCSession.default.isReachable {
