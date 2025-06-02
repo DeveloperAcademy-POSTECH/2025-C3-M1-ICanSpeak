@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct HandDetectionSwitcherView: View {
 @StateObject private var motionManager = MotionManager()
 @StateObject private var soundDetectionManager = SoundDetectionManager()  // ✅ 소리 감지 매니저 추가
 
@@ -39,7 +39,7 @@ var body: some View {
 }
 
 
-//    #Preview {
-//        MainView()
-//    }
+    #Preview {
+        HandDetectionSwitcherView()
+    }
 

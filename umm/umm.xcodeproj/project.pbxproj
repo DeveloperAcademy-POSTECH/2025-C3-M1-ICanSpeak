@@ -128,16 +128,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60A8B70D2DED63000036ED07 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				FE1816B92DED2AC5006672B2 /* Config.xcconfig */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		936C5C272DE54A4D0000DFDF = {
 			isa = PBXGroup;
 			children = (
 				93AC21062DED27CA00FBB517 /* Resources */,
-				93D8CACC2DE98E4F00DFCD00 /* Config.xcconfig */,
 				93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */,
 				93D8C9832DE95FD500DFCD00 /* Shared */,
 				936C5C322DE54A4D0000DFDF /* umm */,
 				936C5C442DE54A4E0000DFDF /* umm Watch App */,
 				936C5C312DE54A4D0000DFDF /* Products */,
+				60A8B70D2DED63000036ED07 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -475,7 +483,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"umm/Preview Content\"";
-				DEVELOPMENT_TEAM = 5BT826RV67;
+				DEVELOPMENT_TEAM = Y485RHY5J6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = umm/Info.plist;
@@ -511,7 +519,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"umm/Preview Content\"";
-				DEVELOPMENT_TEAM = 5BT826RV67;
+				DEVELOPMENT_TEAM = Y485RHY5J6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = umm/Info.plist;
