@@ -10,7 +10,7 @@
 		936C5C412DE54A4E0000DFDF /* umm Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 936C5C402DE54A4E0000DFDF /* umm Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		93D8C9992DE9611700DFCD00 /* Config.shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */; };
 		93D8C99A2DE9611700DFCD00 /* Config.shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */; };
-		93D8CACD2DE98E4F00DFCD00 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 93D8CACC2DE98E4F00DFCD00 /* Config.xcconfig */; };
+		FE1816BA2DED2AC5006672B2 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FE1816B92DED2AC5006672B2 /* Config.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +41,7 @@
 		936C5C302DE54A4D0000DFDF /* umm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = umm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		936C5C402DE54A4E0000DFDF /* umm Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "umm Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.shared.xcconfig; sourceTree = "<group>"; };
-		93D8CACC2DE98E4F00DFCD00 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		FE1816B92DED2AC5006672B2 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -228,6 +228,9 @@
 			);
 			mainGroup = 936C5C272DE54A4D0000DFDF;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FE1815CB2DE94E2F006672B2 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 936C5C312DE54A4D0000DFDF /* Products */;
 			projectDirPath = "";
@@ -244,7 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93D8CACD2DE98E4F00DFCD00 /* Config.xcconfig in Resources */,
+				FE1816BA2DED2AC5006672B2 /* Config.xcconfig in Resources */,
 				93D8C9992DE9611700DFCD00 /* Config.shared.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,7 +290,6 @@
 /* Begin XCBuildConfiguration section */
 		936C5C4E2DE54A4F0000DFDF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D8CACC2DE98E4F00DFCD00 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -349,7 +351,6 @@
 		};
 		936C5C4F2DE54A4F0000DFDF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D8CACC2DE98E4F00DFCD00 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -403,7 +404,6 @@
 		};
 		936C5C512DE54A4F0000DFDF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D8CACC2DE98E4F00DFCD00 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -436,7 +436,6 @@
 		};
 		936C5C522DE54A4F0000DFDF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D8CACC2DE98E4F00DFCD00 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -470,7 +469,6 @@
 		};
 		936C5C552DE54A4F0000DFDF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D8CACC2DE98E4F00DFCD00 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -507,7 +505,6 @@
 		};
 		936C5C562DE54A4F0000DFDF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D8CACC2DE98E4F00DFCD00 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -574,6 +571,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FE1815CB2DE94E2F006672B2 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 936C5C282DE54A4D0000DFDF /* Project object */;
 }
