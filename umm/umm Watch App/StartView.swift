@@ -20,8 +20,7 @@ struct StartView: View {
                             .fill(Color("Main Orange"))
                             .frame(width: 134, height: 134)
                         Text("Start")
-                            .font(Font.custom("SF Compact", size: 20))
-                            .fontWeight(.bold)
+                            .font(.system(size: 20, weight: .bold))
                             .foregroundColor(.white)
                     }
                 }
