@@ -45,6 +45,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		93AC21192DED27DD00FBB517 /* Exceptions for "Resources" folder in "umm Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AppleSDGothicNeoB.ttf,
+				AppleSDGothicNeoL.ttf,
+				AppleSDGothicNeoM.ttf,
+				AppleSDGothicNeoR.ttf,
+				AppleSDGothicNeoSB.ttf,
+				Fonts.swift,
+				"SFCompactText-Bold.otf",
+				"SFCompactText-Light.otf",
+				"SFCompactText-Medium.otf",
+				"SFCompactText-Regular.otf",
+				"SFCompactText-Semibold.otf",
+			);
+			target = 936C5C3F2DE54A4E0000DFDF /* umm Watch App */;
+		};
 		93D8C98B2DE9601900DFCD00 /* Exceptions for "Shared" folder in "umm Watch App" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -73,6 +90,14 @@
 		936C5C442DE54A4E0000DFDF /* umm Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "umm Watch App";
+			sourceTree = "<group>";
+		};
+		93AC21062DED27CA00FBB517 /* Resources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				93AC21192DED27DD00FBB517 /* Exceptions for "Resources" folder in "umm Watch App" target */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		93D8C9832DE95FD500DFCD00 /* Shared */ = {
@@ -106,7 +131,8 @@
 		936C5C272DE54A4D0000DFDF = {
 			isa = PBXGroup;
 			children = (
-				FE1816B92DED2AC5006672B2 /* Config.xcconfig */,
+				93AC21062DED27CA00FBB517 /* Resources */,
+				93D8CACC2DE98E4F00DFCD00 /* Config.xcconfig */,
 				93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */,
 				93D8C9832DE95FD500DFCD00 /* Shared */,
 				936C5C322DE54A4D0000DFDF /* umm */,
@@ -143,6 +169,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				936C5C322DE54A4D0000DFDF /* umm */,
+				93AC21062DED27CA00FBB517 /* Resources */,
 				93D8C9832DE95FD500DFCD00 /* Shared */,
 			);
 			name = umm;
