@@ -14,13 +14,13 @@ struct WordSuggestionView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 10) {
+            VStack(spacing: 4) {
                 koreanWords
                 englishWordList
                 btns
             }
         }
-        .padding(.top, -20)
+        .padding(.top, -13)
         .background(Color.black)
         .onAppear {
             viewModel.fetchSuggestions(for: koreanWord)
@@ -31,35 +31,49 @@ struct WordSuggestionView: View {
     //MARK: - 한국어 단어
     private var koreanWords: some View {
         Text(koreanWord)
-            .font(.system(size: 30))
+            .font(.sdregular16)
     }
 
     //MARK: - 영어 단어 (단어만 표시)
     private var englishWordList: some View {
         ForEach(viewModel.suggestions) { suggestion in
-            Text(suggestion.word) // ✨ 핵심: word만 표시
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 6)
-                .background(Color.gray.opacity(0.7))
-                .cornerRadius(10)
-                .foregroundColor(.white)
+            HStack {
+                Text(suggestion.word)
+                    .font(.body)
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading, 7)
+                Spacer()
+            }
+            .frame(maxWidth: .infinity, minHeight: 44)
+            .padding(.horizontal, 8)
+            .background(Color.white.opacity(0.12))
+            .cornerRadius(8.5)
         }
     }
 
     //MARK: - 버튼들
     private var btns: some View {
-        VStack(spacing: 6) {
-            Button("확인") {
+        VStack(spacing: 2) {
+            Button(action: {
                 sendSuggestionsToiPhone(viewModel.suggestions)
-            }
-            .buttonStyle(.bordered)
-            .tint(.white)
+            }, label: {
+                Text("확인")
+                    .frame(width: 150, height: 45)
+                    .font(.sdmedium16)
+                    .foregroundStyle(Color.white)
+            })
+            .buttonStyle(.borderedProminent)
+            .tint(.ummPrimary.opacity(0.85))
 
-            Button("다시 말하기") {
-                // 다시 말하기 동작
-            }
-            .buttonStyle(.bordered)
-            .tint(.white)
+            Button(action: {
+                //TODO: - 다시 말하기 동작
+            }, label: {
+                Text("다시 말하기")
+                    .frame(width: 150, height: 45)
+                    .font(.sdmedium16)
+                    .foregroundStyle(Color.white)
+            })
         }
     }
     
@@ -88,4 +102,8 @@ struct WordSuggestionView: View {
         }
     }
     
+}
+
+#Preview {
+    WordSuggestionView(koreanWord: "초대하다")
 }
