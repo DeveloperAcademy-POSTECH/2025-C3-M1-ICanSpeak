@@ -9,7 +9,9 @@ struct StartView: View {
   var body: some View {
     if isStarted {
       TabView(selection: $tabSelection) {
-        PauseView(soundDetector: SoundDetector(), gestureDetector: GestureDetector())
+        PauseView(soundDetector: SoundDetector(), gestureDetector: GestureDetector(), onExit: {
+          isStarted = false
+        })
           .tag(0)
         MainView()
           .tag(1)

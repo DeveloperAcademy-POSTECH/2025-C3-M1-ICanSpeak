@@ -12,14 +12,10 @@ struct PauseView: View {
     @ObservedObject var soundDetector: SoundDetector
     @ObservedObject var gestureDetector: GestureDetector
     @State private var isPaused: Bool = false
-    @State private var isExited = false
+    var onExit: () -> Void
 
     var body: some View {
       
-      if isExited {
-        StartView()
-      }
-      else{
       VStack(spacing: 0) {
                   // 상단 우측 "Umm.." 파란 텍스트
                   HStack {
@@ -38,7 +34,7 @@ struct PauseView: View {
                     Button(action: {
                         let exitTime = Date()
                         WatchSessionManager.shared.sendExitTimeToApp(date: exitTime)
-                        isExited = true
+                        onExit()
                     }) {
                         Image(systemName: "xmark")
                         .font(.system(size: 23))
@@ -83,11 +79,9 @@ struct PauseView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black)
-        }
+      }
     }
-  
-}
 
 #Preview {
-    PauseView(soundDetector: SoundDetector(), gestureDetector: GestureDetector())
+    PauseView(soundDetector: SoundDetector(), gestureDetector: GestureDetector(), onExit: {})
 }
