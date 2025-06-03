@@ -16,6 +16,7 @@ class MotionManager: ObservableObject {
     var audioRecorder: AVAudioRecorder?
     var isRecording = false
     @Published var isSpeaking = false
+    @Published var didFinishRecording = false
     var silenceTimer: Timer?
     var silenceCount: Int = 0
 
@@ -125,6 +126,11 @@ class MotionManager: ObservableObject {
 
         if let fileURL = recordedFileURL {
             WatchSessionManager.shared.sendAudioFile(url: fileURL)
+        }
+        
+        // ✅ 종료 신호 보냄
+        DispatchQueue.main.async {
+            self.didFinishRecording = true
         }
     }
     func stopMonitoring() {
