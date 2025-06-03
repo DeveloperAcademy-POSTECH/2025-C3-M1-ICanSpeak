@@ -8,7 +8,7 @@ struct StartView: View {
     var body: some View {
             VStack {
               if isStarted {
-                MainView()
+                  HandDetectionSwitcherView()
               } else {
                 Button(action: {
                   isStarted = true
