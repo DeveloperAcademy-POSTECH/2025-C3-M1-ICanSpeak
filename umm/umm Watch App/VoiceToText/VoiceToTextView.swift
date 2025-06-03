@@ -40,16 +40,22 @@ struct VoiceToTextView: View {
                 }
                 .onReceive(NotificationCenter.default.publisher(for: .didRequestRetrySpeaking)) { _ in
                     shouldNavigate = false
+                    motionManager.didFinishRecording = false
                 }
                 .onChange(of: motionManager.didFinishRecording) {
                     if sessionManager.receivedText != "원하는 단어를\n말해보세요." && !sessionManager.receivedText.isEmpty {
                         shouldNavigate = true
                     }
                 }
-
+                
                 .onChange(of: sessionManager.receivedText) {
                     if sessionManager.receivedText != "원하는 단어를\n말해보세요." && !sessionManager.receivedText.isEmpty {
                         shouldNavigate = true
+                    }
+                }
+                .onChange(of: shouldNavigate) {
+                    if shouldNavigate {
+                        motionManager.stopMonitoring()
                     }
                 }
             }

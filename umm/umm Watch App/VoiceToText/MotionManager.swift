@@ -69,6 +69,9 @@ class MotionManager: ObservableObject {
     }
 
     func startMonitoring() {
+        configureAudioSession()
+        prepareRecorder()
+        
         if motionManager.isDeviceMotionActive {
             print("🔁 기존 감지 중지 후 재시작")
             motionManager.stopDeviceMotionUpdates()
@@ -98,6 +101,7 @@ class MotionManager: ObservableObject {
         guard let recorder = audioRecorder else { return }
 
         if !recorder.isRecording {
+            recorder.prepareToRecord()
             recorder.record()
             isRecording = true
             print("녹음 시작됨")
