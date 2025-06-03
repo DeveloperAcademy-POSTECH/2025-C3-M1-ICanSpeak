@@ -103,7 +103,3 @@ struct WordSuggestionView: View {
     }
     
 }
-
-#Preview {
-    WordSuggestionView(koreanWord: "초대하다")
-}
