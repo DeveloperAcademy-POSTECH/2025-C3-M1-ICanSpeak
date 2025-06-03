@@ -9,8 +9,8 @@ import SwiftUI
 import WatchConnectivity
 
 struct PauseView: View {
-    @ObservedObject var soundDetector: SoundDetector
-    @ObservedObject var gestureDetector: GestureDetector
+    @ObservedObject var soundDetector = SoundDetectionManager()
+    @ObservedObject var gestureDetector = MotionManager()
     @State private var isPaused: Bool = false
     var onExit: () -> Void
 
@@ -35,6 +35,7 @@ struct PauseView: View {
                         let exitTime = Date()
                         WatchSessionManager.shared.sendExitTimeToApp(date: exitTime)
                         onExit()
+                        gestureDetector.stopRecording()
                     }) {
                         Image(systemName: "xmark")
                         .font(.system(size: 23))
@@ -54,11 +55,13 @@ struct PauseView: View {
                     Button(action: {
                         isPaused.toggle()
                         if isPaused {
-                            soundDetector.stopListening()
-                            gestureDetector.stopDetecting()
+                            soundDetector.stopDetection()
+                            gestureDetector.stopRecording()
+                            //TODO: 제스처 스탑 리코딩
                         } else {
-                            soundDetector.startListening()
-                            gestureDetector.startDetecting()
+                          soundDetector.startDetection()
+                          gestureDetector.stopRecording()
+                          gestureDetector.startMonitoring()
                         }
                     }) {
                         Image(systemName: isPaused ? "arrow.clockwise" : "pause")
@@ -82,6 +85,3 @@ struct PauseView: View {
       }
     }
 
-#Preview {
-    PauseView(soundDetector: SoundDetector(), gestureDetector: GestureDetector(), onExit: {})
-}

@@ -157,14 +157,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FE6F729F2DED57C000C3CD22 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				FE1816B92DED2AC5006672B2 /* Config.xcconfig */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
