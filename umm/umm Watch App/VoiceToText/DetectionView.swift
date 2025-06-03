@@ -12,6 +12,7 @@ struct DetectionView: View {
     @EnvironmentObject var pauseManager: PauseManager // 추가
     @StateObject private var soundManager = SoundDetectionManager()
     @StateObject private var motionManager = MotionManager()
+    @StateObject var sessionManager = WatchSessionManager.shared
 
     @State private var isDetected = false
     @State private var showVoiceView = false
@@ -58,7 +59,7 @@ struct DetectionView: View {
                     showVoiceView = true
                     soundManager.stopDetection()
                     WatchSessionManager.shared.receivedText = "원하는 단어를\n말해보세요."
-                } else {
+                } else if !motionManager.isHandRaised && sessionManager.receivedText == "원하는 단어를\n말해보세요." {
                     showVoiceView = false
                     soundManager.startDetection()
                 }
