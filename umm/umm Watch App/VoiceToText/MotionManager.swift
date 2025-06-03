@@ -79,7 +79,7 @@ class MotionManager: ObservableObject {
                 self.startRecording()
             }
 
-            if self.isHandRaised && pitch < 30 {
+            if self.isHandRaised && pitch < 10 {
                 self.isHandRaised = false
                 print("손 내림")
                 self.stopRecording()
