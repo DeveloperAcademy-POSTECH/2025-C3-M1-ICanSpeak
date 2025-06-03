@@ -127,4 +127,8 @@ class MotionManager: ObservableObject {
             WatchSessionManager.shared.sendAudioFile(url: fileURL)
         }
     }
+    func stopMonitoring() {
+        motionManager.stopDeviceMotionUpdates()
+        print("📴 모션 감지 중지됨")
+    }
 }
