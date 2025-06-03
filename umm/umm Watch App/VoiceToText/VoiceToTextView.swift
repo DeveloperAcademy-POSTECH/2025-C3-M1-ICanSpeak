@@ -11,7 +11,7 @@ struct VoiceToTextView: View {
     @StateObject var sessionManager = WatchSessionManager.shared
     @StateObject var motionManager = MotionManager()
     @State private var showBounce = false
-    @State private var shouldNavigate = true
+    @State private var shouldNavigate = false
 
     
     var body: some View {
