@@ -4,7 +4,6 @@
 //
 //  Created by MINJEONG on 5/29/25.
 //
-
 import Foundation
 import AVFoundation
 import SoundAnalysis
@@ -26,6 +25,8 @@ private var etcStartTime: Date?
 
 private var isSetupCompleted = false // ✅ setup 1회만 실행 체크용
 
+var pauseManager: PauseManager?
+
 // MARK: - Initialization
 override init() {
     super.init()
@@ -40,57 +41,62 @@ override init() {
 }
 
 // MARK: - Setup
-private func setup() {
-    guard !isSetupCompleted else { return }  // ✅ 이미 세팅되었으면 중복 방지
+    private func setup() {
+        guard !isSetupCompleted else { return }
 
-    guard let model = try? umspeech(configuration: MLModelConfiguration()) else {
-        print("❌ 모델 로딩 실패")
-        return
-    }
-
-    do {
-        let request = try SNClassifySoundRequest(mlModel: model.model)
-        self.request = request
-        request.windowDuration = CMTimeMakeWithSeconds(0.975, preferredTimescale: 1000)
-        request.overlapFactor = 0.75
-    } catch {
-        print("❌ 요청 생성 실패: \\(error)")
-        return
-    }
-
-    let inputFormat = audioEngine.inputNode.outputFormat(forBus: 0)
-    streamAnalyzer = SNAudioStreamAnalyzer(format: inputFormat)
-
-    do {
-        try streamAnalyzer.add(self.request!, withObserver: self)
-    } catch {
-        print("❌ 분석기 추가 실패: \\(error)")
-    }
-
-    audioEngine.inputNode.installTap(onBus: 0, bufferSize: 8192, format: inputFormat) { buffer, time in
-        self.analysisQueue.async {
-            self.streamAnalyzer.analyze(buffer, atAudioFramePosition: time.sampleTime)
+        guard let model = try? umspeech(configuration: MLModelConfiguration()) else {
+            print("❌ 모델 로딩 실패")
+            return
         }
-    }
 
-    isSetupCompleted = true  // ✅ 세팅 완료 표시
-    print("✅ 초기 세팅 완료")
-}
+        do {
+            let request = try SNClassifySoundRequest(mlModel: model.model)
+            self.request = request
+            request.windowDuration = CMTimeMakeWithSeconds(0.975, preferredTimescale: 1000)
+            request.overlapFactor = 0.75
+        } catch {
+            print("❌ 요청 생성 실패: \(error)")
+            return
+        }
+
+        let inputFormat = audioEngine.inputNode.outputFormat(forBus: 0)
+        streamAnalyzer = SNAudioStreamAnalyzer(format: inputFormat)
+
+        do {
+            try streamAnalyzer.add(self.request!, withObserver: self)
+        } catch {
+            print("❌ 분석기 추가 실패: \(error)")
+        }
+
+        isSetupCompleted = true
+        print("✅ 초기 세팅 완료")
+    }
 
 // MARK: - 감지 시작
-func startDetection() {
-    if !audioEngine.isRunning {
-        setup()  // 혹시 setup() 안 됐을 경우를 대비해서 안전장치
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.record, mode: .measurement, options: .duckOthers)
-            try AVAudioSession.sharedInstance().setActive(true)
-            try audioEngine.start()
-            print("🎙️ 감지 시작됨")
-        } catch {
-            print("❌ 감지 시작 실패: \\(error)")
+    func startDetection() {
+        if !audioEngine.isRunning {
+            setup()
+
+            let inputNode = audioEngine.inputNode
+            inputNode.removeTap(onBus: 0) // ✅ 중복 방지
+
+            let inputFormat = inputNode.outputFormat(forBus: 0)
+            inputNode.installTap(onBus: 0, bufferSize: 8192, format: inputFormat) { buffer, time in
+                self.analysisQueue.async {
+                    self.streamAnalyzer.analyze(buffer, atAudioFramePosition: time.sampleTime)
+                }
+            }
+
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.record, mode: .measurement, options: .duckOthers)
+                try AVAudioSession.sharedInstance().setActive(true)
+                try audioEngine.start()
+                print("🎙️ 감지 다시 시작됨")
+            } catch {
+                print("❌ 감지 재시작 실패: \(error)")
+            }
         }
     }
-}
 
 // MARK: - 감지 중지
 func stopDetection() {
@@ -107,12 +113,17 @@ func request(_ request: SNRequest, didProduce result: SNResult) {
 
     if let classification = classificationResult.classifications.first {
         DispatchQueue.main.async {
+            if self.pauseManager?.isPaused == true {
+                print("🚫 감지 무시됨 (일시정지 중)")
+                return
+            }
+
             let label = classification.identifier
-            print("🔊 감지된 소리: \\(label)")
+            print("🔊 감지된 소리: \(label)")
 
             if label == "Um" {
-                print("🔥 햅틱 실행됨 - 감지된 소리: \\(label)")
-                self.detectedSound = "감지됨: \\(label)"
+                print("🔥 햅틱 실행됨 - 감지된 소리: \(label)")
+                self.detectedSound = "감지됨: \(label)"
                 WKInterfaceDevice.current().play(.success)
             }
             else if label == "etc" {
@@ -135,7 +146,7 @@ func request(_ request: SNRequest, didProduce result: SNResult) {
             }
             else {
                 self.etcStartTime = nil
-                self.detectedSound = "다른 소리: \\(label)"
+                self.detectedSound = "다른 소리: \(label)"
             }
 
             self.lastLabel = label
@@ -144,7 +155,7 @@ func request(_ request: SNRequest, didProduce result: SNResult) {
 }
 
 func request(_ request: SNRequest, didFailWithError error: Error) {
-    print("❌ 요청 실패: \\(error)")
+    print("❌ 요청 실패: \(error)")
 }
 
 func requestDidComplete(_ request: SNRequest) {
