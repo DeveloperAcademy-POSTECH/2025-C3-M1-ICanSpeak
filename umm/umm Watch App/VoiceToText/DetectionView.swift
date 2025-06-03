@@ -5,6 +5,7 @@
 //  Created by Ella's Mac on 5/30/25.
 //
 
+//TODO: 확인 버튼 눌렀을때 감지뷰로는 넘어가는데, iPhone이랑 연결끊김 확인필요
 import SwiftUI
 import WatchKit
 
@@ -78,13 +79,18 @@ struct DetectionView: View {
                 print("🛑 감지 완전 종료됨 (앱 리셋)")
                 WatchSessionManager.shared.receivedText = ""
             }
+            .onReceive(NotificationCenter.default.publisher(for: .didRequestReturnToDetectionView)) { _ in
+                print("📩 WordSuggestionView → FirstDetectView로 복귀")
+                showVoiceView = false
+                isDetected = false
+                soundManager.startDetection()
+                motionManager.startMonitoring()
+            }
         }
     }
 }
 
-extension Notification.Name {
-    static let didRequestReturnToDetectionView = Notification.Name("didRequestReturnToDetectionView")
-}
+
 
 #Preview {
     DetectionView()
