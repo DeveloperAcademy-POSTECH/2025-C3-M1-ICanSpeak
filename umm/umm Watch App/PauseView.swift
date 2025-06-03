@@ -11,7 +11,7 @@ import WatchConnectivity
 struct PauseView: View {
     @EnvironmentObject var pauseManager: PauseManager // 추가
     @EnvironmentObject var soundManager: SoundDetectionManager
-    @EnvironmentObject var motionManager: MotionManager
+    @StateObject var motionManager = MotionManager.shared
     
     var body: some View {
         VStack(spacing: 0) {
@@ -35,6 +35,7 @@ struct PauseView: View {
                         WatchSessionManager.shared.sendExitTimeToApp(date: exitTime)
                         motionManager.stopMonitoring()
                         soundManager.stopDetection()
+                        motionManager.didFinishRecording = true
                         NotificationCenter.default.post(name: .didRequestAppReset, object: nil)
                     }, label: {
                         Image(systemName: "xmark")

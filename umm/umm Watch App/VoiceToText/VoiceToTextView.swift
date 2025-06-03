@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VoiceToTextView: View {
     @StateObject var sessionManager = WatchSessionManager.shared
-    @StateObject var motionManager = MotionManager()
+    @StateObject var motionManager = MotionManager.shared
     @State private var showBounce = false
     @State private var shouldNavigate = false
 
@@ -29,6 +29,7 @@ struct VoiceToTextView: View {
                         .symbolEffect(.bounce.up.byLayer, value: showBounce)
                 }
                 .onAppear {
+                    shouldNavigate = false
                     motionManager.startMonitoring()
                     
                     Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
@@ -36,6 +37,9 @@ struct VoiceToTextView: View {
                             showBounce = motionManager.isSpeaking
                         }
                     }
+                }
+                .onReceive(NotificationCenter.default.publisher(for: .didRequestRetrySpeaking)) { _ in
+                    shouldNavigate = false
                 }
                 .onChange(of: motionManager.didFinishRecording) {
                     if sessionManager.receivedText != "원하는 단어를\n말해보세요." && !sessionManager.receivedText.isEmpty {
@@ -52,4 +56,8 @@ struct VoiceToTextView: View {
         }
         
     }
+}
+
+extension Notification.Name {
+    static let didRequestRetrySpeaking = Notification.Name("didRequestRetrySpeaking")
 }
