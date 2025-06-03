@@ -67,6 +67,11 @@ class MotionManager: ObservableObject {
     }
 
     func startMonitoring() {
+        if motionManager.isDeviceMotionActive {
+            print("🔁 기존 감지 중지 후 재시작")
+            motionManager.stopDeviceMotionUpdates()
+        }
+        
         motionManager.deviceMotionUpdateInterval = 0.5
         motionManager.startDeviceMotionUpdates(to: .main) { motion, error in
             guard let attitude = motion?.attitude else { return }
@@ -135,6 +140,8 @@ class MotionManager: ObservableObject {
     }
     func stopMonitoring() {
         motionManager.stopDeviceMotionUpdates()
+        isHandRaised = false
+        stopRecording()
         print("📴 모션 감지 중지됨")
     }
 }
