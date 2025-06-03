@@ -30,7 +30,6 @@ struct VoiceToTextView: View {
                 }
                 .onAppear {
                     shouldNavigate = false
-                    motionManager.startMonitoring()
                     
                     Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
                         withAnimation {
@@ -47,7 +46,6 @@ struct VoiceToTextView: View {
                         shouldNavigate = true
                     }
                 }
-                
                 .onChange(of: sessionManager.receivedText) {
                     if sessionManager.receivedText != "원하는 단어를\n말해보세요." && !sessionManager.receivedText.isEmpty {
                         shouldNavigate = true
