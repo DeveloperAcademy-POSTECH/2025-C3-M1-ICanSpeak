@@ -11,6 +11,7 @@ import Foundation
 class WatchSessionManager: NSObject, WCSessionDelegate, ObservableObject {
     static let shared = WatchSessionManager()
     
+    //TODO: 지피티뷰로 텍스트 넘겨야함
     @Published var receivedText: String = "원하는 단어를\n말해보세요." // ✅ 텍스트 저장용 변수 추가
 
     
