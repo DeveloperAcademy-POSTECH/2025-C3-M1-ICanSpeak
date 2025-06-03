@@ -10,6 +10,8 @@ import CoreMotion
 import AVFoundation
 
 class MotionManager: ObservableObject {
+    static let shared = MotionManager()
+    
     var recordedFileURL: URL?
     @Published var isHandRaised = false
     let motionManager = CMMotionManager()
@@ -101,7 +103,7 @@ class MotionManager: ObservableObject {
             print("녹음 시작됨")
 
             silenceCount = 0
-            silenceTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [weak self] _ in
+            silenceTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
                 guard let self = self, let recorder = self.audioRecorder else { return }
                 recorder.updateMeters()
                 let power = recorder.averagePower(forChannel: 0)
