@@ -18,77 +18,89 @@ class MotionManager: ObservableObject {
     @Published var isSpeaking = false
     var silenceTimer: Timer?
     var silenceCount: Int = 0
-    
-    
-    // 워치 기울기 실시간 감지하는 함수
-    func startMonitoring() {
-        motionManager.deviceMotionUpdateInterval = 0.2
-        motionManager.startDeviceMotionUpdates(to: .main) { motion, error in
-            guard let attitude = motion?.attitude else { return }
-            let pitch = attitude.pitch * 180 / .pi
-            print("pitch: \(pitch)")
-            
-            if pitch > 50 {
-                if !self.isHandRaised {
-                    self.isHandRaised = true
-                    print("손 들었음")
-                }
-                if !self.isRecording {
-                    self.startRecording()
-                }
-            } else {
-                if self.isHandRaised {
-                    self.isHandRaised = false
-                    print("손 내림")
-                }
-                if self.isRecording {
-                    self.stopRecording()
-                }
-            }
-        }
+
+    init() {
+        requestPermissionOnce()
+        configureAudioSession()
+        prepareRecorder()  // ✅ AVAudioRecorder 미리 준비
     }
-    
-    func startRecording() {
-        AVAudioApplication.requestRecordPermission { [weak self] granted in
-            DispatchQueue.main.async {
-                if granted {
-                    self?.actuallyStartRecording()
-                } else {
-                    print("❌ 마이크 권한이 거부되었습니다.")
-                }
+
+    func requestPermissionOnce() {
+        AVAudioApplication.requestRecordPermission { granted in
+            if !granted {
+                print("❌ 마이크 권한이 거부되었습니다.")
             }
         }
     }
 
-        private func actuallyStartRecording() {
-        // 1. 녹음 설정
+    func configureAudioSession() {
+        do {
+            let session = AVAudioSession.sharedInstance()
+            try session.setCategory(.record, mode: .default)
+            try session.setActive(true)
+            print("✅ 오디오 세션 설정 완료")
+        } catch {
+            print("❌ 오디오 세션 설정 실패: \(error.localizedDescription)")
+        }
+    }
+
+    // ✅ AVAudioRecorder 미리 준비 → 인스턴스 재사용
+    private func prepareRecorder() {
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
             AVNumberOfChannelsKey: 1,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
-        
-       // 2. 녹음 파일 저장 위치
-        let fileName = FileManager.default.temporaryDirectory
-            .appendingPathComponent("record.m4a")
-            
+
+        let fileName = FileManager.default.temporaryDirectory.appendingPathComponent("record.m4a")
         recordedFileURL = fileName
-        
+
         do {
             audioRecorder = try AVAudioRecorder(url: fileName, settings: settings)
-            audioRecorder?.isMeteringEnabled = true  // 데시벨 측정 켜기
-            audioRecorder?.record()
+            audioRecorder?.isMeteringEnabled = true
+            print("녹음기 준비 완료")
+        } catch {
+            print("녹음기 준비 실패: \(error.localizedDescription)")
+        }
+    }
+
+    func startMonitoring() {
+        motionManager.deviceMotionUpdateInterval = 0.5
+        motionManager.startDeviceMotionUpdates(to: .main) { motion, error in
+            guard let attitude = motion?.attitude else { return }
+            let pitch = attitude.pitch * 180 / .pi
+            print("pitch: \(pitch)")
+            
+            if !self.isHandRaised && pitch > 50 {
+                self.isHandRaised = true
+                print("손 들었음")
+                self.startRecording()
+            }
+
+            if self.isHandRaised && pitch < 30 {
+                self.isHandRaised = false
+                print("손 내림")
+                self.stopRecording()
+            }
+        }
+    }
+
+    func startRecording() {
+        guard let recorder = audioRecorder else { return }
+
+        if !recorder.isRecording {
+            recorder.record()
             isRecording = true
             print("녹음 시작됨")
-            
+
             silenceCount = 0
             silenceTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [weak self] _ in
                 guard let self = self, let recorder = self.audioRecorder else { return }
                 recorder.updateMeters()
                 let power = recorder.averagePower(forChannel: 0)
                 print("소리크기: \(power)")
-                
+
                 if power < -50 {
                     self.isSpeaking = false
                     self.silenceCount += 1
@@ -101,19 +113,16 @@ class MotionManager: ObservableObject {
                     self.silenceCount = 0
                 }
             }
-        } catch {
-            print("녹음 실패: \(error.localizedDescription)")
         }
     }
-    
+
     func stopRecording() {
         audioRecorder?.stop()
-        audioRecorder = nil
         isRecording = false
         silenceTimer?.invalidate()
         silenceTimer = nil
         print("녹음 종료")
-        
+
         if let fileURL = recordedFileURL {
             WatchSessionManager.shared.sendAudioFile(url: fileURL)
         }
