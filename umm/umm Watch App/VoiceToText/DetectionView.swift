@@ -11,12 +11,12 @@ import WatchKit
 struct DetectionView: View {
     @EnvironmentObject var pauseManager: PauseManager // 추가
     @StateObject private var soundManager = SoundDetectionManager()
-    @StateObject private var motionManager = MotionManager()
+    @StateObject private var motionManager = MotionManager.shared
     @StateObject var sessionManager = WatchSessionManager.shared
 
     @State private var isDetected = false
     @State private var showVoiceView = false
-
+    
     var body: some View {
         if pauseManager.isPaused {
             Text("⏸ 일시정지 중")
@@ -46,7 +46,6 @@ struct DetectionView: View {
                 if soundManager.detectedSound.contains("감지됨") || soundManager.detectedSound.contains("etc") {
                     isDetected = true
                     WKInterfaceDevice.current().play(.success)
-
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         if !motionManager.isHandRaised {
                             isDetected = false
@@ -81,6 +80,10 @@ struct DetectionView: View {
             }
         }
     }
+}
+
+extension Notification.Name {
+    static let didRequestReturnToDetectionView = Notification.Name("didRequestReturnToDetectionView")
 }
 
 #Preview {
