@@ -2,45 +2,42 @@ import SwiftUI
 import WatchConnectivity
 
 struct StartView: View {
-  @State private var isStarted = false
-  @State private var tabSelection = 1
+    @State private var isActive = false
   
     var body: some View {
-      if isStarted {
-        TabView(selection: $tabSelection) {
-          PauseView(soundDetector: SoundDetectionManager(), gestureDetector: MotionManager(), onExit: {
-            isStarted = false
-          })
-        
-          HandDetectionSwitcherView()
-            .tag(1)
+        Group {
+            if isActive {
+                MainTabView()
+            } else {
+                Button(action: {
+                    isActive = true
+                    let startTime = Date()
+                    WatchSessionManager.shared.sendStartTimeToApp(date: startTime)
+                }, label: {
+                    ZStack {
+                        Circle()
+                            .fill(Color.ummPrimary)
+                            .frame(width: 134, height: 134)
+                        Text("Start")
+                            .font(.sfbold20)
+                            .foregroundColor(.white)
+                    }
+                })
+                .buttonStyle(PlainButtonStyle())
+            }
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        .onAppear {
-          tabSelection = 1
+        .onReceive(NotificationCenter.default.publisher(for: .didRequestAppReset)) { _ in
+            isActive = false
         }
-      } else {
-        Button(action: {
-          let startTime = Date()
-          WatchSessionManager.shared.sendStartTimeToApp(date: startTime)
-          isStarted = true
-        }) {
-          ZStack {
-            Circle()
-              .fill(Color.ummPrimary)
-              .frame(width: 134, height: 134)
-            Text("Start")
-              .font(.sfbold20)
-              .foregroundColor(.white)
-          }
-        }
-        .buttonStyle(PlainButtonStyle())
-      }
     }
-  }
+}
 
-
+extension Notification.Name {
+    static let didRequestAppReset = Notification.Name("didRequestAppReset")
+}
   
   #Preview {
     StartView()
   }
+
+

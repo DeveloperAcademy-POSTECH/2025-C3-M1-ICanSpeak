@@ -25,7 +25,7 @@ struct VoiceToTextView: View {
                 .symbolEffect(.bounce.up.byLayer, value: showBounce)
         }
         .onAppear {
-//            motionManager.startMonitoring()
+            motionManager.startMonitoring()
             
             Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
                             withAnimation {
@@ -34,8 +34,4 @@ struct VoiceToTextView: View {
                         }
         }
     }
-}
-
-#Preview {
-    VoiceToTextView()
 }
