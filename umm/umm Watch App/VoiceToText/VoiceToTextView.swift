@@ -38,13 +38,13 @@ struct VoiceToTextView: View {
                     }
                 }
                 .onChange(of: motionManager.didFinishRecording) {
-                    if motionManager.didFinishRecording && !sessionManager.receivedText.isEmpty {
+                    if sessionManager.receivedText != "원하는 단어를\n말해보세요." && !sessionManager.receivedText.isEmpty {
                         shouldNavigate = true
                     }
                 }
 
                 .onChange(of: sessionManager.receivedText) {
-                    if motionManager.didFinishRecording && !sessionManager.receivedText.isEmpty {
+                    if sessionManager.receivedText != "원하는 단어를\n말해보세요." && !sessionManager.receivedText.isEmpty {
                         shouldNavigate = true
                     }
                 }
