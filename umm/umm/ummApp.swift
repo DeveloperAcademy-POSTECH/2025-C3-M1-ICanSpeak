@@ -8,13 +8,10 @@
 import SwiftUI
 
 @main
-struct ummApp: App {
+struct PlzApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .onAppear {
-                    let _ = PhoneSessionManager.shared
-                }
+            TimeLogView()
         }
     }
 }
