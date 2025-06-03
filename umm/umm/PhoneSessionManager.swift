@@ -12,8 +12,8 @@ import Speech
 class PhoneSessionManager: NSObject, WCSessionDelegate, ObservableObject {
     static let shared = PhoneSessionManager()
   
-  @Published var startTime: String = ""
-  @Published var exitTime: String = ""
+    @Published var startTime: String = ""
+    @Published var exitTime: String = ""
   
     
     private override init() {
@@ -75,59 +75,49 @@ class PhoneSessionManager: NSObject, WCSessionDelegate, ObservableObject {
         }
     }
     
-  // 메시지 수신 처리
-  func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-      DispatchQueue.main.async {
-          if let startTime = message["startTime"] as? String {
-              self.startTime = startTime
-              print("✅ 받은 startTime: \(startTime)")
-          } else if let exitTime = message["exitTime"] as? String {
-              self.exitTime = exitTime
-              print("✅ 받은 exitTime: \(exitTime)")
-          }
-      }
-  }
-    
-//    func sendTextToWatch(_ text: String) {
-//        if WCSession.default.isReachable {
-//            WCSession.default.sendMessage(["recognizedText": text], replyHandler: nil) { error in
-//                print("❌ 텍스트 전송 실패: \(error.localizedDescription)")
-//            }
-//            print("📤 텍스트 전송 완료: \(text)")
-//        } else {
-//            print("⚠️ Watch에 연결되지 않았습니다.")
-//        }
-//    }
-}
-
-func recognizeSpeech(from url: URL) {
-    SFSpeechRecognizer.requestAuthorization { authStatus in
-        guard authStatus == .authorized else {
-            print("❌ 음성 인식 권한이 없습니다")
-            return
+    // 메시지 수신 처리
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        DispatchQueue.main.async {
+            if let startTime = message["startTime"] as? String {
+                self.startTime = startTime
+                print("✅ 받은 startTime: \(startTime)")
+            } else if let exitTime = message["exitTime"] as? String {
+                self.exitTime = exitTime
+                print("✅ 받은 exitTime: \(exitTime)")
+            }
         }
-
-        let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))
-        let request = SFSpeechURLRecognitionRequest(url: url)
-        request.requiresOnDeviceRecognition = false
-
-        recognizer?.recognitionTask(with: request) { result, error in
-            if let error = error {
-                print("❌ 인식 오류: \(error.localizedDescription)")
+   }
+    
+    func recognizeSpeech(from url: URL) {
+        SFSpeechRecognizer.requestAuthorization { authStatus in
+            guard authStatus == .authorized else {
+                print("❌ 음성 인식 권한이 없습니다")
                 return
             }
 
-            guard let result = result else {
-                print("⚠️ 인식 결과 없음")
-                return
-            }
+            let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))
+            let request = SFSpeechURLRecognitionRequest(url: url)
+            request.requiresOnDeviceRecognition = false
 
-            if result.isFinal {
-                // ⚠️ 여기에 나중에 Watch로 결과 보내는 코드 넣을 예정
-                let finalText = result.bestTranscription.formattedString
-                print("📝 인식된 텍스트: \(result.bestTranscription.formattedString)")
-                PhoneSessionManager.shared.sendTextToWatch(finalText)
+            recognizer?.recognitionTask(with: request) { result, error in
+                if let error = error {
+                    print("❌ 인식 오류: \(error.localizedDescription)")
+                    return
+                }
+
+                guard let result = result else {
+                    print("⚠️ 인식 결과 없음")
+                    return
+                }
+
+                if result.isFinal {
+                    // ⚠️ 여기에 나중에 Watch로 결과 보내는 코드 넣을 예정
+                    let finalText = result.bestTranscription.formattedString
+                    print("📝 인식된 텍스트: \(result.bestTranscription.formattedString)")
+                    PhoneSessionManager.shared.sendTextToWatch(finalText)
+                }
             }
         }
     }
+
 }
