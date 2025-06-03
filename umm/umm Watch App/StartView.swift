@@ -2,6 +2,7 @@ import SwiftUI
 import WatchConnectivity
 
 struct StartView: View {
+    var body: some View {
   @State private var isStarted = false
   @State private var tabSelection = 1
   
