@@ -27,9 +27,9 @@ struct DetectionView: View {
                     VoiceToTextView()
                 } else {
                     if isDetected {
-                        FirstDetectView()
-                    } else {
                         UmmDetectView()
+                    } else {
+                        FirstDetectView()
                     }
                 }
             }
