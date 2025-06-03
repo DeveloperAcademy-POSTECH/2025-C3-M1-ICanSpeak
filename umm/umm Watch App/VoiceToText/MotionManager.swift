@@ -102,7 +102,7 @@ class MotionManager: ObservableObject {
                 let power = recorder.averagePower(forChannel: 0)
                 print("소리크기: \(power)")
 
-                if power < -50 {
+                if power < -40 {
                     self.isSpeaking = false
                     self.silenceCount += 1
                     print("조용 카운트: \(self.silenceCount)")
