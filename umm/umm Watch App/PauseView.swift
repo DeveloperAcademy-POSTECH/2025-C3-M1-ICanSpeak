@@ -9,9 +9,9 @@ import SwiftUI
 import WatchConnectivity
 
 struct PauseView: View {
-    @EnvironmentObject var pauseManager: PauseManager // 추가
+    @EnvironmentObject var pauseManager: PauseManager
     @EnvironmentObject var soundManager: SoundDetectionManager
-    @StateObject var motionManager = MotionManager.shared
+    @EnvironmentObject var motionManager: MotionManager
     
     var body: some View {
         VStack(spacing: 0) {
@@ -26,7 +26,7 @@ struct PauseView: View {
             }
             
             Spacer()
-                
+            
             HStack(spacing: 8, content: {
                 //종료 버튼
                 VStack(spacing: 4, content: {

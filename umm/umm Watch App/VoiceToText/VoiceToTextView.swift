@@ -9,7 +9,8 @@ import SwiftUI
 
 struct VoiceToTextView: View {
     @StateObject var sessionManager = WatchSessionManager.shared
-    @StateObject var motionManager = MotionManager.shared
+    @EnvironmentObject var soundManager: SoundDetectionManager
+    @EnvironmentObject var motionManager: MotionManager
     @State private var showBounce = false
     @State private var shouldNavigate = false
 
@@ -54,6 +55,7 @@ struct VoiceToTextView: View {
                 .onChange(of: shouldNavigate) {
                     if shouldNavigate {
                         motionManager.stopMonitoring()
+                        soundManager.pauseDetection()
                     }
                 }
             }
