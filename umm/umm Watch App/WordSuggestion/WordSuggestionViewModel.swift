@@ -13,13 +13,6 @@ class WordSuggestionViewModel: NSObject, ObservableObject, WCSessionDelegate {
     
     @Published var suggestions: [WordSuggestion] = []
     
-    override init() {
-        super.init()
-        if WCSession.isSupported() {
-            WCSession.default.delegate = self
-            WCSession.default.activate()
-        }
-    }
     
     //MARK: - 필수 작성 함수
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: (any Error)?) {

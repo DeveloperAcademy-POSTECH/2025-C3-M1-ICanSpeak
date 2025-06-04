@@ -13,7 +13,7 @@ struct MainTabView: View {
     // 전역 상태 객체 생성 (한 번만 생성)
     @StateObject private var pauseManager = PauseManager()
     @StateObject private var soundManager = SoundDetectionManager()
-    @StateObject private var motionManager = MotionManager()
+    @StateObject private var motionManager = MotionManager.shared
 
     var body: some View {
         TabView(selection: $selectedTab) {
