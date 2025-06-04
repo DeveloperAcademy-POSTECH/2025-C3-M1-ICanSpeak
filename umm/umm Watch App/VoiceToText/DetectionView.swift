@@ -5,7 +5,7 @@
 //  Created by Ella's Mac on 5/30/25.
 //
 
-//TODO: 확인 버튼 눌렀을때 감지뷰로는 넘어가는데, iPhone이랑 연결끊김 확인필요
+//TODO: 확인 버튼 눌렀을때 감지뷰로는 넘어가는데, iPhone이랑 연결끊김 확인 필요
 import SwiftUI
 import WatchKit
 
