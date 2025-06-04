@@ -69,7 +69,6 @@ struct WordSuggestionView: View {
 
             Button(action: {
                 //TODO: - 다시 말하기 동작
-                WatchSessionManager.shared.receivedText = "원하는 단어를\n말해보세요."
                 NotificationCenter.default.post(name: .didRequestRetrySpeaking, object: nil)
 
             }, label: {
@@ -106,8 +105,4 @@ struct WordSuggestionView: View {
         }
     }
     
-}
-
-extension Notification.Name {
-    static let didRequestReturnToDetectionView = Notification.Name("didRequestReturnToDetectionView")
 }

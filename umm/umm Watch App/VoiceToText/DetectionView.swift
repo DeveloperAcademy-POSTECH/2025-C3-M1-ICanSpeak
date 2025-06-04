@@ -5,7 +5,6 @@
 //  Created by Ella's Mac on 5/30/25.
 //
 
-//TODO: 확인 버튼 눌렀을때 감지뷰로는 넘어가는데, iPhone이랑 연결끊김 확인 필요
 import SwiftUI
 import WatchKit
 
@@ -14,9 +13,11 @@ struct DetectionView: View {
     @StateObject private var soundManager = SoundDetectionManager()
     @StateObject private var motionManager = MotionManager.shared
     @StateObject var sessionManager = WatchSessionManager.shared
-
+    
     @State private var isDetected = false
     @State private var showVoiceView = false
+    @State private var isRetrySpeaking = false
+    @State private var viewState = UUID() // 강제 리프레시를 위한 UUID
     
     var body: some View {
         if pauseManager.isPaused {
@@ -27,11 +28,17 @@ struct DetectionView: View {
             ZStack {
                 if showVoiceView {
                     VoiceToTextView()
+                        .id(viewState) // UUID로 강제 리프레시
+                        .onAppear {
+                            print("✅ VoiceToTextView 나타남")
+                        }
                 } else {
                     if isDetected {
                         UmmDetectView()
+                            .id("umm")
                     } else {
                         FirstDetectView()
+                            .id("first")
                     }
                 }
             }
@@ -43,7 +50,7 @@ struct DetectionView: View {
             .onChange(of: soundManager.detectedSound) {
                 // 일시정지 상태면 무시
                 guard !pauseManager.isPaused else { return }
-
+                
                 if soundManager.detectedSound.contains("감지됨") || soundManager.detectedSound.contains("etc") {
                     isDetected = true
                     WKInterfaceDevice.current().play(.success)
@@ -55,11 +62,18 @@ struct DetectionView: View {
                 }
             }
             .onChange(of: motionManager.isHandRaised) {
-                if motionManager.isHandRaised {
+                if motionManager.isHandRaised || isRetrySpeaking {
                     showVoiceView = true
                     soundManager.stopDetection()
                     WatchSessionManager.shared.receivedText = "원하는 단어를\n말해보세요."
-                } else if !motionManager.isHandRaised && sessionManager.receivedText == "원하는 단어를\n말해보세요." {
+                    // 다시 말하기일 때 추가 초기화
+                    if isRetrySpeaking {
+                        viewState = UUID() // 새로운 UUID로 강제 리프레시
+                    }
+                } else if !motionManager.isHandRaised
+                          && sessionManager.receivedText == "원하는 단어를\n말해보세요."
+                          && showVoiceView
+                          && !isRetrySpeaking {
                     showVoiceView = false
                     soundManager.startDetection()
                 }
@@ -83,14 +97,32 @@ struct DetectionView: View {
                 print("📩 WordSuggestionView → FirstDetectView로 복귀")
                 showVoiceView = false
                 isDetected = false
+                isRetrySpeaking = false
                 soundManager.startDetection()
                 motionManager.startMonitoring()
+                viewState = UUID() // 상태 초기화
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .didRequestRetrySpeaking)) { _ in
+                print("🔁 다시 말하기 트리거됨")
+                DispatchQueue.main.async {
+                    isDetected = false
+                    isRetrySpeaking = true
+                    showVoiceView = true
+                    motionManager.startRecording()
+                    soundManager.stopDetection()
+                    // 상태 완전 초기화
+                    WatchSessionManager.shared.receivedText = "원하는 단어를\n말해보세요."
+                    viewState = UUID() // 새로운 UUID로 강제 리프레시
+                }
             }
         }
     }
 }
 
-
+extension Notification.Name {
+    static let didRequestReturnToDetectionView = Notification.Name("didRequestReturnToDetectionView")
+    static let didRequestRetrySpeaking = Notification.Name("didRequestRetrySpeaking")
+}
 
 #Preview {
     DetectionView()

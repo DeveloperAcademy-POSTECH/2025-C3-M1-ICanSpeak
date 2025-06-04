@@ -62,6 +62,3 @@ struct VoiceToTextView: View {
     }
 }
 
-extension Notification.Name {
-    static let didRequestRetrySpeaking = Notification.Name("didRequestRetrySpeaking")
-}
