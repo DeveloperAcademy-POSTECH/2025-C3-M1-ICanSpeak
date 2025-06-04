@@ -5,17 +5,19 @@
 //  Created by Ella's Mac on 5/30/25.
 //
 
+//TODO: 확인 버튼 눌렀을때 감지뷰로는 넘어가는데, iPhone이랑 연결끊김 확인 필요
 import SwiftUI
 import WatchKit
 
 struct DetectionView: View {
     @EnvironmentObject var pauseManager: PauseManager // 추가
     @StateObject private var soundManager = SoundDetectionManager()
-    @StateObject private var motionManager = MotionManager()
+    @StateObject private var motionManager = MotionManager.shared
+    @StateObject var sessionManager = WatchSessionManager.shared
 
     @State private var isDetected = false
     @State private var showVoiceView = false
-
+    
     var body: some View {
         if pauseManager.isPaused {
             Text("⏸ 일시정지 중")
@@ -45,7 +47,6 @@ struct DetectionView: View {
                 if soundManager.detectedSound.contains("감지됨") || soundManager.detectedSound.contains("etc") {
                     isDetected = true
                     WKInterfaceDevice.current().play(.success)
-
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         if !motionManager.isHandRaised {
                             isDetected = false
@@ -58,7 +59,7 @@ struct DetectionView: View {
                     showVoiceView = true
                     soundManager.stopDetection()
                     WatchSessionManager.shared.receivedText = "원하는 단어를\n말해보세요."
-                } else {
+                } else if !motionManager.isHandRaised && sessionManager.receivedText == "원하는 단어를\n말해보세요." {
                     showVoiceView = false
                     soundManager.startDetection()
                 }
@@ -78,9 +79,18 @@ struct DetectionView: View {
                 print("🛑 감지 완전 종료됨 (앱 리셋)")
                 WatchSessionManager.shared.receivedText = ""
             }
+            .onReceive(NotificationCenter.default.publisher(for: .didRequestReturnToDetectionView)) { _ in
+                print("📩 WordSuggestionView → FirstDetectView로 복귀")
+                showVoiceView = false
+                isDetected = false
+                soundManager.startDetection()
+                motionManager.startMonitoring()
+            }
         }
     }
 }
+
+
 
 #Preview {
     DetectionView()
