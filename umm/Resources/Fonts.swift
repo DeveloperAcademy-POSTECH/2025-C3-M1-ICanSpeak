@@ -46,6 +46,10 @@ extension Font {
     static var sfmedium16: Font {
         return .sfCompact(type: .medium, size: 16)
     }
+    
+    static var sfregular12: Font {
+        return .sfCompact(type: .regular, size: 12)
+    }
 
     
     //MARK: - Apple SD Gothic Neo : 한글
