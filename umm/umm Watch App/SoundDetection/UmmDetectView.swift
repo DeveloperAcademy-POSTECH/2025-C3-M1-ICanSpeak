@@ -23,19 +23,12 @@ struct UmmDetectView: View {
                 .foregroundColor(.ummPrimary)
                 .frame(width: 84, height: 84)
             
-            VStack {
-                Spacer()
-                HStack(spacing: 5) {
                     Text("Umm")
                         .font(.sfbold20)
-                        
-                }
-                Spacer()
             }
         }
-        
     }
-}
+
 
 
 #Preview {
