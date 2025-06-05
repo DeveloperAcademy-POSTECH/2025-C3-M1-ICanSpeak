@@ -2,106 +2,86 @@ import SwiftUI
 import Foundation
 
 struct MainView: View {
+  init() {
+    UIDatePicker.appearance().tintColor = UIColor.orange
+  }
   let calendar = Calendar.current
   @State private var selectedDate: Date = Date()
   @State private var showDatePicker = false
-  @State var logs: [TimeLog] = []
-  @ObservedObject var sessionManager = PhoneSessionManager.shared
   @State private var weekOffset: Int = 0
   
+  // MARK: - 선택된 주의 날짜 배열 생성
   var body: some View {
     
-    let startOfTargetWeek = calendar.date(byAdding: .weekOfYear, value: weekOffset, to: calendar.startOfWeek(for: selectedDate))!
-    let week = (0..<7).compactMap {
-      calendar.date(byAdding: .day, value: $0, to: startOfTargetWeek)
-    }
-    let filteredLogs = logs.filter {
-      calendar.isDate($0.start, inSameDayAs: selectedDate)
-    }
-
-    VStack(spacing: 8) {
-      HStack {
-        Spacer()
-        Text(DateFormatter.customMonthFormatter.string(from: week.first ?? selectedDate))
-          .font(.system(size: 17))
-        Spacer()
-        Button(action: {
-          showDatePicker = true
-        }) {
-          Image(systemName: "calendar")
-            .foregroundColor(.orange)
-        }
+    let week: [Date] = {
+      let startOfTargetWeek = Calendar.current.date(byAdding: .weekOfYear, value: weekOffset, to: Calendar.current.startOfWeek(for: selectedDate))!
+      return (0..<7).compactMap {
+        Calendar.current.date(byAdding: .day, value: $0, to: startOfTargetWeek)
       }
-      .padding(.horizontal)
-      .padding(.top)
+    }()
+    
+    // MARK: - 메인 UI
+    ZStack {
+      Color(red: 1.0, green: 0.95, blue: 0.9).ignoresSafeArea()
       
-      HStack {
-        ForEach(week, id: \.self) { date in
-          let isSelected = calendar.isDate(date, inSameDayAs: selectedDate)
-          VStack {
-            Text(date, format: .dateTime.weekday())
-              .foregroundColor(isSelected ? .orange : .gray)
-              .font(.system(size:12))
-            Text(date, format: .dateTime.day())
-              .foregroundColor(isSelected ? .orange : .primary)
-              .font(.system(size:17))
-          }
-          .frame(maxWidth: .infinity)
-          .onTapGesture {
-            selectedDate = date
-            weekOffset = 0
+      VStack(spacing: 8) {
+        // 상단: 현재 월 표시 및 달력 버튼
+        HStack {
+          Spacer()
+          Text(DateFormatter.customMonthFormatter.string(from: week.first ?? selectedDate))
+            .font(.system(size: 17))
+          Spacer()
+          Button(action: {
+            showDatePicker = true
+          }) {
+            Image(systemName: "calendar")
+              .foregroundColor(.orange)
           }
         }
-      }
-      .padding()
-      .gesture(
-        DragGesture().onEnded { value in
-          if value.translation.width < -20 {
-            weekOffset += 1
-          } else if value.translation.width > 20 {
-            weekOffset -= 1
-          }
-        }
-      )
-      
-      VStack(alignment: .leading, spacing: 10) {
-        ForEach(filteredLogs) { log in
-          HStack(alignment: .center, spacing: 6) {
-            Circle()
-              .fill(Color.orange)
-              .frame(width: 6, height: 6)
-            if let exit = log.exit {
-              Text("\(TimeLogManager.formatTime(log.start)) - \(TimeLogManager.formatTime(exit))")
-                .font(.system(size: 12))
-            } else {
-              Text("\(TimeLogManager.formatTime(log.start)) - ...")
+        .padding(.horizontal)
+        .padding(.top)
+        
+        // 요일 및 날짜 표시 영역
+        HStack {
+          ForEach(week, id: \.self) { date in
+            let isSelected = calendar.isDate(date, inSameDayAs: selectedDate)
+            VStack {
+              Text(date, format: .dateTime.weekday())
+                .foregroundColor(isSelected ? .orange : .gray)
                 .font(.system(size:12))
+              Text(date, format: .dateTime.day())
+                .foregroundColor(isSelected ? .orange : .primary)
+                .font(.system(size:17))
             }
-            Spacer()
+            .frame(maxWidth: .infinity)
+            .onTapGesture {
+              selectedDate = date
+              weekOffset = 0
+            }
           }
         }
+        .padding()
+        .gesture(
+          DragGesture().onEnded { value in
+            if value.translation.width < -20 {
+              weekOffset += 1
+            } else if value.translation.width > 20 {
+              weekOffset -= 1
+            }
+          }
+        )
+        
+        
+      Spacer()
+        
       }
-    Spacer()
-    .onAppear {
-      logs = TimeLogManager.loadLogs()
     }
-    .onChange(of: sessionManager.startTime) { _ in
-      logs.append(TimeLog(start: Date(), exit: nil))
-      TimeLogManager.saveLogs(logs)
-    }
-    .onChange(of: sessionManager.exitTime) { _ in
-      if let lastIndex = logs.indices.last {
-        logs[lastIndex].exit = Date()
-        TimeLogManager.saveLogs(logs)
-      }
-    }
-      
-    }
+    // MARK: - 팝업 달력 (DatePicker)
     .overlay(
       Group {
         if showDatePicker {
           ZStack {
-            Color.black.opacity(0.3)
+            Color.white.opacity(0.01)
               .ignoresSafeArea()
               .onTapGesture {
                 showDatePicker = false
@@ -117,7 +97,7 @@ struct MainView: View {
               .padding()
               .background(
                 RoundedRectangle(cornerRadius: 16)
-                  .fill(Color(.systemBackground).opacity(0.9))
+                  .fill(Color.orange.opacity(0.1))
               )
               .padding()
             }
@@ -129,6 +109,7 @@ struct MainView: View {
   }
 }
 
+// MARK: - 시작 요일 계산, 월 포맷터
 extension Calendar {
   func startOfWeek(for date: Date) -> Date {
     self.dateInterval(of: .weekOfYear, for: date)!.start
