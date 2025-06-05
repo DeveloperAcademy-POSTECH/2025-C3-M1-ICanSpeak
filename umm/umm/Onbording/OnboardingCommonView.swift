@@ -16,7 +16,7 @@ struct OnboardingCommonView: View {
         VStack {
             VStack(spacing: 16) { // 텍스트 간 사이 간격
                 Text(title)
-                    .font(.title)
+                    .font(.sdextra30)
                     .bold()
                     .foregroundColor(.txt07)
                     .multilineTextAlignment(.center)
