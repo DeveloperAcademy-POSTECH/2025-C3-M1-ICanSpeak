@@ -15,7 +15,7 @@ struct ummApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            TimeLogView()
+            MainView()
         }
     }
 }
