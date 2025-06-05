@@ -11,7 +11,7 @@ import SwiftUI
 struct PlzApp: App {
     var body: some Scene {
         WindowGroup {
-            TimeLogView()
+            MainView()
         }
     }
 }
