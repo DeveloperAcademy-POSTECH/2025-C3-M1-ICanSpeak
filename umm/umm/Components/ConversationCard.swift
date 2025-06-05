@@ -11,15 +11,16 @@ struct ConversationCard: View {
     let session: ConversationSession
 
     var body: some View {
-        VStack(content: {
+        VStack(alignment: .center, spacing: 6, content: {
             timeDuration
             wordBox
         })
+        .frame(width: 361, height: 163)
     }
 
     //MARK: - 시간
     private var timeDuration: some View {
-        HStack(alignment: .center, spacing: 4, content: {
+        HStack(alignment: .center, spacing: 5, content: {
             Circle()
                 .fill(Color.orange)
                 .frame(width: 8, height: 8)
@@ -28,38 +29,45 @@ struct ConversationCard: View {
                 if let end = session.endTime {
                     Text("\(TimeLogManager.formatTime(session.startTime)) - \(TimeLogManager.formatTime(end))")
                         .font(.sfregular12)
-                        .foregroundColor(.gray)
+                        .foregroundStyle(.txt06)
                 }
             }
+            
+            Spacer()
         })
     }
 
     //MARK: - 대화 박스
     private var wordBox: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            ForEach(session.groups.indices, id: \.self) { index in
-                let group = session.groups[index]
+        HStack(content: {
+            
+            Spacer().frame(width: 12)
+            
+            VStack(alignment: .leading, spacing: 12) {
+                ForEach(session.groups.indices, id: \.self) { index in
+                    let group = session.groups[index]
 
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(group.keyword)
-                        .font(.headline)
-                        .foregroundColor(.white)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(group.keyword)
+                            .font(.headline)
+                            .foregroundColor(.white)
 
-                    Text(group.suggestions.map { $0.word }.joined(separator: " | "))
-                        .font(.subheadline)
-                        .foregroundColor(.white.opacity(0.9))
-                }
+                        Text(group.suggestions.map { $0.word }.joined(separator: " | "))
+                            .font(.subheadline)
+                            .foregroundColor(.white.opacity(0.9))
+                    }
 
-                // 마지막 그룹 뒤에는 Divider 안 붙임
-                if index != session.groups.count - 1 {
-                    Divider()
-                        .background(Color.white.opacity(0.3))
+                    // 마지막 그룹 뒤에는 Divider 안 붙임
+                    if index != session.groups.count - 1 {
+                        Image("line")
+                    }
                 }
             }
-        }
-        .padding()
-        .background(Color.orange)
-        .cornerRadius(12)
+            .padding(.vertical)
+            .frame(width: 343)
+            .background(Color.ummPrimary)
+            .cornerRadius(8)
+        })
     }
 }
 
@@ -85,6 +93,4 @@ struct ConversationCard: View {
             )
         ]
     ))
-    .padding()
-    .background(Color.black)
 }
