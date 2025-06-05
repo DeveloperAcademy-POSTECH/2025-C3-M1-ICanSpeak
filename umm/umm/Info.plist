@@ -8,6 +8,11 @@
 	<array>
 		<string>fetch</string>
 		<string>remote-notification</string>
+		<string>processing</string>
 	</array>
+    <key>BGTaskSchedulerPermittedIdentifiers</key>
+    <array>
+        <string>com.ummapp.audioprocessing</string>
+    </array>
 </dict>
 </plist>
