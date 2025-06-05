@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SoundDetectMainView: View {
-    //@StateObject private var soundManager = SoundDetectionManager()
+    
     @EnvironmentObject var soundManager: SoundDetectionManager
 
     var body: some View {
@@ -26,5 +26,5 @@ struct SoundDetectMainView: View {
 
 #Preview {
     SoundDetectMainView()
-        .environmentObject(SoundDetectionManager())
+        .environmentObject(SoundDetectionManager.shared)
 }

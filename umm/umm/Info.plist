@@ -35,5 +35,9 @@
 		<key>UILaunchScreen</key>
 		<dict/>
 	</dict>
+    <key>BGTaskSchedulerPermittedIdentifiers</key>
+    <array>
+        <string>com.ummapp.audioprocessing</string>
+    </array>
 </dict>
 </plist>

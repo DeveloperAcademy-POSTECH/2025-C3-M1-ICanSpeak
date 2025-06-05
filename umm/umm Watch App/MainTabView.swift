@@ -10,10 +10,9 @@ import SwiftUI
 struct MainTabView: View {
     @State private var selectedTab = 1
 
-    // 전역 상태 객체 생성 (한 번만 생성)
-    @StateObject private var pauseManager = PauseManager()
-    @StateObject private var soundManager = SoundDetectionManager()
-    @StateObject private var motionManager = MotionManager.shared
+    @EnvironmentObject var pauseManager: PauseManager
+    @EnvironmentObject var soundManager: SoundDetectionManager
+    @EnvironmentObject var motionManager: MotionManager
 
     var body: some View {
         TabView(selection: $selectedTab) {
