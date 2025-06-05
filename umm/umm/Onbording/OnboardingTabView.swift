@@ -67,6 +67,7 @@ struct OnboardingTabView: View {
                             currentPage -= 1
                         }
                     }.foregroundColor(.txt03)
+                        .font(.sdbold16)
                         .frame(width: 74, height: 44)
                 }
 
@@ -80,7 +81,7 @@ struct OnboardingTabView: View {
                     }
                 }
                 .foregroundStyle(.txt01)
-                .bold()
+                .font(.sdbold16)
                 .frame(width: 74, height: 44)
                 .background(Color.ummPrimary)
                     .cornerRadius(25)

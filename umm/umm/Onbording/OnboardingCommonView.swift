@@ -22,9 +22,10 @@ struct OnboardingCommonView: View {
                     .multilineTextAlignment(.center)
 
                 Text(subtitle)
-                    .font(.caption)
+                    .font(.sdregular15)
                     .foregroundColor(.txt05)
                     .multilineTextAlignment(.center)
+                    .lineSpacing(4)
             }
             Spacer().frame(height: 50) // 텍스트 사진 간격
             Image(imageName)
