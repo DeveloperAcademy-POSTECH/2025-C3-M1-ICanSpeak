@@ -47,6 +47,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AppleSDGothicNeoB.ttf,
+				AppleSDGothicNeoEB.ttf,
 				AppleSDGothicNeoL.ttf,
 				AppleSDGothicNeoM.ttf,
 				AppleSDGothicNeoR.ttf,

@@ -50,6 +50,7 @@ extension Font {
     
     //MARK: - Apple SD Gothic Neo : 한글
     enum SdGothic{
+        case extrabold
         case bold
         case semibold
         case medium
@@ -59,6 +60,8 @@ extension Font {
         var value: String {
             switch self {
             /// Apple SD Gothic Neo
+            case .extrabold:
+                return "AppleSDGothicNeoEB"
             case .bold:
                 return "AppleSDGothicNeoB"
             case .semibold:
@@ -73,7 +76,7 @@ extension Font {
         }
     }
     
-    static func sdGothic(type: SfCompact, size: CGFloat) -> Font {
+    static func sdGothic(type: SdGothic, size: CGFloat) -> Font {
         return .custom(type.value, size: size)
     }
 
@@ -86,7 +89,19 @@ extension Font {
         return .sdGothic(type: .regular, size: 16)
     }
     
+    static var sdregular15: Font {
+        return .sdGothic(type: .regular, size: 15)
+    }
+    
     static var sdmedium16: Font {
         return .sdGothic(type: .medium, size: 16)
     }
+    static var sdbold16: Font {
+        return .sdGothic(type: .bold, size: 16)
+    }
+    
+    static var sdextra30: Font {
+        return .sdGothic(type: .extrabold, size: 30)
+    }
+    
 }
