@@ -12,7 +12,7 @@ struct BackgorounView: View {
         ZStack {
             Color.primary0
                 .ignoresSafeArea()
-            Image("배경UMM")
+            Image("backUMM")
                 .offset(y:280)
         }
     }
