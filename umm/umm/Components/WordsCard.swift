@@ -44,25 +44,29 @@ struct WordsCard: View {
                         .font(.montBold28)
 
                     HStack {
-                        Text("Verb") // 고정 텍스트 or suggestion.partOfSpeech
-                            .font(.caption2)
-                            .bold()
+                        Text(suggestion.partOfSpeech)
+                            .font(.sfmedium12)
+                            .foregroundStyle(.txtPrimary)
                             .padding(.horizontal, 6)
                             .padding(.vertical, 2)
-                            .background(Color.orange.opacity(0.2))
+                            .background(.primary1)
                             .cornerRadius(4)
 
                         Text(suggestion.meaning)
-                            .font(.caption)
+                            .foregroundStyle(Color.txtPrimary)
+                            .font(.sdmedium14)
+                        
                     }
 
                     Text(suggestion.example)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+                        .foregroundStyle(Color.txt05)
+                        .font(.sfregular14)
                 }
 
                 if suggestion.id != group.suggestions.last?.id {
-                    Divider().padding(.vertical, 4)
+                    Divider()
+                        .frame(height: 2)
+                        .background(.primary1)
                 }
             }
         }
@@ -97,7 +101,7 @@ struct WordsCard: View {
             ),
             WordSuggestion(
                 word: "ask over",
-                partOfSpeech: "Verb",
+                partOfSpeech: "Noun",
                 meaning: "(친근하게) 집으로 부르다",
                 example: "I’m going to ask Tom over for dinner tonight."
             ),

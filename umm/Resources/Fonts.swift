@@ -10,13 +10,12 @@ import SwiftUI
 
 extension Font {
     //MARK: 영어,숫자
-    enum Korean {
+    enum SfCompact {
         case bold
         case semibold
         case medium
         case regular
         case light
-        case monserrat
         
         var value: String {
             switch self {
@@ -31,17 +30,11 @@ extension Font {
                 return "SFCompactText-Regular"
             case .light:
                 return "SFCompactText-Light"
-            case .monserrat:
-                return "Montserrat-Bold"
             }
         }
     }
     
-    static func sfCompact(type: Korean, size: CGFloat) -> Font {
-        return .custom(type.value, size: size)
-    }
-    
-    static func monserrat(type: Korean, size: CGFloat) -> Font {
+    static func sfCompact(type: SfCompact, size: CGFloat) -> Font {
         return .custom(type.value, size: size)
     }
     
@@ -78,19 +71,6 @@ extension Font {
         return .sfCompact(type: .regular, size: 12)
     }
     
-    //MARK: Monserrat
-    static var montBold28: Font {
-        return .monserrat(type: .monserrat, size: 28)
-    }
-    
-    static var montBold17: Font {
-        return .monserrat(type: .monserrat, size: 17)
-    }
-    
-    static var montBold14: Font {
-        return .monserrat(type: .monserrat, size: 14)
-    }
-    
     //MARK: - Apple SD Gothic Neo : 한글
     enum SdGothic{
         case extrabold
@@ -104,17 +84,17 @@ extension Font {
             switch self {
             /// Apple SD Gothic Neo
             case .extrabold:
-                return "AppleSDGothicNeoEB"
+                return "AppleSDGothicNeo-ExtraBold"
             case .bold:
-                return "AppleSDGothicNeoB"
+                return "AppleSDGothicNeo-Bold"
             case .semibold:
-                return "AppleSDGothicNeoSB"
+                return "AppleSDGothicNeo-SemiBold"
             case .medium:
-                return "AppleSDGothicNeoM"
+                return "AppleSDGothicNeo-Medium"
             case .regular:
-                return "AppleSDGothicNeoR"
+                return "AppleSDGothicNeo-Regular"
             case .light:
-                return "AppleSDGothicNeoL"
+                return "AppleSDGothicNeo-Light"
             }
         }
     }
@@ -124,6 +104,10 @@ extension Font {
     }
 
     //MARK: SD Gothic 변수들
+    static var sdextra30: Font {
+        return .sdGothic(type: .extrabold, size: 30)
+    }
+    
     static var sdbold19: Font {
         return .sdGothic(type: .bold, size: 19)
     }
@@ -148,21 +132,43 @@ extension Font {
         return .sdGothic(type: .regular, size: 16)
     }
     
-    static var sdregular15: Font {
-        return .sdGothic(type: .regular, size: 15)
-    }
-    
     static var sdregular12: Font {
         return .sdGothic(type: .regular, size: 12)
     }
     
-
-    static var sdbold16: Font {
-        return .sdGothic(type: .bold, size: 16)
+    //MARK: Monserrat
+    enum Monserrat {
+        case bold
+        case medium
+        
+        var value: String {
+            switch self {
+            /// SF Compact
+            case .bold:
+                return "Montserrat-Bold"
+            case .medium:
+                return "Montserrat-Medium"
+            }
+        }
     }
     
-    static var sdextra30: Font {
-        return .sdGothic(type: .extrabold, size: 30)
+    static func monserrat(type: Monserrat, size: CGFloat) -> Font {
+        return .custom(type.value, size: size)
+    }
+    static var montBold28: Font {
+        return .monserrat(type: .bold, size: 28)
+    }
+    
+    static var montBold17: Font {
+        return .monserrat(type: .bold, size: 17)
+    }
+    
+    static var montBold14: Font {
+        return .monserrat(type: .bold, size: 14)
+    }
+    
+    static var montMedium14: Font {
+        return .monserrat(type: .medium, size: 14)
     }
     
 }
