@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var receiver = PhoneMessageReceiver()
+    @AppStorage("_isFirstLaunching") var isFirstOnboarding: Bool = true
     var body: some View {
         NavigationView {
             List(receiver.receivedSuggestions) { suggestion in
@@ -27,6 +28,9 @@ struct ContentView: View {
                 .padding(.vertical, 4)
             }
             .navigationTitle("추천 단어")
+        }
+        .fullScreenCover(isPresented: $isFirstOnboarding) {
+            OnboardingTabView(isFirstOnboarding: $isFirstOnboarding)
         }
     }
 }

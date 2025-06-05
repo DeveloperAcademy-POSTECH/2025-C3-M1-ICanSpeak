@@ -4,11 +4,33 @@
 <dict>
 	<key>OPENAI_API_KEY</key>
 	<string>$(OPENAI_API_KEY)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SFCompactText-Light.otf</string>
+		<string>SFCompactText-Regular.otf</string>
+		<string>SFCompactText-Medium.otf</string>
+		<string>SFCompactText-Semibold.otf</string>
+		<string>SFCompactText-Bold.otf</string>
+		<string>AppleSDGothicNeoL.ttf</string>
+		<string>AppleSDGothicNeoR.ttf</string>
+		<string>AppleSDGothicNeoM.ttf</string>
+		<string>AppleSDGothicNeoB.ttf</string>
+		<string>AppleSDGothicNeoSB.ttf</string>
+		<string>AppleSDGothicNeoEB.ttf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
-		<string>bluetooth-central</string>
 		<string>remote-notification</string>
 	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>ummPrimary</string>
+		<key>UIImageName</key>
+		<string>Umm</string>
+		<key>UILaunchScreen</key>
+		<dict/>
+	</dict>
 </dict>
 </plist>

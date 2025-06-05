@@ -57,6 +57,7 @@ struct WordSuggestionView: View {
         VStack(spacing: 2) {
             Button(action: {
                 sendSuggestionsToiPhone(viewModel.suggestions)
+                NotificationCenter.default.post(name: .didRequestReturnToDetectionView, object: nil)
             }, label: {
                 Text("확인")
                     .frame(width: 150, height: 45)
@@ -68,6 +69,9 @@ struct WordSuggestionView: View {
 
             Button(action: {
                 //TODO: - 다시 말하기 동작
+                WatchSessionManager.shared.receivedText = "원하는 단어를\n말해보세요."
+                NotificationCenter.default.post(name: .didRequestRetrySpeaking, object: nil)
+
             }, label: {
                 Text("다시 말하기")
                     .frame(width: 150, height: 45)
@@ -104,6 +108,6 @@ struct WordSuggestionView: View {
     
 }
 
-#Preview {
-    WordSuggestionView(koreanWord: "초대하다")
+extension Notification.Name {
+    static let didRequestReturnToDetectionView = Notification.Name("didRequestReturnToDetectionView")
 }
