@@ -116,14 +116,6 @@ extension Font {
         return .sdGothic(type: .bold, size: 16)
     }
     
-    static var sdregular15: Font {
-        return .sdGothic(type: .regular, size: 15)
-    }
-    
-    static var sdregular15: Font {
-        return .sdGothic(type: .regular, size: 15)
-    }
-    
     static var sdmedium16: Font {
         return .sdGothic(type: .medium, size: 16)
     }
@@ -134,6 +126,10 @@ extension Font {
     
     static var sdregular16: Font {
         return .sdGothic(type: .regular, size: 16)
+    }
+    
+    static var sdregular15: Font {
+        return .sdGothic(type: .regular, size: 15)
     }
     
     static var sdregular12: Font {
