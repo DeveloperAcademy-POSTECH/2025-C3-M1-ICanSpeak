@@ -18,11 +18,21 @@
 		<string>AppleSDGothicNeoSB.ttf</string>
 		<string>Montserrat-Bold.ttf</string>
 		<string>Montserrat-Medium.ttf</string>
+		<string>AppleSDGothicNeoEB.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>ummPrimary</string>
+		<key>UIImageName</key>
+		<string>Umm</string>
+		<key>UILaunchScreen</key>
+		<dict/>
+	</dict>
 </dict>
 </plist>

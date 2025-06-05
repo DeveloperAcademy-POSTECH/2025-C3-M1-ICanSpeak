@@ -120,6 +120,10 @@ extension Font {
         return .sdGothic(type: .regular, size: 15)
     }
     
+    static var sdregular15: Font {
+        return .sdGothic(type: .regular, size: 15)
+    }
+    
     static var sdmedium16: Font {
         return .sdGothic(type: .medium, size: 16)
     }
@@ -143,7 +147,6 @@ extension Font {
         
         var value: String {
             switch self {
-            /// SF Compact
             case .bold:
                 return "Montserrat-Bold"
             case .medium:
