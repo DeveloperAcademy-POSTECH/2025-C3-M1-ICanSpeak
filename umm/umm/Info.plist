@@ -16,6 +16,8 @@
 		<string>AppleSDGothicNeoM.ttf</string>
 		<string>AppleSDGothicNeoB.ttf</string>
 		<string>AppleSDGothicNeoSB.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Medium.ttf</string>
 		<string>AppleSDGothicNeoEB.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>

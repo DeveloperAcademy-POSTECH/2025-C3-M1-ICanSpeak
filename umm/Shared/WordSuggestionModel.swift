@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+struct ConversationSession: Identifiable, Codable {
+    var id = UUID()
+    let startTime: Date
+    let endTime: Date?
+    var groups: [WordSuggestionGroup]
+}
+
+
 struct WordSuggestionGroup: Identifiable, Codable {
     var id = UUID()
     let keyword: String
@@ -19,11 +27,4 @@ struct WordSuggestion: Identifiable, Codable {
     let partOfSpeech: String
     let meaning: String
     let example: String
-}
-
-struct ConversationSession: Identifiable, Codable {
-    var id = UUID()
-    let startTime: Date
-    let endTime: Date?
-    var groups: [WordSuggestionGroup]
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct ConversationCard: View {
     let session: ConversationSession
 
+    
     var body: some View {
         VStack(alignment: .center, spacing: 6, content: {
             timeDuration
@@ -49,12 +50,12 @@ struct ConversationCard: View {
 
                     VStack(alignment: .leading, spacing: 4) {
                         Text(group.keyword)
-                            .font(.headline)
-                            .foregroundColor(.white)
+                            .font(.sdbold16)
+                            .foregroundColor(.txt01)
 
                         Text(group.suggestions.map { $0.word }.joined(separator: " | "))
-                            .font(.subheadline)
-                            .foregroundColor(.white.opacity(0.9))
+                            .font(.montMedium14)
+                            .foregroundColor(.txt01)
                     }
 
                     // 마지막 그룹 뒤에는 Divider 안 붙임
