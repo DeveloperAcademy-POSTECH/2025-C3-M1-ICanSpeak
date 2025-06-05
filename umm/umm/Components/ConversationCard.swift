@@ -49,7 +49,7 @@ struct ConversationCard: View {
 
                     VStack(alignment: .leading, spacing: 4) {
                         Text(group.keyword)
-                            .font(.headline)
+                            .font(.sdbold16)
                             .foregroundColor(.white)
 
                         Text(group.suggestions.map { $0.word }.joined(separator: " | "))

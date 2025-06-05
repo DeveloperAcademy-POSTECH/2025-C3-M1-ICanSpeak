@@ -52,6 +52,7 @@
 				AppleSDGothicNeoR.ttf,
 				AppleSDGothicNeoSB.ttf,
 				Fonts.swift,
+				"Montserrat-Bold.ttf",
 				"SFCompactText-Bold.otf",
 				"SFCompactText-Light.otf",
 				"SFCompactText-Medium.otf",
