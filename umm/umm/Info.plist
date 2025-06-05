@@ -16,12 +16,15 @@
 		<string>AppleSDGothicNeoM.ttf</string>
 		<string>AppleSDGothicNeoB.ttf</string>
 		<string>AppleSDGothicNeoSB.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-Medium.ttf</string>
 		<string>AppleSDGothicNeoEB.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
 		<string>remote-notification</string>
+		<string>processing</string>
 	</array>
 	<key>UILaunchScreen</key>
 	<dict>
@@ -32,5 +35,9 @@
 		<key>UILaunchScreen</key>
 		<dict/>
 	</dict>
+    <key>BGTaskSchedulerPermittedIdentifiers</key>
+    <array>
+        <string>com.ummapp.audioprocessing</string>
+    </array>
 </dict>
 </plist>
