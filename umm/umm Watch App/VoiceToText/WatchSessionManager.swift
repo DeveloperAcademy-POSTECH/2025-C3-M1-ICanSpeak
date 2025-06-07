@@ -41,6 +41,17 @@ class WatchSessionManager: NSObject, WCSessionDelegate, ObservableObject {
         print("📤 오디오 파일 전송 시작 (백그라운드 처리용): \(url.lastPathComponent)")
     }
     
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        DispatchQueue.main.async {
+            if let text = applicationContext["recognizedText"] as? String {
+                print("📩 [Context] 받은 텍스트: \(text)")
+                self.receivedText = text
+            } else {
+                print("⚠️ [Context] recognizedText가 없음")
+            }
+        }
+    }
+    
     // iPhone에서 텍스트 전송 시 수신 처리
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         DispatchQueue.main.async {

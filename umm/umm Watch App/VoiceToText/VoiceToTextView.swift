@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct VoiceToTextView: View {
-    @StateObject var sessionManager = WatchSessionManager.shared
+    @ObservedObject var sessionManager = WatchSessionManager.shared
     @EnvironmentObject var soundManager: SoundDetectionManager
     @EnvironmentObject var motionManager: MotionManager
     @State private var showBounce = false
