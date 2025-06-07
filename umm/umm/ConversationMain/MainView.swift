@@ -6,7 +6,8 @@ struct MainView: View {
     @State private var selectedDate: Date = Date()
     @State private var showDatePicker = false
     @State private var weekOffset: Int = 0
-    @StateObject private var messageReceiver = PhoneSessionManager.shared.messageReceiverInstance
+    @StateObject private var messageReceiver = PhoneSessionManager.shared
+    
     @AppStorage("_isFirstLaunching") var isFirstOnboarding: Bool = true
     
     var body: some View {
@@ -27,6 +28,7 @@ struct MainView: View {
                             ForEach(filteredSessions) { session in
                                 NavigationLink(destination: ConversationDetailView(session: session)) {
                                     ConversationCard(session: session)
+                                        .padding(.vertical, 36)
                                 }
                             }
                         }
