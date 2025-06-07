@@ -7,6 +7,7 @@ struct MainView: View {
     @State private var showDatePicker = false
     @State private var weekOffset: Int = 0
     @StateObject private var messageReceiver = PhoneSessionManager.shared.messageReceiverInstance
+    @AppStorage("_isFirstLaunching") var isFirstOnboarding: Bool = true
     
     var body: some View {
         NavigationStack{
@@ -31,6 +32,9 @@ struct MainView: View {
                         }
                         .padding(.horizontal)
                     }
+                }
+                .fullScreenCover(isPresented: $isFirstOnboarding) {
+                    OnboardingTabView(isFirstOnboarding: $isFirstOnboarding)
                 }
             }
 
