@@ -63,7 +63,7 @@ class MotionManager: ObservableObject {
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
             AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+            AVEncoderAudioQualityKey: AVAudioQuality.low.rawValue
         ]
         
         let fileName = FileManager.default.temporaryDirectory.appendingPathComponent("motion_record.m4a")
@@ -133,7 +133,7 @@ class MotionManager: ObservableObject {
             
             // 무음 체크 타이머
             silenceCount = 0
-            silenceTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
+            silenceTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { [weak self] _ in
                 guard let self = self, let recorder = self.audioRecorder else { return }
                 
                 // 타이머 내부에서도 일시정지 상태면 무시
