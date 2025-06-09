@@ -16,11 +16,38 @@ struct FirstDetectView: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            ZStack {
+             ZStack {
+                // 👇 1. 배경 애니메이션 (맨 아래)
+                ForEach(0..<pulseCount, id: \.self) { index in
+                    PulseCircle(delay: Double(index) * pulseDelay)
+                }
+
+                // 👇 2. 중앙 동그라미
+                Circle()
+                    .fill()
+                    .foregroundColor(.ummSecondWhite)
+                    .frame(width: 100, height: 100)
+
+                // 👇 3. 애니메이션 점들
+                HStack(spacing: 8) {
+                    ForEach(0..<3) { index in
+                        Circle()
+                            .fill(.gray)
+                            .frame(width: 6, height: 6)
+                            .scaleEffect(scales[index])
+                            .animation(
+                                Animation
+                                    .easeInOut(duration: 0.7)
+                                    .repeatForever(autoreverses: true)
+                                    .delay(Double(index) * 0.2),
+                                value: scales[index]
+                            )
+                    }
+                }
+
+                // 👇 4. 버튼 (맨 위로 올라오게)
                 VStack {
-                    
                     Spacer()
-                    
                     Button {
                         DispatchQueue.main.async {
                             showVoiceView = true
@@ -36,38 +63,13 @@ struct FirstDetectView: View {
                             .padding(.vertical, 12)
                             .background(
                                 Capsule()
-                                    .fill(.ultraThinMaterial) // ✨ 유리 느낌
+                                    .fill(.ultraThinMaterial)
                                     .background(
-                                        Capsule().fill(Color.black.opacity(0.05)) // 보완용 오버레이
+                                        Capsule().fill(Color.gray.opacity(0.7))
                                     )
                             )
                     }
                     .buttonStyle(.plain)
-                }
-                
-                ForEach(0..<pulseCount, id: \.self) { index in
-                    PulseCircle(delay: Double(index) * pulseDelay)
-                }
-                
-                Circle()
-                    .fill()
-                    .foregroundColor(.ummSecondWhite)
-                    .frame(width: 100, height: 100)
-                
-                HStack(spacing: 8) {
-                    ForEach(0..<3) { index in
-                        Circle()
-                            .fill(.gray)
-                            .frame(width: 6, height: 6)
-                            .scaleEffect(scales[index])
-                            .animation(
-                                Animation
-                                    .easeInOut(duration: 0.7)
-                                    .repeatForever(autoreverses: true)
-                                    .delay(Double(index) * 0.2),
-                                value: scales[index]
-                            )
-                    }
                 }
             }
             .onAppear {
@@ -102,3 +104,5 @@ struct PulseCircle: View {
             }
     }
 }
+
+

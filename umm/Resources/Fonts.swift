@@ -136,6 +136,10 @@ extension Font {
         return .sdGothic(type: .regular, size: 12)
     }
     
+    static var sdregular19: Font {
+         return .sdGothic(type: .regular, size: 19)
+     }
+    
     //MARK: Monserrat
     enum Monserrat {
         case bold

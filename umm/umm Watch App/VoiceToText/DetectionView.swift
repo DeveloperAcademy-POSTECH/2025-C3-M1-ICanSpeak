@@ -52,7 +52,7 @@ struct DetectionView: View {
                 guard !pauseManager.isPaused else { return }
                 guard !showVoiceView && !isVoiceToTextDone else { return }
                 
-                if newVal.contains("감지됨") || newVal.contains("3초 이상 기타") {
+                if newVal.contains("감지됨") || newVal.contains("이상") {
                     isDetected = true
                     WKInterfaceDevice.current().play(.success)
                 } else {

@@ -17,15 +17,12 @@ struct MainView: View {
                 
                 ScrollView {
                     VStack(spacing: 20) {
-                        //VStack{
                             CalendarView(
                                 calendar: calendar,
                                 selectedDate: $selectedDate,
                                 showDatePicker: $showDatePicker,
                                 weekOffset: $weekOffset
                             )
-                       // }
-                        .frame(height: 700)
                         
                         VStack(spacing: 16) {
                             ForEach(filteredSessions) { session in
