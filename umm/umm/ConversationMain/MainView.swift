@@ -24,6 +24,11 @@ struct MainView: View {
                             weekOffset: $weekOffset
                         )
                         
+                        MonthlyDatePickerView(
+                            selectedDate: $selectedDate,
+                            isPresented: $showDatePicker
+                        )
+                        
                         VStack(spacing: 16) {
                             ForEach(filteredSessions) { session in
                                 NavigationLink(destination: ConversationDetailView(session: session)) {
