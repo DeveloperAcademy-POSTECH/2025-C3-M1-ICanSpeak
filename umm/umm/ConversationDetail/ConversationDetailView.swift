@@ -16,9 +16,8 @@ struct ConversationDetailView: View {
                 ForEach(session.groups) { group in
                     WordsCard(group: group)
                 }
+                .padding(.vertical, 20)
             }
-            .padding()
         }
-        .navigationTitle("대화 상세")
     }
 }

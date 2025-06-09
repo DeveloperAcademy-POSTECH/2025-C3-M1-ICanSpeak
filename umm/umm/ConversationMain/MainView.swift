@@ -2,25 +2,54 @@ import SwiftUI
 import Foundation
 
 struct MainView: View {
-  let calendar = Calendar.current
-  @State private var selectedDate: Date = Date()
-  @State private var showDatePicker = false
-  @State private var weekOffset: Int = 0
+    let calendar = Calendar.current
+    @State private var selectedDate: Date = Date()
+    @State private var showDatePicker = false
+    @State private var weekOffset: Int = 0
+    @StateObject private var messageReceiver = PhoneSessionManager.shared
+    
+    @AppStorage("_isFirstLaunching") var isFirstOnboarding: Bool = true
+    
+    var body: some View {
+        NavigationStack{
+            ZStack {
+                BackgorounView()
+                
+                ScrollView {
+                    VStack(spacing: 20) {
+                            CalendarView(
+                                calendar: calendar,
+                                selectedDate: $selectedDate,
+                                showDatePicker: $showDatePicker,
+                                weekOffset: $weekOffset
+                            )
+                        
+                        VStack(spacing: 16) {
+                            ForEach(filteredSessions) { session in
+                                NavigationLink(destination: ConversationDetailView(session: session)) {
+                                    ConversationCard(session: session)
+                                        .padding(.vertical)
+                                }
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                }
+                .fullScreenCover(isPresented: $isFirstOnboarding) {
+                    OnboardingTabView(isFirstOnboarding: $isFirstOnboarding)
+                }
+            }
 
-  var body: some View {
-
-    ZStack {
-      BackgorounView()
-      CalendarView(
-        calendar: calendar,
-        selectedDate: $selectedDate,
-        showDatePicker: $showDatePicker,
-        weekOffset: $weekOffset
-      )
+        }
     }
-  }
+    
+    private var filteredSessions: [ConversationSession] {
+        messageReceiver.conversationSessions.filter { session in
+            calendar.isDate(session.startTime, inSameDayAs: selectedDate)
+        }
+    }
 }
 
 #Preview {
-  MainView()
+    MainView()
 }

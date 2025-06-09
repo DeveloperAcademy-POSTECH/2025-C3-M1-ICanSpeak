@@ -33,9 +33,7 @@ struct PauseView: View {
                     Button(action: {
                         let exitTime = Date()
                         WatchSessionManager.shared.sendExitTimeToApp(date: exitTime)
-                        motionManager.stopMonitoring()
                         soundManager.stopDetection()
-                        motionManager.didFinishRecording = true
                         NotificationCenter.default.post(name: .didRequestAppReset, object: nil)
                     }, label: {
                         Image(systemName: "xmark")
