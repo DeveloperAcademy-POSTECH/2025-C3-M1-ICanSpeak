@@ -32,9 +32,6 @@ struct StartView: View {
     }
 }
 
-extension Notification.Name {
-    static let didRequestAppReset = Notification.Name("didRequestAppReset")
-}
   
   #Preview {
     StartView()

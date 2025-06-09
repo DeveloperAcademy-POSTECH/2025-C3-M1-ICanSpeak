@@ -292,30 +292,37 @@ class PhoneSessionManager: NSObject, WCSessionDelegate, ObservableObject {
             completion("음성인식을 사용할 수 없습니다")
             return
         }
-        
+
         do {
             let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("temp_audio_\(UUID().uuidString).m4a")
             try audioData.write(to: tempURL)
-            
+
             let request = SFSpeechURLRecognitionRequest(url: tempURL)
             request.shouldReportPartialResults = false
             request.requiresOnDeviceRecognition = false
-            
+
+            var hasCompleted = false // ✅ 중복 호출 방지
+
             recognitionTask = speechRecognizer.recognitionTask(with: request) { result, error in
                 defer {
                     try? FileManager.default.removeItem(at: tempURL)
                 }
-                
+
+                guard !hasCompleted else { return }
+
                 if let result = result, result.isFinal {
+                    hasCompleted = true
                     completion(result.bestTranscription.formattedString)
                 } else if let error = error {
+                    hasCompleted = true
                     print("❌ 음성인식 오류: \(error)")
                     completion("음성인식 실패")
                 } else if let result = result {
+                    hasCompleted = true
                     completion(result.bestTranscription.formattedString)
                 }
             }
-            
+
         } catch {
             print("❌ 임시 파일 생성 실패: \(error)")
             completion("파일 처리 실패")

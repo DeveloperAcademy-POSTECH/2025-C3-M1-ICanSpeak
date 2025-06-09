@@ -10,7 +10,7 @@ import Foundation
 class WatchSessionManager: NSObject, WCSessionDelegate, ObservableObject {
     static let shared = WatchSessionManager()
     
-    @Published var receivedText: String = "원하는 단어를\n말해보세요."
+    @Published var receivedText: String = "단어를 물어보세요."
     
     private override init() {
         super.init()

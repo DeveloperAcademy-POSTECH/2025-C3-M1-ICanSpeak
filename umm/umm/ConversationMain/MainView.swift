@@ -28,7 +28,7 @@ struct MainView: View {
                             ForEach(filteredSessions) { session in
                                 NavigationLink(destination: ConversationDetailView(session: session)) {
                                     ConversationCard(session: session)
-                                        .padding(.vertical, 36)
+                                        .padding(.vertical)
                                 }
                             }
                         }

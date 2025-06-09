@@ -8,50 +8,63 @@
 import SwiftUI
 
 struct FirstDetectView: View {
-    @State private var currentDot = 0
-    @State private var animate = false
+    @Binding var showVoiceView: Bool
     @State private var scales: [CGFloat] = [1, 1, 1]
 
     let pulseCount = 3
     let pulseDelay: Double = 1
-    
-    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-    
+
     var body: some View {
-        ZStack{
-            ForEach(0..<pulseCount, id: \.self) { index in
-                PulseCircle(delay: Double(index) * pulseDelay)
-            }
-            Circle()
-                .fill()
-                .foregroundColor(.ummSecondWhite)
-                .frame(width: 100, height: 100)
-            
-            HStack(spacing: 8) {
-                        ForEach(0..<3) { index in
-                            Circle()
-                                .fill(.gray)
-                                .frame(width: 6, height: 6)
-                                .scaleEffect(scales[index])
-                                .animation(
-                                    Animation
-                                        .easeInOut(duration: 0.7)
-                                        .repeatForever(autoreverses: true)
-                                        .delay(Double(index) * 0.2),
-                                    value: scales[index]
-                                )
-                        }
-                    }
-                    .onAppear {
-                        for i in 0..<scales.count {
-                            scales[i] = 1.4
-                        }
-                    }
+        VStack(spacing: 16) {
+            ZStack {
+                ForEach(0..<pulseCount, id: \.self) { index in
+                    PulseCircle(delay: Double(index) * pulseDelay)
                 }
 
+                Circle()
+                    .fill()
+                    .foregroundColor(.ummSecondWhite)
+                    .frame(width: 60, height: 60)
+
+                HStack(spacing: 8) {
+                    ForEach(0..<3) { index in
+                        Circle()
+                            .fill(.gray)
+                            .frame(width: 6, height: 6)
+                            .scaleEffect(scales[index])
+                            .animation(
+                                Animation
+                                    .easeInOut(duration: 0.7)
+                                    .repeatForever(autoreverses: true)
+                                    .delay(Double(index) * 0.2),
+                                value: scales[index]
+                            )
+                    }
+                }
+            }
+            
+            Button {
+                DispatchQueue.main.async {
+                    showVoiceView = true
+                }
+                MotionManager.shared.startRecording()
+                SoundDetectionManager.shared.stopDetection()
+                WatchSessionManager.shared.receivedText = "단어를 물어보세요."
+            } label: {
+                Text("물어보기")
+                    .font(.headline)
+            }
+        }
+        .onAppear {
+            for i in 0..<scales.count {
+                scales[i] = 1.4
+            }
+        }
     }
 }
 
+
+/// 외곽 원 애니메이션
 struct PulseCircle: View {
     let delay: Double
     @State private var animate = false
@@ -59,7 +72,7 @@ struct PulseCircle: View {
     var body: some View {
         Circle()
             .fill(.opacity(0.6))
-            .frame(width: 100, height: 100)
+            .frame(width: 62, height: 62)
             .scaleEffect(animate ? 2.0 : 1.0)
             .opacity(animate ? 0.0 : 1.0)
             .animation(
@@ -72,8 +85,4 @@ struct PulseCircle: View {
                 animate = true
             }
     }
-}
-
-#Preview {
-    FirstDetectView()
 }
