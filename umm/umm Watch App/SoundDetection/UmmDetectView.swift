@@ -8,29 +8,43 @@
 import SwiftUI
 
 struct UmmDetectView: View {
-    
+    @Binding var showVoiceView: Bool
     var body: some View {
-        ZStack{
-            Circle()
-                .foregroundColor(.ummPrimary).opacity(0.4)
+        VStack {
+            ZStack{
+                Circle()
+                    .foregroundColor(.ummPrimary).opacity(0.4)
+                
+                    .frame(width: 80, height: 80)
+                Circle()
+                    .foregroundColor(.ummPrimary).opacity(0.7)
+                
+                    .frame(width: 70, height: 70)
+                Circle()
+                    .foregroundColor(.ummPrimary)
+                    .frame(width: 60, height:60)
+                
+                Text("Umm")
+                    .font(.headline)
+            }
             
-                .frame(width: 133, height: 133)
-            Circle()
-                .foregroundColor(.ummPrimary).opacity(0.7)
-            
-                .frame(width: 112, height: 112)
-            Circle()
-                .foregroundColor(.ummPrimary)
-                .frame(width: 84, height: 84)
-            
-                    Text("Umm")
-                        .font(.sfbold20)
+            Button{
+                DispatchQueue.main.async {
+                    showVoiceView = true
+                }
+                MotionManager.shared.startRecording()
+                SoundDetectionManager.shared.stopDetection()
+                WatchSessionManager.shared.receivedText = "단어를 물어보세요."
+            } label: {
+                Text("물어보기")
+                    .font(.headline)
             }
         }
     }
-
-
-
-#Preview {
-    UmmDetectView()
 }
+
+
+
+//#Preview {
+//    UmmDetectView()
+//}

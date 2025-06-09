@@ -10,7 +10,7 @@ import SwiftUI
 struct ConversationSession: Identifiable, Codable {
     var id = UUID()
     let startTime: Date
-    let endTime: Date?
+    var endTime: Date?
     var groups: [WordSuggestionGroup]
 }
 
