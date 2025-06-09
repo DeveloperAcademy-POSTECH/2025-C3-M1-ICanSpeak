@@ -12,21 +12,21 @@ struct DetectionView: View {
     @EnvironmentObject var pauseManager: PauseManager
     @EnvironmentObject var motionManager: MotionManager
     @EnvironmentObject var soundManager: SoundDetectionManager
-
+    
     @StateObject private var sessionManager = WatchSessionManager.shared
-
+    
     @State private var isDetected: Bool = false
     @State private var showVoiceView: Bool = false
     @State private var isRetrySpeaking: Bool = false
     @State private var viewState = UUID()
     @State private var isVoiceToTextDone: Bool = false
     @State private var isLoading: Bool = false
-
+    
     var body: some View {
         if pauseManager.isPaused {
-            Text("⏸ 일시정지 중")
-                .font(.headline)
-                .foregroundColor(.gray)
+            Text("일시 정지 중이에요")
+                .font(.sdregular16)
+                .foregroundColor(.white)
         } else {
             ZStack {
                 if isVoiceToTextDone {
@@ -60,7 +60,7 @@ struct DetectionView: View {
                     isDetected = false
                 }
             }
-
+            
             .onChange(of: pauseManager.isPaused) { isPaused, _ in
                 if isPaused {
                     soundManager.pauseDetection()
