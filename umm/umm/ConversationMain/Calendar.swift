@@ -32,13 +32,14 @@ struct CalendarView: View {
             HStack {
                 Spacer()
                 Text(DateFormatter.customMonthFormatter.string(from: week.first ?? selectedDate))
-                    .font(.system(size: 17))
+                    .font(.montBold17)
+                    .foregroundColor(.txt06)
                 Spacer()
                 Button(action: {
                     showDatePicker = true
                 }) {
                     Image(systemName: "calendar")
-                        .foregroundColor(.orange)
+                        .foregroundColor(.txt06)
                 }
             }
             .padding(.horizontal)
@@ -50,11 +51,11 @@ struct CalendarView: View {
                     let isSelected = calendar.isDate(date, inSameDayAs: selectedDate)
                     VStack {
                         Text(date, format: .dateTime.weekday())
-                            .foregroundColor(isSelected ? .orange : .gray)
-                            .font(.system(size: 12))
+                            .foregroundColor(isSelected ? Color("txt-primary") : Color("txt06"))
+                            .font(.sfregular12)
                         Text(date, format: .dateTime.day())
-                            .foregroundColor(isSelected ? .orange : .primary)
-                            .font(.system(size: 17))
+                            .foregroundColor(isSelected ? Color("txt-primary") : Color("txt06"))
+                            .font(.montMedium17)
                     }
                     .frame(maxWidth: .infinity)
                     .onTapGesture {
@@ -96,7 +97,7 @@ struct CalendarView: View {
                             .padding()
                             .background(
                                 RoundedRectangle(cornerRadius: 16)
-                                    .fill(Color.orange.opacity(0.1))
+                                    .fill(Color("txt-primary").opacity(0.12))
                             )
                             .padding()
                         }

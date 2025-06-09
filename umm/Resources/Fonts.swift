@@ -174,4 +174,7 @@ extension Font {
         return .monserrat(type: .medium, size: 14)
     }
     
+    static var montMedium17: Font {
+        return .monserrat(type: .medium, size: 17)
+    }
 }
