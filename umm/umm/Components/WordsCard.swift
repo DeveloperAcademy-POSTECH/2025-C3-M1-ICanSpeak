@@ -18,13 +18,13 @@ struct WordsCard: View {
             
             koreanWordTitle
         })
-        .frame(width: 361)
+        .frame(width: 355)
     }
     
     private var koreanWordTitle: some View {
         Text(group.keyword)
             .font(.sdbold19)
-            .frame(width: 361, height: 43, alignment: .center)
+            .frame(width: 355, height: 43, alignment: .center)
             .foregroundStyle(.white)
             .background(
                 UnevenRoundedRectangle(
@@ -42,25 +42,25 @@ struct WordsCard: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(suggestion.word.capitalized)
                         .font(.montBold28)
+                    
+                    HStack(alignment: .center ,spacing: 6,content: {
+                            Text(suggestion.partOfSpeech)
+                                .font(.sfmedium12)
+                                .foregroundStyle(.txtPrimary)
+                                .padding(.horizontal, 6)
+                                .padding(.vertical, 2)
+                                .background(.primary1)
+                                .cornerRadius(4)
 
-                    HStack {
-                        Text(suggestion.partOfSpeech)
-                            .font(.sfmedium12)
-                            .foregroundStyle(.txtPrimary)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 2)
-                            .background(.primary1)
-                            .cornerRadius(4)
-
-                        Text(suggestion.meaning)
-                            .foregroundStyle(Color.txtPrimary)
-                            .font(.sdmedium14)
-                        
-                    }
+                            Text(suggestion.meaning)
+                                .foregroundStyle(Color.txtPrimary)
+                                .font(.sdmedium14)
+                    })
 
                     Text(suggestion.example)
                         .foregroundStyle(Color.txt05)
                         .font(.sfregular14)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
 
                 if suggestion.id != group.suggestions.last?.id {
@@ -71,7 +71,7 @@ struct WordsCard: View {
             }
         }
         .padding()
-        .frame(width: 359)
+        .frame(width: 353)
         .background(
             UnevenRoundedRectangle(
                 bottomLeadingRadius: 12,

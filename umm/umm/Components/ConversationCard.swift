@@ -27,7 +27,7 @@ struct ConversationCard: View {
 
             Group {
                 if let end = session.endTime {
-                    Text("\(TimeLogManager.formatTime(session.startTime)) - \(TimeLogManager.formatTime(end))")
+                    Text("\(session.startTime.formatForSessionCard()) - \(end.formatForSessionCard())")
                         .font(.sfregular12)
                         .foregroundStyle(.txt06)
                 }
