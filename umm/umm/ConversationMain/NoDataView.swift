@@ -1,10 +1,3 @@
-//
-//  NoDataView.swift
-//  umm
-//
-//  Created by 강진 on 6/10/25.
-//
-
 import SwiftUI
 
 struct NoDataView: View {
@@ -21,12 +14,12 @@ struct NoDataView: View {
             .frame(width:10, height:10)
           ZStack {
                       RoundedRectangle(cornerRadius: 0)
-                          .frame(width: 10, height: 3) // 선처럼 보이도록 가늘게
-                          .rotationEffect(.degrees(-60)) // 왼쪽 아래로 회전
+                          .frame(width: 10, height: 3)
+                          .rotationEffect(.degrees(-60))
                       RoundedRectangle(cornerRadius: 0)
-                          .frame(width: 6, height: 3) // 선처럼 보이도록 가늘게
-                          .rotationEffect(.degrees(30)) // 왼쪽 위로 회전
-                          .offset(x: 0, y: 4.5) // 적절히 위치 조정
+                          .frame(width: 6, height: 3)
+                          .rotationEffect(.degrees(30))
+                          .offset(x: 0, y: 4.5)
                   }
           .foregroundColor(.primary4)
           Rectangle()
