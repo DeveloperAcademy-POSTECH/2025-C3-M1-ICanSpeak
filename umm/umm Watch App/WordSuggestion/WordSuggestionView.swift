@@ -16,7 +16,7 @@ struct WordSuggestionView: View {
         ScrollView {
             VStack(spacing: 4) {
                 koreanWords
-                englishWordList
+                englishWordListConditional
                 btns
             }
         }
@@ -34,7 +34,22 @@ struct WordSuggestionView: View {
             .font(.sdregular16)
     }
 
-    //MARK: - 영어 단어 (단어만 표시)
+    //MARK: - 영어 단어 (단어만 표시) - 조건부 렌더링
+    private var englishWordListConditional: some View {
+        Group {
+            if koreanWord != "음성인식 실패" {
+                if viewModel.suggestions.isEmpty {
+                    Text("로딩 중입니다.")
+                        .font(.body)
+                        .foregroundColor(.white)
+                        .padding(.top, 20) // 적절한 간격 조절
+                } else {
+                    englishWordList
+                }
+            }
+        }
+    }
+
     private var englishWordList: some View {
         ForEach(viewModel.suggestions) { suggestion in
             HStack {
