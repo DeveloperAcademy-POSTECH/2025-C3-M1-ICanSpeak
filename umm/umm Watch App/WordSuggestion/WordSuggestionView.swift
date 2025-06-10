@@ -39,10 +39,7 @@ struct WordSuggestionView: View {
         Group {
             if koreanWord != "음성인식 실패" {
                 if viewModel.suggestions.isEmpty {
-                    Text("로딩 중입니다.")
-                        .font(.body)
-                        .foregroundColor(.white)
-                        .padding(.top, 20) // 적절한 간격 조절
+                      ProgressView()
                 } else {
                     englishWordList
                 }
