@@ -55,6 +55,7 @@ struct WordsCard: View {
                             Text(suggestion.meaning)
                                 .foregroundStyle(Color.txtPrimary)
                                 .font(.sdmedium14)
+                                .padding(.top, 1)
                     })
 
                     Text(suggestion.example)
