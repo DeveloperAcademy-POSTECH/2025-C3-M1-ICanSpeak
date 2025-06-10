@@ -11,18 +11,18 @@ struct MainView: View {
     @AppStorage("_isFirstLaunching") var isFirstOnboarding: Bool = true
     
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ZStack {
                 BackgorounView()
                 
                 ScrollView {
                     VStack(spacing: 20) {
-                            CalendarView(
-                                calendar: calendar,
-                                selectedDate: $selectedDate,
-                                showDatePicker: $showDatePicker,
-                                weekOffset: $weekOffset
-                            )
+                        CalendarView(
+                            calendar: calendar,
+                            selectedDate: $selectedDate,
+                            showDatePicker: $showDatePicker,
+                            weekOffset: $weekOffset
+                        )
                         
                         VStack(spacing: 16) {
                             ForEach(filteredSessions) { session in
@@ -35,11 +35,36 @@ struct MainView: View {
                         .padding(.horizontal)
                     }
                 }
-                .fullScreenCover(isPresented: $isFirstOnboarding) {
-                    OnboardingTabView(isFirstOnboarding: $isFirstOnboarding)
+                
+                if showDatePicker {
+                    ZStack {
+                        Color.white.opacity(0.01)
+                            .ignoresSafeArea()
+                            .onTapGesture {
+                                showDatePicker = false
+                            }
+
+                        VStack {
+                            DatePicker(
+                                "",
+                                selection: $selectedDate,
+                                displayedComponents: [.date]
+                            )
+                            .datePickerStyle(.graphical)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(.ultraThinMaterial)
+                            )
+                            .padding()
+                        }
+                        .transition(.opacity)
+                    }
                 }
             }
-
+            .fullScreenCover(isPresented: $isFirstOnboarding) {
+                OnboardingTabView(isFirstOnboarding: $isFirstOnboarding)
+            }
         }
     }
     
