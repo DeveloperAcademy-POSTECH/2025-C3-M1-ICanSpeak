@@ -10,40 +10,38 @@ import SwiftUI
 struct ConversationCard: View {
     let session: ConversationSession
 
-    
     var body: some View {
         VStack(alignment: .center, spacing: 6, content: {
             timeDuration
             wordBox
         })
-        .frame(width: 361, height: 163)
+        .frame(width: 361)
     }
 
-    //MARK: - 시간
+    // MARK: - 시간
     private var timeDuration: some View {
         HStack(alignment: .center, spacing: 5, content: {
             Circle()
                 .fill(Color.orange)
                 .frame(width: 8, height: 8)
-        
+
             Group {
                 if let end = session.endTime {
-                    Text("\(TimeLogManager.formatTime(session.startTime)) - \(TimeLogManager.formatTime(end))")
+                    Text("\(session.startTime.formatForSessionCard()) - \(end.formatForSessionCard())")
                         .font(.sfregular12)
                         .foregroundStyle(.txt06)
                 }
             }
-            
+
             Spacer()
         })
     }
 
-    //MARK: - 대화 박스
+    // MARK: - 대화 박스
     private var wordBox: some View {
-        HStack(content: {
-            
+        HStack {
             Spacer().frame(width: 12)
-            
+
             VStack(alignment: .leading, spacing: 12) {
                 ForEach(session.groups.indices, id: \.self) { index in
                     let group = session.groups[index]
@@ -52,15 +50,26 @@ struct ConversationCard: View {
                         Text(group.keyword)
                             .font(.sdbold16)
                             .foregroundColor(.txt01)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
 
+                        // ✅ leading 정렬 강제
                         Text(group.suggestions.map { $0.word }.joined(separator: " | "))
                             .font(.montMedium14)
                             .foregroundColor(.txt01)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
                     }
+                    .padding(.horizontal, 14)
 
-                    // 마지막 그룹 뒤에는 Divider 안 붙임
+                    // ✅ Divider를 항상 가운데 정렬
                     if index != session.groups.count - 1 {
-                        Image("line")
+                        HStack {
+                            Spacer()
+                            Image("line")
+                            Spacer()
+                        }
                     }
                 }
             }
@@ -68,7 +77,7 @@ struct ConversationCard: View {
             .frame(width: 343)
             .background(Color.ummPrimary)
             .cornerRadius(8)
-        })
+        }
     }
 }
 

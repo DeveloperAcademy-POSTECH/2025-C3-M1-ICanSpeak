@@ -16,19 +16,18 @@ struct MainView: View {
                 BackgorounView()
                 
                 ScrollView {
-                    VStack(spacing: 20) {
-                        CalendarView(
-                            calendar: calendar,
-                            selectedDate: $selectedDate,
-                            showDatePicker: $showDatePicker,
-                            weekOffset: $weekOffset
-                        )
+                    VStack(spacing: 12) {
+                            CalendarView(
+                                calendar: calendar,
+                                selectedDate: $selectedDate,
+                                showDatePicker: $showDatePicker,
+                                weekOffset: $weekOffset
+                            )
                         
-                        VStack(spacing: 16) {
+                        VStack(spacing: 24) {
                             ForEach(filteredSessions) { session in
                                 NavigationLink(destination: ConversationDetailView(session: session)) {
                                     ConversationCard(session: session)
-                                        .padding(.vertical)
                                 }
                             }
                         }

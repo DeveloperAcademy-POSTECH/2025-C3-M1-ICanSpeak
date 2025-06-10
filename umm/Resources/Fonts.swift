@@ -52,7 +52,7 @@ extension Font {
     }
     
     static var sfmedium12: Font {
-        return .sfCompact(type: .medium, size: 16)
+        return .sfCompact(type: .medium, size: 12)
     }
     
     static var sfregular18: Font {

@@ -111,7 +111,8 @@ class PhoneSessionManager: NSObject, WCSessionDelegate, ObservableObject {
             // WordSuggestion 배열 처리
             if let data = message["suggestions"] as? Data,
                let decoded = try? JSONDecoder().decode([WordSuggestion].self, from: data) {
-                self.handleReceivedSuggestions(decoded)
+                let keyword = message["keyword"] as? String
+                self.handleReceivedSuggestions(decoded, keyword: keyword ?? "알 수 없음")
             }
         }
         
@@ -140,7 +141,8 @@ class PhoneSessionManager: NSObject, WCSessionDelegate, ObservableObject {
             // WordSuggestion 배열 처리
             if let data = message["suggestions"] as? Data,
                let decoded = try? JSONDecoder().decode([WordSuggestion].self, from: data) {
-                self.handleReceivedSuggestions(decoded)
+                let keyword = message["keyword"] as? String
+                self.handleReceivedSuggestions(decoded, keyword: keyword ?? "알 수 없음")
             }
         }
     }
@@ -221,7 +223,7 @@ class PhoneSessionManager: NSObject, WCSessionDelegate, ObservableObject {
     }
     
     // WordSuggestion 배열을 받아서 현재 세션에 그룹으로 추가
-    private func handleReceivedSuggestions(_ suggestions: [WordSuggestion]) {
+    private func handleReceivedSuggestions(_ suggestions: [WordSuggestion], keyword: String) {
         guard !suggestions.isEmpty else { return }
         
         // 현재 세션이 없으면 임시로 생성 (혹시 시작 메시지를 놓친 경우)
@@ -234,9 +236,6 @@ class PhoneSessionManager: NSObject, WCSessionDelegate, ObservableObject {
             print("⚠️ 시작 메시지 없이 제안 수신, 임시 세션 생성")
         }
         
-        // 첫 번째 suggestion의 meaning에서 한국어 키워드 추출
-        let keyword = extractKeywordFromSuggestions(suggestions)
-        
         let newGroup = WordSuggestionGroup(
             keyword: keyword,
             suggestions: suggestions
@@ -248,17 +247,6 @@ class PhoneSessionManager: NSObject, WCSessionDelegate, ObservableObject {
         receivedSuggestions = suggestions
         
         print("📥 그룹 추가됨 - 키워드: \(keyword), 제안 수: \(suggestions.count)")
-    }
-    
-    // suggestion들로부터 키워드 추출하는 헬퍼 함수
-    private func extractKeywordFromSuggestions(_ suggestions: [WordSuggestion]) -> String {
-        if let firstSuggestion = suggestions.first {
-            let meaning = firstSuggestion.meaning
-            if let firstWord = meaning.components(separatedBy: ",").first?.trimmingCharacters(in: .whitespaces) {
-                return firstWord
-            }
-        }
-        return "알 수 없음"
     }
     
     // MARK: - 세션 데이터 관리
