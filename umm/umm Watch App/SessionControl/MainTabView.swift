@@ -23,7 +23,7 @@ struct MainTabView: View {
                 .environmentObject(motionManager)
                 .tag(0)
                 .tabItem {
-                    Label("탭1", systemImage: "house")
+                    Image(systemName: "circle.fill")
                 }
 
             // 탭 2: 감지 기능 동작
@@ -33,7 +33,7 @@ struct MainTabView: View {
                 .environmentObject(motionManager)
                 .tag(1)
                 .tabItem {
-                    Label("탭2", systemImage: "gear")
+                    Image(systemName: "circle.fill")
                 }
         }
     }
