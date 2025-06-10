@@ -11,7 +11,7 @@ struct MainView: View {
     @AppStorage("_isFirstLaunching") var isFirstOnboarding: Bool = true
     
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ZStack {
                 BackgorounView()
                 
@@ -34,11 +34,36 @@ struct MainView: View {
                         .padding(.horizontal)
                     }
                 }
-                .fullScreenCover(isPresented: $isFirstOnboarding) {
-                    OnboardingTabView(isFirstOnboarding: $isFirstOnboarding)
+                
+                if showDatePicker {
+                    ZStack {
+                        Color.white.opacity(0.01)
+                            .ignoresSafeArea()
+                            .onTapGesture {
+                                showDatePicker = false
+                            }
+
+                        VStack {
+                            DatePicker(
+                                "",
+                                selection: $selectedDate,
+                                displayedComponents: [.date]
+                            )
+                            .datePickerStyle(.graphical)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(.ultraThinMaterial)
+                            )
+                            .padding()
+                        }
+                        .transition(.opacity)
+                    }
                 }
             }
-
+            .fullScreenCover(isPresented: $isFirstOnboarding) {
+                OnboardingTabView(isFirstOnboarding: $isFirstOnboarding)
+            }
         }
     }
     
