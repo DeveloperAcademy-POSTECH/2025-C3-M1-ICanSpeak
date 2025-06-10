@@ -11,24 +11,30 @@ struct OnboardingCommonView: View {
     let title: String
     let subtitle: String
     let imageName: String
+    var imageOffset: CGFloat = 0
     
     var body: some View {
         VStack {
-            VStack(spacing: 16) { // 텍스트 간 사이 간격
+            VStack(spacing: 20) { // 텍스트 간 사이 간격
                 Text(title)
+                    .frame(minHeight: 80)
                     .font(.title)
                     .bold()
                     .foregroundColor(.txt07)
                     .multilineTextAlignment(.center)
+                   
 
                 Text(subtitle)
-                    .font(.sdregular15)
+                    .font(.sdregular19)
                     .foregroundColor(.txt05)
                     .multilineTextAlignment(.center)
                     .lineSpacing(4)
             }
+            .fixedSize(horizontal: false, vertical: true)
+
             Spacer().frame(height: 50) // 텍스트 사진 간격
             Image(imageName)
+                .offset(y: imageOffset)
               
 
         
