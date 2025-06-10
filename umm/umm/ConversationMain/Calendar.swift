@@ -77,35 +77,35 @@ struct CalendarView: View {
 
             Spacer()
         }
-        .overlay(
-            Group {
-                if showDatePicker {
-                    ZStack {
-                        Color.white.opacity(0.01)
-                            .ignoresSafeArea()
-                            .onTapGesture {
-                                showDatePicker = false
-                            }
-
-                        VStack {
-                            DatePicker(
-                                "",
-                                selection: $selectedDate,
-                                displayedComponents: [.date]
-                            )
-                            .datePickerStyle(.graphical)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .fill(Color("txt-primary").opacity(0.12))
-                            )
-                            .padding()
-                        }
-                    }
-                    .transition(.opacity)
-                }
-            }
-        )
+//        .overlay(
+//            Group {
+//                if showDatePicker {
+//                    ZStack {
+//                        Color.white.opacity(0.01)
+//                            .ignoresSafeArea()
+//                            .onTapGesture {
+//                                showDatePicker = false
+//                            }
+//
+//                        VStack {
+//                            DatePicker(
+//                                "",
+//                                selection: $selectedDate,
+//                                displayedComponents: [.date]
+//                            )
+//                            .datePickerStyle(.graphical)
+//                            .padding()
+//                            .background(
+//                                RoundedRectangle(cornerRadius: 16)
+//                                    .fill(Color("txt-primary").opacity(0.12))
+//                            )
+//                            .padding()
+//                        }
+//                    }
+//                    .transition(.opacity)
+//                }
+//            }
+//        )
     }
 }
 
