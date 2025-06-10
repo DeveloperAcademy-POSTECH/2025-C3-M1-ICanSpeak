@@ -50,6 +50,8 @@ struct ConversationCard: View {
                         Text(group.keyword)
                             .font(.sdbold16)
                             .foregroundColor(.txt01)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
 
                         // ✅ leading 정렬 강제
                         Text(group.suggestions.map { $0.word }.joined(separator: " | "))

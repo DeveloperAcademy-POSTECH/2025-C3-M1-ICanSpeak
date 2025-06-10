@@ -90,7 +90,10 @@ struct WordSuggestionView: View {
 
         do {
             let data = try JSONEncoder().encode(suggestions)
-            WCSession.default.sendMessage(["suggestions": data], replyHandler: nil) { error in
+            WCSession.default.sendMessage([
+                "suggestions": data,
+                "keyword": koreanWord // ✅ 추가!
+            ], replyHandler: nil) { error in
                 print("❌ 전송 실패: \(error.localizedDescription)")
             }
         } catch {
