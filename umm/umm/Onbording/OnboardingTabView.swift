@@ -48,8 +48,8 @@ struct OnboardingTabView: View {
                     )
                 case 3:
                     OnboardingCommonView(
-                        title: "모르는 단어,\n예문으로 확실하게",
-                        subtitle: "뜻부터 유의어, 품사, 예문까지!\n단어를 눌러 확인할 수 있어요",
+                        title: "놓치지 않도록,\n자동저장",
+                        subtitle: "물어봤던 단어는 모두 앱에 기록돼요\n대화 이후 다시 확인해봐요",
                         imageName: "onboarding4"
                     )
                 case 4:
