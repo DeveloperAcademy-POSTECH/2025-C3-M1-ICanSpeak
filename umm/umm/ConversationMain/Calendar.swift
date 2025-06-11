@@ -34,6 +34,7 @@ struct CalendarView: View {
                 Text(DateFormatter.customMonthFormatter.string(from: week.first ?? selectedDate))
                     .font(.montBold17)
                     .foregroundColor(.txt06)
+                    .padding(.leading, 21)
                 Spacer()
                 Button(action: {
                     showDatePicker = true

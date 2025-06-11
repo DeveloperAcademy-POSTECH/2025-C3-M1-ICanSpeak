@@ -25,9 +25,14 @@ struct MainView: View {
                     
                     ScrollView {
                         VStack(spacing: 24) {
-                            ForEach(filteredSessions) { session in
-                                NavigationLink(destination: ConversationDetailView(session: session)) {
-                                    ConversationCard(session: session)
+                          if filteredSessions.isEmpty {
+                            NoDataView(text1:"아직 저장된 단어가 없어요.", text2: "AI와 대화하며 워치에게 단어를 물어보세요")
+                              .padding(.top, 200)
+                            } else {
+                                ForEach(filteredSessions) { session in
+                                    NavigationLink(destination: ConversationDetailView(session: session)) {
+                                        ConversationCard(session: session)
+                                    }
                                 }
                             }
                         }
