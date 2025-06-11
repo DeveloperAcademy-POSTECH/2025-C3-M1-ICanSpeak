@@ -15,15 +15,15 @@ struct MainView: View {
             ZStack {
                 BackgorounView()
                 
-                ScrollView {
-                    VStack(spacing: 12) {
-                            CalendarView(
-                                calendar: calendar,
-                                selectedDate: $selectedDate,
-                                showDatePicker: $showDatePicker,
-                                weekOffset: $weekOffset
-                            )
-                        
+                VStack(spacing: 15, content: {
+                    CalendarView(
+                        calendar: calendar,
+                        selectedDate: $selectedDate,
+                        showDatePicker: $showDatePicker,
+                        weekOffset: $weekOffset
+                    )
+                    
+                    ScrollView {
                         VStack(spacing: 24) {
                             ForEach(filteredSessions) { session in
                                 NavigationLink(destination: ConversationDetailView(session: session)) {
@@ -31,9 +31,11 @@ struct MainView: View {
                                 }
                             }
                         }
-                        .padding(.horizontal)
+                        .padding(.top, 0)
+                        .padding(.horizontal, 15)
                     }
-                }
+                    .scrollIndicators(.hidden)
+                })
                 
                 if showDatePicker {
                     ZStack {

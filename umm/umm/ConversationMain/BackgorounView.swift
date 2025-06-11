@@ -14,7 +14,7 @@ struct BackgorounView: View {
                 Color.primary0
                     .ignoresSafeArea()
                 
-                Image("배경UMM")
+                Image("background")
                     .resizable()
                     .scaledToFit()
                     .frame(width: geo.size.width * 1.4) // 너비를 꽉 채우되 약간 더 크게
