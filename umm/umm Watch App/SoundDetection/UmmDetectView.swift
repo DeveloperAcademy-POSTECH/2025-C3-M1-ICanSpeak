@@ -1,5 +1,5 @@
 //
-//  FirstDetectView.swift
+// UmmDetectView.swift
 //  WatchTest29th Watch App
 //
 //  Created by MINJEONG on 5/29/25.
@@ -13,20 +13,17 @@ struct UmmDetectView: View {
         ZStack{
             
             Circle()
-                .foregroundColor(.ummPrimary).opacity(0.4)
-            
-                .frame(width: 100, height: 100)
+                .foregroundColor(.orange).opacity(0.4)
             Circle()
-                .foregroundColor(.ummPrimary).opacity(0.7)
-            
-                .frame(width: 80, height: 80)
+                .foregroundColor(.orange).opacity(0.7)
+                .padding(15)
             Circle()
-                .foregroundColor(.ummPrimary)
-                .frame(width: 70, height:70)
+                .foregroundColor(.orange)
+                .padding(30)
             
             Text("Umm")
-                .font(.headline)
-            
+                .font(.sfbold20)
+
             VStack {
                 Spacer()
                 
