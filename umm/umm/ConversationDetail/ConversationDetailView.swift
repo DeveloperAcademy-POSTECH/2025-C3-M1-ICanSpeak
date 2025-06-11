@@ -46,13 +46,18 @@ struct ConversationDetailView: View {
                 
                 
                 ScrollView {
-                    VStack(spacing: 60, content: {
-                        ForEach(filteredGroups) { group in
-                            WordsCard(group: group)
-                        }
-                    })
-                    .padding(.top, 10)
-                    .padding(.bottom, 30)
+                    if filteredGroups.isEmpty {
+                        NoDataView(text1: "검색 결과가 없어요", text2: "다른 단어를 입력해 보세요")
+                            .padding(.top, 50)
+                    } else {
+                        VStack(spacing: 60, content: {
+                            ForEach(filteredGroups) { group in
+                                WordsCard(group: group)
+                            }
+                        })
+                        .padding(.top, 10)
+                        .padding(.bottom, 30)
+                    }
                 }
                 .scrollIndicators(.hidden)
             })

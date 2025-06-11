@@ -13,6 +13,7 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+
                 BackgorounView()
                 
                 VStack(spacing: 15, content: {
