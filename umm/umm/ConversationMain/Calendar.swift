@@ -75,8 +75,6 @@ struct CalendarView: View {
                     }
                 }
             )
-
-            Spacer()
         }
 //        .overlay(
 //            Group {

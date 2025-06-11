@@ -18,13 +18,13 @@ struct WordsCard: View {
             
             koreanWordTitle
         })
-        .frame(width: 355)
+        .frame(width: 358)
     }
     
     private var koreanWordTitle: some View {
         Text(group.keyword)
             .font(.sdbold19)
-            .frame(width: 355, height: 43, alignment: .center)
+            .frame(width: 358, height: 43, alignment: .center)
             .foregroundStyle(.white)
             .background(
                 UnevenRoundedRectangle(
@@ -72,7 +72,7 @@ struct WordsCard: View {
             }
         }
         .padding()
-        .frame(width: 353)
+        .frame(width: 356)
         .background(
             UnevenRoundedRectangle(
                 bottomLeadingRadius: 12,
