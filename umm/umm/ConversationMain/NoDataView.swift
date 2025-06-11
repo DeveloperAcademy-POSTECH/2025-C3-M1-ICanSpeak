@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct NoDataView: View {
+  let text1:String
+  let text2:String
+  
   var body: some View {
     VStack(spacing:5){
       
@@ -27,15 +30,11 @@ struct NoDataView: View {
             .frame(width:10, height:10)
         }
       }
-      Text("아직 저장된 단어가 없어요.")
+      Text(text1)
         .font(.sdbold16)
         .padding(.top,10)
-      Text("AI와 대화하며 워치에게 단어를 물어보세요")
+      Text(text2)
         .font(.sdmedium14)
     }
   }
-}
-
-#Preview {
-  NoDataView()
 }
