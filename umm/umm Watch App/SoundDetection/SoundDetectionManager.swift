@@ -163,8 +163,8 @@ class SoundDetectionManager: NSObject, ObservableObject, SNResultsObserving {
                         if let start = self.etcStartTime {
                             let timePassed = Date().timeIntervalSince(start)
                             if timePassed >= 5 {
-                                print("🔥 햅틱 실행됨 - 3초 이상 기타 소리 감지")
-                                self.detectedSound = "3초 이상 기타 소리 감지됨"
+                                print("🔥 햅틱 실행됨 - 5초 이상 기타 소리 감지")
+                                self.detectedSound = "5초 이상 기타 소리 감지됨"
                                 WKInterfaceDevice.current().play(.success)
                                 self.etcStartTime = nil
                             } else {
