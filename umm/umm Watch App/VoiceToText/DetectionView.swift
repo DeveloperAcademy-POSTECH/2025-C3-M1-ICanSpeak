@@ -37,13 +37,16 @@ struct DetectionView: View {
                 } else {
                     if isDetected {
                         UmmDetectView(showVoiceView: $showVoiceView)
+                            .transition(.opacity)
                             .id("umm")
                     } else {
                         FirstDetectView(showVoiceView: $showVoiceView)
+                            .transition(.opacity)
                             .id("first")
                     }
                 }
             }
+            .animation(.easeInOut(duration: 0.3), value: isDetected)
             .onAppear {
                 soundManager.pauseManager = pauseManager
                 soundManager.startDetection()
@@ -60,7 +63,6 @@ struct DetectionView: View {
                     isDetected = false
                 }
             }
-            
             .onChange(of: pauseManager.isPaused) { isPaused, _ in
                 if isPaused {
                     soundManager.pauseDetection()
