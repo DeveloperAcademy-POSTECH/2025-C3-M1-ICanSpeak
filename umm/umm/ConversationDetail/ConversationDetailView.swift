@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ConversationDetailView: View {
     @Environment(\.dismiss) private var dismiss
-    let session: ConversationSession
+    @State var session: ConversationSession
     
     @State private var searchText: String = ""
-    
+  
     //MARK: - 검색 필터
     var filteredGroups: [WordSuggestionGroup] {
         let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
@@ -24,8 +24,8 @@ struct ConversationDetailView: View {
             group.suggestions.contains { $0.word.lowercased().contains(trimmed) }
         }
     }
-
-    var body: some View {
+  
+        var body: some View {
         ZStack(content: {
             
             BackgorounView()
@@ -52,7 +52,7 @@ struct ConversationDetailView: View {
                     } else {
                         VStack(spacing: 60, content: {
                             ForEach(filteredGroups) { group in
-                                WordsCard(group: group)
+                              WordsCard(group: group)
                             }
                         })
                         .padding(.top, 10)
