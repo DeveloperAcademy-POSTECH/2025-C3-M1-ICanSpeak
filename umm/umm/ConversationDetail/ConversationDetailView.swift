@@ -94,3 +94,18 @@ extension UINavigationController: ObservableObject, UIGestureRecognizerDelegate 
         interactivePopGestureRecognizer?.delegate = nil
     }
 }
+
+
+#Preview {
+    WordsCard(group: WordSuggestionGroup(
+        keyword: "초대하다",
+        suggestions: [
+            WordSuggestion(
+                word: "invite",
+                partOfSpeech: "Verb",
+                meaning: "초대하다",
+                example: "We invited all our friends to the wedding."
+            )
+        ]
+    ))
+}

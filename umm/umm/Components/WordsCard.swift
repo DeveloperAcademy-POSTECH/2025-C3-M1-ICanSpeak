@@ -11,10 +11,11 @@ struct WordsCard: View {
     let group: WordSuggestionGroup
 
     var body: some View {
-        ZStack(alignment: .top, content: {
+        ZStack(alignment: .topLeading, content: {
             
             englishWords
-                .offset(y:42)
+                .frame(width: 358, alignment: .leading)
+                .offset(x: 1, y: 42)
             
             koreanWordTitle
         })
@@ -71,8 +72,9 @@ struct WordsCard: View {
                 }
             }
         }
-        .padding()
-        .frame(width: 356)
+        .padding(.vertical, 20)
+        .padding(.horizontal, 20)
+        .frame(width: 356, alignment: .leading)
         .background(
             UnevenRoundedRectangle(
                 bottomLeadingRadius: 12,
@@ -113,5 +115,4 @@ struct WordsCard: View {
                 example: "They welcomed us with big smiles."
             )
         ]
-    ))
-}
+    ))}
