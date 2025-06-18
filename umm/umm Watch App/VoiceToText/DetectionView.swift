@@ -10,7 +10,7 @@ import WatchKit
 
 struct DetectionView: View {
     @EnvironmentObject var pauseManager: PauseManager
-    @EnvironmentObject var motionManager: MotionManager
+    @EnvironmentObject var audioManager: AudioManager
     @EnvironmentObject var soundManager: SoundDetectionManager
     
     @StateObject private var sessionManager = WatchSessionManager.shared

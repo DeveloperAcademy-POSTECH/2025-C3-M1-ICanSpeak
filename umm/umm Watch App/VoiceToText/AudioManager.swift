@@ -1,5 +1,5 @@
 //
-//  MotionRecorder.swift
+//  AudioManager.swift
 //  Plz Watch App
 //
 //  Created by Ella's Mac on 5/29/25.
@@ -8,8 +8,8 @@
 import Foundation
 import AVFoundation
 
-class MotionManager: ObservableObject {
-    static let shared = MotionManager()
+class AudioManager: ObservableObject {
+    static let shared = AudioManager()
 
     @Published var isRecording: Bool = false
     var recordedFileURL: URL?
