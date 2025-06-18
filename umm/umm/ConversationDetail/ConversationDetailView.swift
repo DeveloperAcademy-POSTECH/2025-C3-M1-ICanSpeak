@@ -87,3 +87,10 @@ struct ConversationDetailView: View {
         }
     }
 }
+
+extension UINavigationController: ObservableObject, UIGestureRecognizerDelegate {
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = nil
+    }
+}
