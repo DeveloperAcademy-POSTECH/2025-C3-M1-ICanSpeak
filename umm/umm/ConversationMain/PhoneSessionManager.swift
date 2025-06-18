@@ -206,6 +206,12 @@ class PhoneSessionManager: NSObject, WCSessionDelegate, ObservableObject {
             return
         }
         
+        if session.groups.isEmpty {
+            print("⚠️ 그룹 없음 → 세션을 저장하지 않음")
+            currentSession = nil
+            return
+        }
+        
         // 현재 세션에 종료 시간 설정
         session.endTime = exitTime
         

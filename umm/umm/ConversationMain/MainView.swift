@@ -65,7 +65,6 @@ struct MainView: View {
                             )
                             .padding()
                         }
-                        .transition(.opacity)
                     }
                 }
             }
