@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WordsCard: View {
     let group: WordSuggestionGroup
+    @State private var showAlert = false
 
     var body: some View {
         ZStack(alignment: .top, content: {
@@ -17,8 +18,19 @@ struct WordsCard: View {
                 .offset(y:42)
             
             koreanWordTitle
+          
+            deleteButton
+
         })
         .frame(width: 358)
+        .alert("삭제하시겠어요?", isPresented: $showAlert) {
+            Button("삭제", role: .destructive) {
+              if PhoneSessionManager.shared.conversationSessions.firstIndex(where: { $0.groups.contains(where: { $0.id == group.id }) }) != nil {
+                    PhoneSessionManager.shared.deleteGroup(withId: group.id)
+                }
+            }
+            Button("닫기", role: .cancel) { }
+        }
     }
     
     private var koreanWordTitle: some View {
@@ -88,6 +100,21 @@ struct WordsCard: View {
             )
         )
     }
+  
+  private var deleteButton: some View {
+    HStack {
+      Spacer()
+      Button(action: { showAlert = true }, label: {
+        Image(systemName: "xmark")
+          .bold()
+          .frame(width: 24, height:24)
+          .foregroundColor(Color.white)
+      })
+      .padding(.top, 8)
+      .padding(.trailing, 8)
+    }
+  }
+  
 }
 
 #Preview {
