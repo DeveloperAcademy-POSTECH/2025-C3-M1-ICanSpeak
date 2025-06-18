@@ -31,7 +31,7 @@ struct MainView: View {
                               .padding(.top, 200)
                             } else {
                                 ForEach(filteredSessions) { session in
-                                    NavigationLink(destination: ConversationDetailView(session: session)) {
+                                    NavigationLink(destination: ConversationDetailView(sessionId: session.id)) {
                                         ConversationCard(session: session)
                                     }
                                 }
@@ -81,6 +81,6 @@ struct MainView: View {
     }
 }
 
-#Preview {
-    MainView()
-}
+//#Preview {
+//    MainView()
+//}
