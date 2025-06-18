@@ -77,7 +77,6 @@ struct CalendarView: View {
             }
             .frame(height: 80)
             .tabViewStyle(.page)
-            .indexViewStyle(.page(backgroundDisplayMode: .never))
         }
     }
 }
