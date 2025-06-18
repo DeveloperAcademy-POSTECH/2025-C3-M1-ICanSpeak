@@ -33,7 +33,7 @@ struct PauseView: View {
           Button(action: {
             let exitTime = Date()
             let receivedText = WatchSessionManager.shared.receivedText.trimmingCharacters(in: .whitespacesAndNewlines)
-            if receivedText != "단어를 물어보세요." && !receivedText.isEmpty && receivedText != "음성인식 실패" {
+            if receivedText != "단어를 물어보세요." && !receivedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && receivedText != "음성인식 실패" {
               WatchSessionManager.shared.sendExitTimeToApp(date: exitTime)
             } else {
               print("⚠️ 유효한 텍스트가 없어 종료 시간 전송 생략")
