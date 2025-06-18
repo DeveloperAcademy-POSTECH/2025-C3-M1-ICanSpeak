@@ -278,6 +278,19 @@ class PhoneSessionManager: NSObject, WCSessionDelegate, ObservableObject {
         saveSessions()
     }
     
+  func deleteGroup(withId groupId: UUID) {
+    for index in conversationSessions.indices {
+      if let groupIndex = conversationSessions[index].groups.firstIndex(where: { $0.id == groupId }) {
+        conversationSessions[index].groups.remove(at: groupIndex)
+        // 세션이 비어 있으면 제거
+        if conversationSessions[index].groups.isEmpty {
+          conversationSessions.remove(at: index)}
+        saveSessions()
+        break
+      }
+    }
+  }
+  
     // MARK: - 음성 인식 처리
     
     // ✅ 핵심 음성 인식 처리 로직
