@@ -44,7 +44,7 @@ struct ConversationDetailView: View {
                 HStack {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.textFieldTxt)
-                    TextField("한글 단어를 입력해주세요", text: $searchText)
+                    TextField("단어를 입력해주세요", text: $searchText)
                         .foregroundColor(.textFieldTxt)
                         .font(.sdmedium14)
                 }
@@ -57,7 +57,7 @@ struct ConversationDetailView: View {
                 
                 ScrollView {
                     if filteredGroups.isEmpty {
-                        NoDataView(text1: "검색 결과가 없어요", text2: "다른 단어를 입력해 보세요")
+                        NoDataView(text1: "검색 결과가 없어요", text2: "다른 단어를 검색해 보세요")
                             .padding(.top, 50)
                     } else {
                         VStack(spacing: 60, content: {
