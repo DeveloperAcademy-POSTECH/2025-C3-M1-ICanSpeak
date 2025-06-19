@@ -16,22 +16,22 @@ struct umm_Watch_AppApp: App {
 
     @StateObject private var pauseManager = PauseManager()
     @StateObject private var soundManager = SoundDetectionManager.shared
-    @StateObject private var motionManager = MotionManager.shared
+    @StateObject private var audioManager = AudioManager.shared
 
     var body: some Scene {
         WindowGroup {
             StartView()
                 .environmentObject(pauseManager)
                 .environmentObject(soundManager)
-                .environmentObject(motionManager)
+                .environmentObject(audioManager)
                 .onChange(of: pauseManager.isPaused) {
                     if pauseManager.isPaused {
                         print("🥱 App Level: 일시정지 감지")
-                        motionManager.pauseRecording()
+                        audioManager.pauseRecording()
                         soundManager.pauseDetection()
                     } else {
                         print("😎 App Level: 재개 감지")
-                        motionManager.resumeRecording()
+                        audioManager.resumeRecording()
                         soundManager.resumeDetection()
                     }
                 }

@@ -11,7 +11,7 @@ import WatchConnectivity
 struct PauseView: View {
   @EnvironmentObject var pauseManager: PauseManager
   @EnvironmentObject var soundManager: SoundDetectionManager
-  @EnvironmentObject var motionManager: MotionManager
+  @EnvironmentObject var audioManager: AudioManager
   
   var body: some View {
     VStack(spacing: 0) {
