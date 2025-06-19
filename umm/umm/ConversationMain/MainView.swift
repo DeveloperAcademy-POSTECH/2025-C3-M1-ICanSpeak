@@ -120,7 +120,7 @@ struct MainView: View {
             }
         } else {
             NavigationLink(
-                destination: ConversationDetailView(session: session),
+                destination: ConversationDetailView(sessionId: session.id),
                 label: {
                     ConversationCard(
                         session: session,
