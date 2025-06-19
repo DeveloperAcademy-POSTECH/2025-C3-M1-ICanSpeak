@@ -1,5 +1,5 @@
 //
-//  ConversationCard.swift
+//  MainView.swift
 //  umm
 //
 //  Created by Youbin on 6/5/25.
@@ -87,9 +87,7 @@ struct MainView: View {
     }
 
     private func deleteSelectedSessions() {
-        messageReceiver.conversationSessions.removeAll {
-            selectedSessionIDs.contains($0.id)
-        }
+        messageReceiver.deleteSessions(with: selectedSessionIDs)
         selectedSessionIDs.removeAll()
         hasSelection = false
         isSelecting = false
@@ -135,6 +133,6 @@ struct MainView: View {
     }
 }
 
-//#Preview {
-//    MainView()
-//}
+#Preview {
+    MainView()
+}

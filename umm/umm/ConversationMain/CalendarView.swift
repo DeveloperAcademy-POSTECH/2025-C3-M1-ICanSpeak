@@ -72,6 +72,7 @@ struct CalendarView: View {
                     .foregroundColor(.txt06)
                 })
             }
+            .frame(width: 340)
             .padding(.horizontal)
             .padding(.top)
 
