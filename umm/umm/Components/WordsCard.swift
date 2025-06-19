@@ -10,7 +10,7 @@ import SwiftUI
 struct WordsCard: View {
     let group: WordSuggestionGroup
     @State private var showAlert = false
-
+    
     var body: some View {
         ZStack(alignment: .topLeading, content: {
             
@@ -19,19 +19,28 @@ struct WordsCard: View {
                 .offset(x: 1, y: 42)
             
             koreanWordTitle
-          
+            
             deleteButton
-
+            
         })
         .frame(width: 358)
-        .alert("삭제하시겠어요?", isPresented: $showAlert) {
-            Button("삭제", role: .destructive) {
-              if PhoneSessionManager.shared.conversationSessions.firstIndex(where: { $0.groups.contains(where: { $0.id == group.id }) }) != nil {
-                    PhoneSessionManager.shared.deleteGroup(withId: group.id)
+        .alert(
+            Text("삭제하시겠어요?"),
+            isPresented: $showAlert,
+            actions: {
+                Button("삭제", role: .destructive) {
+                    if PhoneSessionManager.shared.conversationSessions.firstIndex(where: { $0.groups.contains(where: { $0.id == group.id }) }) != nil {
+                        PhoneSessionManager.shared.deleteGroup(withId: group.id)
+                    }
                 }
+                .fontWeight(.bold)
+                
+                Button("취소", role: .cancel) { }
+            },
+            message: {
+                Text("삭제된 내용은 다시 복구할 수 없어요")
             }
-            Button("닫기", role: .cancel) { }
-        }
+        )
     }
     
     private var koreanWordTitle: some View {
@@ -46,7 +55,7 @@ struct WordsCard: View {
                 )
                 .fill(Color.ummPrimary)
             )
-            
+        
     }
     
     private var englishWords: some View {
@@ -57,26 +66,26 @@ struct WordsCard: View {
                         .font(.montBold28)
                     
                     HStack(alignment: .center ,spacing: 6,content: {
-                            Text(suggestion.partOfSpeech)
-                                .font(.sfmedium12)
-                                .foregroundStyle(.txtPrimary)
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 2)
-                                .background(.primary1)
-                                .cornerRadius(4)
-
-                            Text(suggestion.meaning)
-                                .foregroundStyle(Color.txtPrimary)
-                                .font(.sdmedium14)
-                                .padding(.top, 1)
+                        Text(suggestion.partOfSpeech)
+                            .font(.sfmedium12)
+                            .foregroundStyle(.txtPrimary)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(.primary1)
+                            .cornerRadius(4)
+                        
+                        Text(suggestion.meaning)
+                            .foregroundStyle(Color.txtPrimary)
+                            .font(.sdmedium14)
+                            .padding(.top, 1)
                     })
-
+                    
                     Text(suggestion.example)
                         .foregroundStyle(Color.txt05)
                         .font(.sfregular14)
                         .fixedSize(horizontal: false, vertical: true)
                 }
-
+                
                 if suggestion.id != group.suggestions.last?.id {
                     Divider()
                         .frame(height: 2)
@@ -102,21 +111,21 @@ struct WordsCard: View {
             )
         )
     }
-  
-  private var deleteButton: some View {
-    HStack {
-      Spacer()
-      Button(action: { showAlert = true }, label: {
-        Image(systemName: "xmark")
-          .bold()
-          .frame(width: 24, height:24)
-          .foregroundColor(Color.white)
-      })
-      .padding(.top, 8)
-      .padding(.trailing, 8)
+    
+    private var deleteButton: some View {
+        HStack {
+            Spacer()
+            Button(action: { showAlert = true }, label: {
+                Image(systemName: "xmark")
+                    .bold()
+                    .frame(width: 24, height:24)
+                    .foregroundColor(Color.white)
+            })
+            .padding(.top, 8)
+            .padding(.trailing, 8)
+        }
     }
-  }
-  
+    
 }
 
 #Preview {

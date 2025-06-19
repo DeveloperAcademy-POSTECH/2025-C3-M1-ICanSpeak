@@ -9,23 +9,33 @@ import SwiftUI
 
 struct ConversationDetailView: View {
     @Environment(\.dismiss) private var dismiss
-    @State var session: ConversationSession
+    
+    let sessionId: UUID
+    
+    @ObservedObject private var phoneSessionManager = PhoneSessionManager.shared
     
     @State private var searchText: String = ""
-  
+    
+    // MARK: - 최신 세션 찾기
+    private var latestSession: ConversationSession? {
+        phoneSessionManager.conversationSessions.first(where: { $0.id == sessionId })
+    }
+    
     //MARK: - 검색 필터
-    var filteredGroups: [WordSuggestionGroup] {
+    private var filteredGroups: [WordSuggestionGroup] {
+        guard let session = latestSession else { return [] }
+        
         let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-
+        
         guard !trimmed.isEmpty else { return session.groups }
-
+        
         return session.groups.filter { group in
             group.keyword.lowercased().contains(trimmed) ||
             group.suggestions.contains { $0.word.lowercased().contains(trimmed) }
         }
     }
-  
-        var body: some View {
+    
+    var body: some View {
         ZStack(content: {
             
             BackgorounView()
@@ -52,7 +62,7 @@ struct ConversationDetailView: View {
                     } else {
                         VStack(spacing: 60, content: {
                             ForEach(filteredGroups) { group in
-                              WordsCard(group: group)
+                                WordsCard(group: group)
                             }
                         })
                         .padding(.top, 10)
@@ -78,11 +88,13 @@ struct ConversationDetailView: View {
                 .padding(.bottom, 20)
             }
             ToolbarItem(placement: .principal) {
-                Text(session.startTime.formatForDetailHeader())
-                    .font(.sfregular14)
-                    .foregroundStyle(.txt04)
-                    .padding(.top, 15)
-                    .padding(.bottom, 20)
+                if let session = latestSession {
+                    Text(session.startTime.formatForDetailHeader())
+                        .font(.sfregular14)
+                        .foregroundStyle(.txt04)
+                        .padding(.top, 15)
+                        .padding(.bottom, 20)
+                }
             }
         }
     }
