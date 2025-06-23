@@ -29,7 +29,7 @@ struct OnboardingTabView: View {
                 switch currentPage {
                 case 0:
                     OnboardingCommonView(
-                        title: "전화 영어,\n더 이상 두렵지 않게",
+                        title: "영어 회화,\n더 이상 두렵지 않게",
                         subtitle: "생각이 안나서 머뭇거리는 순간,\n저희가 도와드릴게요",
                         imageName: "onboarding1",
                         imageOffset: 20
