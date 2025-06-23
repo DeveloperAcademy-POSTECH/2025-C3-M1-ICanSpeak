@@ -16,6 +16,7 @@ struct MainView: View {
 
     @State private var isSelecting = false
     @State private var hasSelection = false
+    @State private var showDeleteAlert = false
     @State private var selectedSessionIDs: Set<UUID> = []
 
     @StateObject private var messageReceiver = PhoneSessionManager.shared
@@ -34,7 +35,9 @@ struct MainView: View {
                         weekOffset: $weekOffset,
                         isSelectionMode: $isSelecting,
                         hasSelection: $hasSelection,
-                        onDeleteSelected: deleteSelectedSessions
+                        onDeleteSelected: {
+                            showDeleteAlert = true
+                        }
                     )
 
                     ScrollView {
@@ -76,6 +79,14 @@ struct MainView: View {
             }
             .fullScreenCover(isPresented: $isFirstOnboarding) {
                 OnboardingTabView(isFirstOnboarding: $isFirstOnboarding)
+            }
+            .alert("삭제하시겠어요?", isPresented: $showDeleteAlert) {
+                Button("삭제", role: .destructive) {
+                    deleteSelectedSessions()
+                }
+                Button("취소", role: .cancel) { }
+            } message: {
+                Text("삭제된 내용은 다시 복구할 수 없어요")
             }
         }
     }
