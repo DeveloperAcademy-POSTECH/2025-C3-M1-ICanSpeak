@@ -69,7 +69,8 @@ struct CalendarView: View {
                         !isSelectionMode ? "선택" :
                         (hasSelection ? "삭제" : "완료")
                     )
-                    .foregroundColor(.txt06)
+                    .font(.sdmedium16)
+                    .foregroundColor(hasSelection ? Color.txtPrimary : Color.txt04)
                 })
             }
             .frame(width: 340)
