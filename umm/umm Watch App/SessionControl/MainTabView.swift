@@ -12,7 +12,7 @@ struct MainTabView: View {
 
     @EnvironmentObject var pauseManager: PauseManager
     @EnvironmentObject var soundManager: SoundDetectionManager
-    @EnvironmentObject var motionManager: MotionManager
+    @EnvironmentObject var audioManager: AudioManager
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -20,7 +20,7 @@ struct MainTabView: View {
             PauseView()
                 .environmentObject(pauseManager)
                 .environmentObject(soundManager)
-                .environmentObject(motionManager)
+                .environmentObject(audioManager)
                 .tag(0)
                 .tabItem {
                     Image(systemName: "circle.fill")
@@ -30,7 +30,7 @@ struct MainTabView: View {
             DetectionView()
                 .environmentObject(pauseManager)
                 .environmentObject(soundManager)
-                .environmentObject(motionManager)
+                .environmentObject(audioManager)
                 .tag(1)
                 .tabItem {
                     Image(systemName: "circle.fill")
