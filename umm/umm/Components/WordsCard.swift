@@ -151,4 +151,5 @@ struct WordsCard: View {
                 example: "They welcomed us with big smiles."
             )
         ]
-    ))}
+    ))
+}
