@@ -9,41 +9,50 @@ import SwiftUI
 
 struct ConversationCard: View {
     let session: ConversationSession
+    let isSelecting: Bool
+    let isSelected: Bool
+    let toggleSelection: () -> Void
 
-    
     var body: some View {
-        VStack(alignment: .center, spacing: 6, content: {
+        VStack(alignment: .center, spacing: 6) {
             timeDuration
             wordBox
-        })
-        .frame(width: 361, height: 163)
+        }
+        .frame(width: 361)
     }
 
-    //MARK: - 시간
+    // MARK: - 시간
     private var timeDuration: some View {
-        HStack(alignment: .center, spacing: 5, content: {
-            Circle()
-                .fill(Color.orange)
-                .frame(width: 8, height: 8)
-        
+        HStack(alignment: .center, spacing: 5) {
+            if isSelecting {
+                Button(action: toggleSelection) {
+                    Image(isSelected ? "Checked" : "notChecked")
+                        .resizable()
+                        .frame(width: 26, height: 26)
+                }
+            } else {
+                Circle()
+                    .fill(Color.orange)
+                    .frame(width: 8, height: 8)
+            }
+
             Group {
                 if let end = session.endTime {
-                    Text("\(TimeLogManager.formatTime(session.startTime)) - \(TimeLogManager.formatTime(end))")
+                    Text("\(session.startTime.formatForSessionCard()) - \(end.formatForSessionCard())")
                         .font(.sfregular12)
                         .foregroundStyle(.txt06)
                 }
             }
-            
+
             Spacer()
-        })
+        }
     }
 
-    //MARK: - 대화 박스
+    // MARK: - 대화 박스
     private var wordBox: some View {
-        HStack(content: {
-            
+        HStack {
             Spacer().frame(width: 12)
-            
+
             VStack(alignment: .leading, spacing: 12) {
                 ForEach(session.groups.indices, id: \.self) { index in
                     let group = session.groups[index]
@@ -52,15 +61,24 @@ struct ConversationCard: View {
                         Text(group.keyword)
                             .font(.sdbold16)
                             .foregroundColor(.txt01)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
 
                         Text(group.suggestions.map { $0.word }.joined(separator: " | "))
                             .font(.montMedium14)
                             .foregroundColor(.txt01)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
                     }
+                    .padding(.horizontal, 14)
 
-                    // 마지막 그룹 뒤에는 Divider 안 붙임
                     if index != session.groups.count - 1 {
-                        Image("line")
+                        HStack {
+                            Spacer()
+                            Image("line")
+                            Spacer()
+                        }
                     }
                 }
             }
@@ -68,30 +86,35 @@ struct ConversationCard: View {
             .frame(width: 343)
             .background(Color.ummPrimary)
             .cornerRadius(8)
-        })
+        }
     }
 }
 
 #Preview {
-    ConversationCard(session: ConversationSession(
-        startTime: Date(),
-        endTime: Calendar.current.date(byAdding: .minute, value: 20, to: Date()),
-        groups: [
-            WordSuggestionGroup(
-                keyword: "초대하다",
-                suggestions: [
-                    WordSuggestion(word: "invite", partOfSpeech: "v", meaning: "초대하다", example: "I invited them."),
-                    WordSuggestion(word: "ask over", partOfSpeech: "phr", meaning: "집에 초대하다", example: "I asked her over."),
-                    WordSuggestion(word: "welcome", partOfSpeech: "v", meaning: "환영하다", example: "They welcomed us.")
-                ]
-            ),
-            WordSuggestionGroup(
-                keyword: "5월",
-                suggestions: [
-                    WordSuggestion(word: "May", partOfSpeech: "n", meaning: "5월", example: "We met in May."),
-                    WordSuggestion(word: "in May", partOfSpeech: "phr", meaning: "5월에", example: "I was born in May.")
-                ]
-            )
-        ]
-    ))
+    ConversationCard(
+        session: ConversationSession(
+            startTime: Date(),
+            endTime: Calendar.current.date(byAdding: .minute, value: 20, to: Date()),
+            groups: [
+                WordSuggestionGroup(
+                    keyword: "초대하다",
+                    suggestions: [
+                        WordSuggestion(word: "invite", partOfSpeech: "v", meaning: "초대하다", example: "I invited them."),
+                        WordSuggestion(word: "ask over", partOfSpeech: "phr", meaning: "집에 초대하다", example: "I asked her over."),
+                        WordSuggestion(word: "welcome", partOfSpeech: "v", meaning: "환영하다", example: "They welcomed us.")
+                    ]
+                ),
+                WordSuggestionGroup(
+                    keyword: "5월",
+                    suggestions: [
+                        WordSuggestion(word: "May", partOfSpeech: "n", meaning: "5월", example: "We met in May."),
+                        WordSuggestion(word: "in May", partOfSpeech: "phr", meaning: "5월에", example: "I was born in May.")
+                    ]
+                )
+            ]
+        ),
+        isSelecting: true,
+        isSelected: false,
+        toggleSelection: {}
+    )
 }

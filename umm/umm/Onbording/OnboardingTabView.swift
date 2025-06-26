@@ -16,7 +16,7 @@ struct OnboardingTabView: View {
             Spacer().frame(height: 39)
 
             HStack(spacing: 10) {
-                ForEach(0..<4) { index in
+                ForEach(0..<5) { index in
                     Circle()
                         .fill(index == currentPage ? Color.ummPrimary : Color.fld05)
                         .frame(width: 7, height: 7)
@@ -29,27 +29,34 @@ struct OnboardingTabView: View {
                 switch currentPage {
                 case 0:
                     OnboardingCommonView(
-                        title: "전화 영어,\n더 이상 두렵지 않게",
+                        title: "영어 회화,\n더 이상 두렵지 않게",
                         subtitle: "생각이 안나서 머뭇거리는 순간,\n저희가 도와드릴게요",
-                        imageName: "onboarding1"
+                        imageName: "onboarding1",
+                        imageOffset: 20
                     )
                 case 1:
                     OnboardingCommonView(
-                        title: "‘음…’ 하면\n 알아차려요",
-                        subtitle: "대화 중 머뭇거리면 애플워치가 감지해요\n워치에게 모르는 단어를 말하면, 추천단어를 알려줘요",
+                        title: "‘음…’ 하면\n손목에 질문이 올려요",
+                        subtitle: "버튼을 눌러 워치에게\n모르는 단어를 물어보세요",
                         imageName: "onboarding2"
                     )
                 case 2:
                     OnboardingCommonView(
-                        title: "놓치지 않도록,\n자동 저장",
-                        subtitle: "물어봤던 단어는 모두 앱에 기록돼요\n대화 이후 다시 확인해봐요",
+                        title: "딱 맞는 단어를\n똑똑하게 추천해요",
+                        subtitle: "AI가 어울리는 영어 단어를\n최대 3개까지 추천해줘요",
                         imageName: "onboarding3"
                     )
                 case 3:
                     OnboardingCommonView(
+                        title: "놓치지 않도록,\n자동저장",
+                        subtitle: "물어봤던 단어는 모두 앱에 기록돼요\n대화 이후 다시 확인해봐요",
+                        imageName: "onboarding4"
+                    )
+                case 4:
+                    OnboardingCommonView(
                         title: "모르는 단어,\n예문으로 확실하게",
                         subtitle: "뜻부터 유의어, 품사, 예문까지!\n단어를 눌러 확인할 수 있어요",
-                        imageName: "onboarding4"
+                        imageName: "onboarding5"
                     )
                 default:
                     EmptyView()
@@ -73,8 +80,8 @@ struct OnboardingTabView: View {
 
                 Spacer()
 
-                Button(currentPage == 3 ? "확인" : "다음") {
-                    if currentPage < 3 {
+                Button(currentPage == 4 ? "확인" : "다음") {
+                    if currentPage < 4 {
                         currentPage += 1
                     } else {
                         isFirstOnboarding = false

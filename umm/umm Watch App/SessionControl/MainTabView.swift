@@ -12,7 +12,7 @@ struct MainTabView: View {
 
     @EnvironmentObject var pauseManager: PauseManager
     @EnvironmentObject var soundManager: SoundDetectionManager
-    @EnvironmentObject var motionManager: MotionManager
+    @EnvironmentObject var audioManager: AudioManager
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -20,25 +20,26 @@ struct MainTabView: View {
             PauseView()
                 .environmentObject(pauseManager)
                 .environmentObject(soundManager)
-                .environmentObject(motionManager)
+                .environmentObject(audioManager)
                 .tag(0)
                 .tabItem {
-                    Label("탭1", systemImage: "house")
+                    Image(systemName: "circle.fill")
                 }
 
             // 탭 2: 감지 기능 동작
             DetectionView()
                 .environmentObject(pauseManager)
                 .environmentObject(soundManager)
-                .environmentObject(motionManager)
+                .environmentObject(audioManager)
                 .tag(1)
                 .tabItem {
-                    Label("탭2", systemImage: "gear")
+                    Image(systemName: "circle.fill")
                 }
         }
     }
 }
 
-#Preview {
-    MainTabView()
-}
+//#Preview {
+//    MainTabView()
+//        .environmentObject(PauseManager())
+//}

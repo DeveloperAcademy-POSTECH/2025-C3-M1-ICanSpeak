@@ -1,5 +1,5 @@
 //
-//  FirstDetectView.swift
+// UmmDetectView.swift
 //  WatchTest29th Watch App
 //
 //  Created by MINJEONG on 5/29/25.
@@ -8,29 +8,56 @@
 import SwiftUI
 
 struct UmmDetectView: View {
-    
+    @Binding var showVoiceView: Bool
     var body: some View {
         ZStack{
-            Circle()
-                .foregroundColor(.ummPrimary).opacity(0.4)
             
-                .frame(width: 133, height: 133)
             Circle()
-                .foregroundColor(.ummPrimary).opacity(0.7)
-            
-                .frame(width: 112, height: 112)
+                .foregroundColor(.orange).opacity(0.4)
             Circle()
-                .foregroundColor(.ummPrimary)
-                .frame(width: 84, height: 84)
+                .foregroundColor(.orange).opacity(0.7)
+                .padding(15)
+            Circle()
+                .foregroundColor(.orange)
+                .padding(30)
             
-                    Text("Umm")
-                        .font(.sfbold20)
+            Text("Umm")
+                .font(.sfbold20)
+
+            VStack {
+                Spacer()
+                
+                Button{
+                    DispatchQueue.main.async {
+                        showVoiceView = true
+                    }
+                    AudioManager.shared.startRecording()
+                    SoundDetectionManager.shared.stopDetection()
+                    WatchSessionManager.shared.receivedText = "단어를 물어보세요."
+                } label: {
+                    Text("물어보기")
+                        .font(.headline)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 36)
+                        .padding(.vertical, 12)
+                        .background(
+                            Capsule()
+                                .fill(.ultraThinMaterial)
+                                .background(
+                                    Capsule().fill(Color.gray.opacity(0.4))
+                                )
+                        )
+                }
+                .buttonStyle(.plain)
             }
         }
     }
-
-
-
-#Preview {
-    UmmDetectView()
 }
+
+
+
+
+//#Preview {
+//    UmmDetectView()
+//}

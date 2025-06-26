@@ -52,7 +52,7 @@ extension Font {
     }
     
     static var sfmedium12: Font {
-        return .sfCompact(type: .medium, size: 16)
+        return .sfCompact(type: .medium, size: 12)
     }
     
     static var sfregular18: Font {
@@ -136,6 +136,10 @@ extension Font {
         return .sdGothic(type: .regular, size: 12)
     }
     
+    static var sdregular19: Font {
+         return .sdGothic(type: .regular, size: 19)
+     }
+    
     //MARK: Monserrat
     enum Monserrat {
         case bold
@@ -170,4 +174,7 @@ extension Font {
         return .monserrat(type: .medium, size: 14)
     }
     
+    static var montMedium17: Font {
+        return .monserrat(type: .medium, size: 17)
+    }
 }

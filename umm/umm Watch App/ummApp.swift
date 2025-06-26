@@ -13,26 +13,25 @@ struct umm_Watch_AppApp: App {
         print("🧪 앱 시작 - WatchSessionManager 초기화")
         _ = WatchSessionManager.shared  // 세션 강제 초기화
     }
-    
+
     @StateObject private var pauseManager = PauseManager()
     @StateObject private var soundManager = SoundDetectionManager.shared
-    @StateObject private var motionManager = MotionManager.shared
-    
+    @StateObject private var audioManager = AudioManager.shared
+
     var body: some Scene {
         WindowGroup {
             StartView()
                 .environmentObject(pauseManager)
                 .environmentObject(soundManager)
-                .environmentObject(motionManager)
-                .onChange(of: pauseManager.isPaused) { 
+                .environmentObject(audioManager)
+                .onChange(of: pauseManager.isPaused) {
                     if pauseManager.isPaused {
                         print("🥱 App Level: 일시정지 감지")
-                        motionManager.pauseRecording()
+                        audioManager.pauseRecording()
                         soundManager.pauseDetection()
                     } else {
                         print("😎 App Level: 재개 감지")
-                        motionManager.resumeRecording()
-                        motionManager.startMonitoring()
+                        audioManager.resumeRecording()
                         soundManager.resumeDetection()
                     }
                 }
