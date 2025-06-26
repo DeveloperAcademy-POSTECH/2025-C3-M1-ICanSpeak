@@ -26,7 +26,7 @@ struct ConversationCard: View {
         HStack(alignment: .center, spacing: 5) {
             if isSelecting {
                 Button(action: toggleSelection) {
-                    Image(isSelected ? "checked" : "notChecked")
+                    Image(isSelected ? "Checked" : "notChecked")
                         .resizable()
                         .frame(width: 26, height: 26)
                 }
