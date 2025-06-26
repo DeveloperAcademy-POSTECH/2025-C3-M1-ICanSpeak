@@ -12,12 +12,18 @@ struct CalendarView: View {
     @Binding var selectedDate: Date
     @Binding var showDatePicker: Bool
     @Binding var weekOffset: Int
+    @Binding var isSelectionMode: Bool
+    @Binding var hasSelection: Bool
+    var onDeleteSelected: (() -> Void)?
   
-    init(calendar: Calendar, selectedDate: Binding<Date>, showDatePicker: Binding<Bool>, weekOffset: Binding<Int>) {
+    init(calendar: Calendar, selectedDate: Binding<Date>, showDatePicker: Binding<Bool>, weekOffset: Binding<Int>, isSelectionMode: Binding<Bool>, hasSelection: Binding<Bool>, onDeleteSelected: (() -> Void)? = nil) {
         self.calendar = calendar
         self._selectedDate = selectedDate
         self._showDatePicker = showDatePicker
         self._weekOffset = weekOffset
+        self._isSelectionMode = isSelectionMode
+        self._hasSelection = hasSelection
+        self.onDeleteSelected = onDeleteSelected
         UIDatePicker.appearance().tintColor = UIColor.orange
         UIPageControl.appearance().isHidden = true
     }
@@ -34,19 +40,40 @@ struct CalendarView: View {
         VStack(spacing: 8) {
             // 상단: 현재 월 표시 및 달력 버튼
             HStack {
-                Spacer()
-                Text(DateFormatter.customMonthFormatter.string(from: weeks.first?.first ?? selectedDate))
-                    .font(.montBold17)
-                    .foregroundColor(.txt06)
-                    .padding(.leading, 21)
-                Spacer()
                 Button(action: {
                     showDatePicker = true
                 }) {
                     Image(systemName: "calendar")
                         .foregroundColor(.txt06)
                 }
+                Spacer()
+                Text(DateFormatter.customMonthFormatter.string(from: selectedDate))
+                    .font(.montBold17)
+                    .foregroundColor(.txt06)
+                    .padding(.leading, 21)
+                Spacer()
+                Button(action: {
+                    if isSelectionMode {
+                        if hasSelection {
+                            // ✅ "삭제" 텍스트 상태일 때
+                            onDeleteSelected?()
+                        } else {
+                            // ✅ "완료" 텍스트 상태일 때
+                            isSelectionMode = false
+                        }
+                    } else {
+                        isSelectionMode = true
+                    }
+                }, label: {
+                    Text(
+                        !isSelectionMode ? "선택" :
+                        (hasSelection ? "삭제" : "완료")
+                    )
+                    .font(.sdmedium16)
+                    .foregroundColor(hasSelection ? Color.txtPrimary : Color.txt04)
+                })
             }
+            .frame(width: 340)
             .padding(.horizontal)
             .padding(.top)
 

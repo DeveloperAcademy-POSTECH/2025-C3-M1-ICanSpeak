@@ -9,21 +9,32 @@ import SwiftUI
 
 struct ConversationCard: View {
     let session: ConversationSession
+    let isSelecting: Bool
+    let isSelected: Bool
+    let toggleSelection: () -> Void
 
     var body: some View {
-        VStack(alignment: .center, spacing: 6, content: {
+        VStack(alignment: .center, spacing: 6) {
             timeDuration
             wordBox
-        })
+        }
         .frame(width: 361)
     }
 
     // MARK: - 시간
     private var timeDuration: some View {
-        HStack(alignment: .center, spacing: 5, content: {
-            Circle()
-                .fill(Color.orange)
-                .frame(width: 8, height: 8)
+        HStack(alignment: .center, spacing: 5) {
+            if isSelecting {
+                Button(action: toggleSelection) {
+                    Image(isSelected ? "Checked" : "notChecked")
+                        .resizable()
+                        .frame(width: 26, height: 26)
+                }
+            } else {
+                Circle()
+                    .fill(Color.orange)
+                    .frame(width: 8, height: 8)
+            }
 
             Group {
                 if let end = session.endTime {
@@ -34,7 +45,7 @@ struct ConversationCard: View {
             }
 
             Spacer()
-        })
+        }
     }
 
     // MARK: - 대화 박스
@@ -53,7 +64,6 @@ struct ConversationCard: View {
                             .lineLimit(1)
                             .truncationMode(.tail)
 
-                        // ✅ leading 정렬 강제
                         Text(group.suggestions.map { $0.word }.joined(separator: " | "))
                             .font(.montMedium14)
                             .foregroundColor(.txt01)
@@ -63,7 +73,6 @@ struct ConversationCard: View {
                     }
                     .padding(.horizontal, 14)
 
-                    // ✅ Divider를 항상 가운데 정렬
                     if index != session.groups.count - 1 {
                         HStack {
                             Spacer()
@@ -82,25 +91,30 @@ struct ConversationCard: View {
 }
 
 #Preview {
-    ConversationCard(session: ConversationSession(
-        startTime: Date(),
-        endTime: Calendar.current.date(byAdding: .minute, value: 20, to: Date()),
-        groups: [
-            WordSuggestionGroup(
-                keyword: "초대하다",
-                suggestions: [
-                    WordSuggestion(word: "invite", partOfSpeech: "v", meaning: "초대하다", example: "I invited them."),
-                    WordSuggestion(word: "ask over", partOfSpeech: "phr", meaning: "집에 초대하다", example: "I asked her over."),
-                    WordSuggestion(word: "welcome", partOfSpeech: "v", meaning: "환영하다", example: "They welcomed us.")
-                ]
-            ),
-            WordSuggestionGroup(
-                keyword: "5월",
-                suggestions: [
-                    WordSuggestion(word: "May", partOfSpeech: "n", meaning: "5월", example: "We met in May."),
-                    WordSuggestion(word: "in May", partOfSpeech: "phr", meaning: "5월에", example: "I was born in May.")
-                ]
-            )
-        ]
-    ))
+    ConversationCard(
+        session: ConversationSession(
+            startTime: Date(),
+            endTime: Calendar.current.date(byAdding: .minute, value: 20, to: Date()),
+            groups: [
+                WordSuggestionGroup(
+                    keyword: "초대하다",
+                    suggestions: [
+                        WordSuggestion(word: "invite", partOfSpeech: "v", meaning: "초대하다", example: "I invited them."),
+                        WordSuggestion(word: "ask over", partOfSpeech: "phr", meaning: "집에 초대하다", example: "I asked her over."),
+                        WordSuggestion(word: "welcome", partOfSpeech: "v", meaning: "환영하다", example: "They welcomed us.")
+                    ]
+                ),
+                WordSuggestionGroup(
+                    keyword: "5월",
+                    suggestions: [
+                        WordSuggestion(word: "May", partOfSpeech: "n", meaning: "5월", example: "We met in May."),
+                        WordSuggestion(word: "in May", partOfSpeech: "phr", meaning: "5월에", example: "I was born in May.")
+                    ]
+                )
+            ]
+        ),
+        isSelecting: true,
+        isSelected: false,
+        toggleSelection: {}
+    )
 }

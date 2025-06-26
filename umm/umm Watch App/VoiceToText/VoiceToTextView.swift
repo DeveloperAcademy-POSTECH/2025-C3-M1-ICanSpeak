@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VoiceToTextView: View {
     @ObservedObject var sessionManager = WatchSessionManager.shared
-    @EnvironmentObject var motionManager: MotionManager
+    @EnvironmentObject var audioManager: AudioManager
     @EnvironmentObject var soundManager: SoundDetectionManager
 
     @Binding var shouldNavigate: Bool
@@ -26,7 +26,7 @@ struct VoiceToTextView: View {
                     // ❌ X 버튼: 감지 뷰로 돌아가기
                     HStack {
                         Button(action: {
-                            motionManager.stopRecording()
+                            audioManager.stopRecording()
                             isLoading = false
                             NotificationCenter.default.post(name: .didRequestReturnToDetectionView, object: nil)
                         }) {
@@ -56,7 +56,7 @@ struct VoiceToTextView: View {
                     } else {
                         Button("완료") {
                             isLoading = true
-                            motionManager.stopRecording()
+                            audioManager.stopRecording()
                             print("⏳ 완료 버튼 클릭됨, 텍스트 수신 대기 중...")
                         }
                         .font(.headline)
@@ -67,12 +67,12 @@ struct VoiceToTextView: View {
                 .padding()
                 .onAppear {
                     sessionManager.receivedText = "단어를 물어보세요."
-                    motionManager.startRecording()
+                    audioManager.startRecording()
 
                     // 🔁 애니메이션 타이머
                     Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
                         withAnimation {
-                            showBounce = motionManager.isRecording
+                            showBounce = audioManager.isRecording
                         }
                     }
                 }
@@ -81,7 +81,7 @@ struct VoiceToTextView: View {
                     isLoading = false
                     sessionManager.receivedText = "단어를 물어보세요."  // 초기화!
 
-                    motionManager.startRecording()
+                    audioManager.startRecording()
                 }
                 .onChange(of: sessionManager.receivedText) { _, newText in
                     let trimmed = newText.trimmingCharacters(in: .whitespacesAndNewlines)

@@ -272,9 +272,16 @@ class PhoneSessionManager: NSObject, WCSessionDelegate, ObservableObject {
         }
     }
     
+    //TODO: - 둘 중에 하나만 있으면 됨
     // 세션 삭제
     func deleteSession(at indexSet: IndexSet) {
         conversationSessions.remove(atOffsets: indexSet)
+        saveSessions()
+    }
+    
+    // 여러개 세션 삭제
+    func deleteSessions(with ids: Set<UUID>) {
+        conversationSessions.removeAll { ids.contains($0.id) }
         saveSessions()
     }
     

@@ -31,7 +31,7 @@ struct UmmDetectView: View {
                     DispatchQueue.main.async {
                         showVoiceView = true
                     }
-                    MotionManager.shared.startRecording()
+                    AudioManager.shared.startRecording()
                     SoundDetectionManager.shared.stopDetection()
                     WatchSessionManager.shared.receivedText = "단어를 물어보세요."
                 } label: {
