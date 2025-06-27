@@ -23,7 +23,6 @@ struct OnboardingTabView: View {
                 }
             }
 
-            Spacer().frame(height: 72)
 
             ZStack {
                 switch currentPage {
@@ -31,12 +30,11 @@ struct OnboardingTabView: View {
                     OnboardingCommonView(
                         title: "영어 회화,\n더 이상 두렵지 않게",
                         subtitle: "생각이 안나서 머뭇거리는 순간,\n저희가 도와드릴게요",
-                        imageName: "onboarding1",
-                        imageOffset: 20
+                        imageName: "onboarding1"
                     )
                 case 1:
                     OnboardingCommonView(
-                        title: "‘음…’ 하면\n손목에 질문이 올려요",
+                        title: "‘음…’ 하면\n손목에 질문이 울려요",
                         subtitle: "버튼을 눌러 워치에게\n모르는 단어를 물어보세요",
                         imageName: "onboarding2"
                     )
