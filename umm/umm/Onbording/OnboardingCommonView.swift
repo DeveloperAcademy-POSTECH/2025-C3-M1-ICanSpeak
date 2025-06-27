@@ -14,30 +14,36 @@ struct OnboardingCommonView: View {
     var imageOffset: CGFloat = 0
     
     var body: some View {
-        VStack {
-            VStack(spacing: 20) { // 텍스트 간 사이 간격
-                Text(title)
-                    .frame(minHeight: 80)
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.txt07)
-                    .multilineTextAlignment(.center)
-                   
+        GeometryReader { geometry in
+            VStack {
+                Spacer()
 
-                Text(subtitle)
-                    .font(.sdregular19)
-                    .foregroundColor(.txt05)
-                    .multilineTextAlignment(.center)
-                    .lineSpacing(4)
+                VStack(spacing: 20) {
+                    Text(title)
+                        .frame(minHeight: 80)
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(.txt07)
+                        .multilineTextAlignment(.center)
+
+                    Text(subtitle)
+                        .font(.sdregular19)
+                        .foregroundColor(.txt05)
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(4)
+                }
+                .fixedSize(horizontal: false, vertical: true)
+
+                Spacer().frame(height: 50)
+
+                Image(imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.horizontal, 40)
+                    .frame(maxHeight: geometry.size.height * 0.5)
+                Spacer()
             }
-            .fixedSize(horizontal: false, vertical: true)
-
-            Spacer().frame(height: 50) // 텍스트 사진 간격
-            Image(imageName)
-                .offset(y: imageOffset)
-              
-
-        
+            .frame(width: geometry.size.width, height: geometry.size.height)
         }
     }
 }
