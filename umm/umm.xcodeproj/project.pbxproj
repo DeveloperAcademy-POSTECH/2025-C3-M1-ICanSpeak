@@ -7,12 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92DC8F622E5E8F930056E5ED /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DC8F432E5E8F1A0056E5ED /* WidgetKit.framework */; };
+		92DC8F632E5E8F930056E5ED /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DC8F452E5E8F1A0056E5ED /* SwiftUI.framework */; };
+		92DC8F6E2E5E8F940056E5ED /* reviewwidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 92DC8F612E5E8F930056E5ED /* reviewwidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		936C5C412DE54A4E0000DFDF /* umm Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 936C5C402DE54A4E0000DFDF /* umm Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A5BFDC9D2DF1416D00AFBA31 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A5BFDC9C2DF1416D00AFBA31 /* Config.xcconfig */; };
 		A5BFDC9E2DF1416D00AFBA31 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A5BFDC9C2DF1416D00AFBA31 /* Config.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		92DC8F6C2E5E8F940056E5ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 936C5C282DE54A4D0000DFDF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 92DC8F602E5E8F930056E5ED;
+			remoteInfo = reviewwidgetExtension;
+		};
 		936C5C422DE54A4E0000DFDF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 936C5C282DE54A4D0000DFDF /* Project object */;
@@ -23,6 +33,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		92DC8F582E5E8F1C0056E5ED /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				92DC8F6E2E5E8F940056E5ED /* reviewwidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		936C5C532DE54A4F0000DFDF /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -37,6 +58,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		92DC8F432E5E8F1A0056E5ED /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		92DC8F452E5E8F1A0056E5ED /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		92DC8F612E5E8F930056E5ED /* reviewwidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = reviewwidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		936C5C302DE54A4D0000DFDF /* umm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = umm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		936C5C402DE54A4E0000DFDF /* umm Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "umm Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D8C9982DE9611700DFCD00 /* Config.shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.shared.xcconfig; sourceTree = "<group>"; };
@@ -45,6 +69,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		92DC8F722E5E8F940056E5ED /* Exceptions for "reviewwidget" folder in "reviewwidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 92DC8F602E5E8F930056E5ED /* reviewwidgetExtension */;
+		};
+		92DC8F7A2E5E96050056E5ED /* Exceptions for "Resources" folder in "reviewwidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Fonts.swift,
+			);
+			target = 92DC8F602E5E8F930056E5ED /* reviewwidgetExtension */;
+		};
 		93AC21192DED27DD00FBB517 /* Exceptions for "Resources" folder in "umm Watch App" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -82,6 +120,14 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		92DC8F642E5E8F930056E5ED /* reviewwidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				92DC8F722E5E8F940056E5ED /* Exceptions for "reviewwidget" folder in "reviewwidgetExtension" target */,
+			);
+			path = reviewwidget;
+			sourceTree = "<group>";
+		};
 		936C5C322DE54A4D0000DFDF /* umm */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -99,6 +145,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				93AC21192DED27DD00FBB517 /* Exceptions for "Resources" folder in "umm Watch App" target */,
+				92DC8F7A2E5E96050056E5ED /* Exceptions for "Resources" folder in "reviewwidgetExtension" target */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -114,6 +161,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		92DC8F5E2E5E8F930056E5ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92DC8F632E5E8F930056E5ED /* SwiftUI.framework in Frameworks */,
+				92DC8F622E5E8F930056E5ED /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		936C5C2D2DE54A4D0000DFDF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -139,6 +195,15 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		92DC8F422E5E8F1A0056E5ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92DC8F432E5E8F1A0056E5ED /* WidgetKit.framework */,
+				92DC8F452E5E8F1A0056E5ED /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		936C5C272DE54A4D0000DFDF = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +213,8 @@
 				93D8C9832DE95FD500DFCD00 /* Shared */,
 				936C5C322DE54A4D0000DFDF /* umm */,
 				936C5C442DE54A4E0000DFDF /* umm Watch App */,
+				92DC8F642E5E8F930056E5ED /* reviewwidget */,
+				92DC8F422E5E8F1A0056E5ED /* Frameworks */,
 				936C5C312DE54A4D0000DFDF /* Products */,
 				60A8B70D2DED63000036ED07 /* Recovered References */,
 			);
@@ -158,6 +225,7 @@
 			children = (
 				936C5C302DE54A4D0000DFDF /* umm.app */,
 				936C5C402DE54A4E0000DFDF /* umm Watch App.app */,
+				92DC8F612E5E8F930056E5ED /* reviewwidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,6 +233,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		92DC8F602E5E8F930056E5ED /* reviewwidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92DC8F6F2E5E8F940056E5ED /* Build configuration list for PBXNativeTarget "reviewwidgetExtension" */;
+			buildPhases = (
+				92DC8F5D2E5E8F930056E5ED /* Sources */,
+				92DC8F5E2E5E8F930056E5ED /* Frameworks */,
+				92DC8F5F2E5E8F930056E5ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				92DC8F642E5E8F930056E5ED /* reviewwidget */,
+			);
+			name = reviewwidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = reviewwidgetExtension;
+			productReference = 92DC8F612E5E8F930056E5ED /* reviewwidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		936C5C2F2DE54A4D0000DFDF /* umm */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 936C5C542DE54A4F0000DFDF /* Build configuration list for PBXNativeTarget "umm" */;
@@ -173,11 +263,13 @@
 				936C5C2D2DE54A4D0000DFDF /* Frameworks */,
 				936C5C2E2DE54A4D0000DFDF /* Resources */,
 				936C5C532DE54A4F0000DFDF /* Embed Watch Content */,
+				92DC8F582E5E8F1C0056E5ED /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				936C5C432DE54A4E0000DFDF /* PBXTargetDependency */,
+				92DC8F6D2E5E8F940056E5ED /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				936C5C322DE54A4D0000DFDF /* umm */,
@@ -223,6 +315,9 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
+					92DC8F602E5E8F930056E5ED = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					936C5C2F2DE54A4D0000DFDF = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -250,11 +345,19 @@
 			targets = (
 				936C5C2F2DE54A4D0000DFDF /* umm */,
 				936C5C3F2DE54A4E0000DFDF /* umm Watch App */,
+				92DC8F602E5E8F930056E5ED /* reviewwidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		92DC8F5F2E5E8F930056E5ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		936C5C2E2DE54A4D0000DFDF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -274,6 +377,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		92DC8F5D2E5E8F930056E5ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		936C5C2C2DE54A4D0000DFDF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -291,6 +401,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		92DC8F6D2E5E8F940056E5ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92DC8F602E5E8F930056E5ED /* reviewwidgetExtension */;
+			targetProxy = 92DC8F6C2E5E8F940056E5ED /* PBXContainerItemProxy */;
+		};
 		936C5C432DE54A4E0000DFDF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 936C5C3F2DE54A4E0000DFDF /* umm Watch App */;
@@ -299,6 +414,73 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		92DC8F702E5E8F940056E5ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 5BT826RV67;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = reviewwidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = reviewwidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.icanspeak.umm.reviewwidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		92DC8F712E5E8F940056E5ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 5BT826RV67;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = reviewwidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = reviewwidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.icanspeak.umm.reviewwidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		936C5C4E2DE54A4F0000DFDF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE1816B92DED2AC5006672B2 /* Config.xcconfig */;
@@ -572,6 +754,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		92DC8F6F2E5E8F940056E5ED /* Build configuration list for PBXNativeTarget "reviewwidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92DC8F702E5E8F940056E5ED /* Debug */,
+				92DC8F712E5E8F940056E5ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		936C5C2B2DE54A4D0000DFDF /* Build configuration list for PBXProject "umm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

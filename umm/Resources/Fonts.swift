@@ -119,6 +119,9 @@ extension Font {
     static var sdmedium16: Font {
         return .sdGothic(type: .medium, size: 16)
     }
+    static var sdmedium20: Font {
+        return .sdGothic(type: .medium, size: 20)
+    }
     
     static var sdmedium14: Font {
         return .sdGothic(type: .medium, size: 14)
