@@ -27,3 +27,5 @@ umm/DerivedData/
 # 민감한 설정
 umm/Config.xcconfig
 Config.xcconfig
+
+umm/umm.xcodeproj/project.pbxproj
