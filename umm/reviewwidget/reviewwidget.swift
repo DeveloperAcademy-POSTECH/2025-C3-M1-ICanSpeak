@@ -62,12 +62,11 @@ struct ReviewWidgetEntryView: View {
                 .padding(.leading, 20)
             }
             .containerBackground(for: .widget) {
-                Color("white")
+                Color(.txt01)
             }
             // MARK: - Medium Widget UI
 //        case .systemMedium:
-//        //TODO: -미디움사이즈 위젯 구성
-            
+
         default:
             EmptyView()
       
@@ -91,5 +90,5 @@ struct reviewwidget: Widget {
 #Preview(as: .systemSmall) {
     reviewwidget()
 } timeline: {
-    SimpleEntry(date: Date())   // ← 우리가 만든 Entry 하나 넣어주면 됨
+    SimpleEntry(date: Date())
 }
